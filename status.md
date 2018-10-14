@@ -4,10 +4,10 @@
 - TOUTAIN Xavier
 - FORNALI Damien
 ----
-> Master II - IFI - Software Architecture
-> Micro micro-services system
-> Nice Sophia-Antipolis University
-> 2018-2019
+- Master II - IFI - Software Architecture
+- Micro micro-services system
+- Nice Sophia-Antipolis University
+- 2018-2019
 ----
 - Subject: https://github.com/mosser/microservices/blob/master/assignments/3_Project.md
 ---
