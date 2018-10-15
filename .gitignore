@@ -10,3 +10,17 @@ buildNumber.properties
 
 # Avoid ignoring Maven wrapper jar file (.jar files are usually ignored)
 !/.mvn/wrapper/maven-wrapper.jar
+
+.project
+.classpath
+.settings/org.eclipse.jdt.core.prefs
+.settings/org.eclipse.m2e.core.prefs
+commons/.settings/org.eclipse.jdt.core.prefs
+commons/.settings/org.eclipse.m2e.core.prefs
+coursiers/.settings/org.eclipse.m2e.core.prefs
+restaurants/.settings/org.eclipse.jdt.core.prefs
+restaurants/.settings/org.eclipse.m2e.core.prefs
+restaurants/restaurants_addition/.settings/org.eclipse.jdt.core.prefs
+restaurants/restaurants_addition/.settings/org.eclipse.m2e.core.prefs
+restaurants/restaurants_consultation/.settings/org.eclipse.jdt.core.prefs
+restaurants/restaurants_consultation/.settings/org.eclipse.m2e.core.prefs

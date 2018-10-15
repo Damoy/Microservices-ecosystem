@@ -86,6 +86,72 @@
 5. Commons
 - ETA (Estimated Time of Arrival) micro-service ?
 
+--
+Each "-" is a new microservice (maven module: pom)
+
+
+> Microservices TODO
+
+- MSE
+	- commons
+		- ETA (estimated time of arrival)
+		- Distance estimation
+		- money addition
+		- money withdrawal
+	- restaurants
+		- consultation
+			- food
+			- menus
+			- orders
+			- restaurants
+		- addition
+			- food
+			- menus
+			- restaurants
+		- deletion
+			- food
+			- menus
+			- restaurants
+		- modification
+			- food
+			- menus
+			- orders (set order ready to be delivered)
+			- restaurants
+	- clients
+		- addition (e.g. clients_addition > clients_addition_accounts)
+			- client
+			- order (e.g. clients_addition_order)
+		- modification (clients_modification_accounts)
+			- client
+		- deletion	   (clients_deletion_accounts)
+			- client
+		- consultation
+			- client
+			- order ?
+	- coursiers
+		- addition
+			- coursier
+		- modification
+			- coursier (account)
+			- orders (set order delivery to ongoing)
+			- orders (set order to delivered)
+		- deletion
+			- coursier (FIRED)
+		- consultation
+			- current orders (accepted offers)
+			- orders candidate
+
+Joanna:
+	- Coursiers
+Amandine:
+	- Commons
+	- restaurants - deletion
+Xavier:
+	- restaurants - addition / modification / consultation
+Damien:
+	- Clients
+
+
 # Simplifications
 1. No data crypting on the network
 2. ..
