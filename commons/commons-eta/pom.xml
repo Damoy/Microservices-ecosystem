@@ -3,19 +3,17 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>com.lama.mse</groupId>
-		<artifactId>mse</artifactId>
+		<artifactId>commons</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
+	<artifactId>commons-eta</artifactId>
+	<name>MSE - commons - eta</name>
 
-	<artifactId>commons</artifactId>
-	<packaging>pom</packaging>
-	<name>MSE - commons</name>
-	
-		<modules>
-		<module>commons-eta</module>
-		<module>commons-distanceEstimation</module>
-		<module>commons - moneyAddition</module>
-		<module>commons-moneyWithdrawal</module>
-		</modules>
-	
+	<packaging>jar</packaging>
+	<properties>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<start-class>com.lama.mse.commons.eta.app.Application</start-class>
+	</properties>
+
 </project>
