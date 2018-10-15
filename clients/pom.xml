@@ -7,15 +7,15 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>commons</artifactId>
+	<artifactId>clients</artifactId>
 	<packaging>pom</packaging>
-	<name>MSE - commons</name>
+	<name>MSE - clients</name>
 
 	<modules>
-		<module>commons-eta</module>
-		<module>commons-distanceEstimation</module>
-		<module>commons - moneyAddition</module>
-		<module>commons-moneyWithdrawal</module>
+		<module>clients-addition</module>
+		<module>clients-accounts-modification</module>
+		<module>clients-accounts-deletion</module>
+		<module>clients-accounts-consultation</module>
 	</modules>
 
 </project>

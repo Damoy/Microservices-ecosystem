@@ -3,19 +3,15 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>com.lama.mse</groupId>
-		<artifactId>mse</artifactId>
+		<artifactId>clients</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-
-	<artifactId>commons</artifactId>
+	<artifactId>clients-addition</artifactId>
 	<packaging>pom</packaging>
-	<name>MSE - commons</name>
+	<name>MSE - clients - addition</name>
 
 	<modules>
-		<module>commons-eta</module>
-		<module>commons-distanceEstimation</module>
-		<module>commons - moneyAddition</module>
-		<module>commons-moneyWithdrawal</module>
+		<module>clients-accounts-addition</module>
+		<module>clients-orders-addition</module>
 	</modules>
-
 </project>

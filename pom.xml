@@ -11,6 +11,7 @@
 		<module>restaurants</module>
 		<module>commons</module>
 		<module>coursiers</module>
+		<module>clients</module>
 	</modules>
 
 	<parent>
