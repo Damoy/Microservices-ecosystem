@@ -7,6 +7,6 @@
   </parent>
   
   <name>MSE - restaurants - addition</name>
-  <artifactId>restaurants_addition</artifactId>
+  <artifactId>restaurants-addition</artifactId>
   
 </project>

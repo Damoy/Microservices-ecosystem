@@ -8,7 +8,7 @@
 	</parent>
 
 	<packaging>jar</packaging>
-	<artifactId>restaurants_consultation</artifactId>
+	<artifactId>restaurants-consultation</artifactId>
 	<name>MSE - restaurants - consultation</name>
 	
 	<properties>

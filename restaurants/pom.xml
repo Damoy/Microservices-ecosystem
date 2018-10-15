@@ -12,10 +12,10 @@
 	<name>MSE - restaurants</name>
 
 	<modules>
-		<module>restaurants_consultation</module>
-		<module>restaurants_addition</module>
-		<module>restaurants_deletion</module>
-		<module>restaurants_modification</module>
+		<module>restaurants-consultation</module>
+		<module>restaurants-addition</module>
+		<module>restaurants-deletion</module>
+		<module>restaurants-modification</module>
 		<!--
 		<module>food_consultation</module>
 		<module>food_addition</module>
