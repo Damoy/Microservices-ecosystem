@@ -13,13 +13,6 @@
 
 	<modules>
 		<module>restaurants-consultation</module>
-		<module>restaurants-addition</module>
-		<module>restaurants-deletion</module>
 		<module>restaurants-modification</module>
-		<!--
-		<module>food_consultation</module>
-		<module>food_addition</module>
-		<module>food_deletion</module>
-		<module>food_modification</module> -->
 	</modules>
 </project>
