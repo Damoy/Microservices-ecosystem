@@ -15,4 +15,5 @@
 		<module>restaurants-consultation</module>
 		<module>restaurants-modification</module>
 	</modules>
+	
 </project>
