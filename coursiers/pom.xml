@@ -11,6 +11,6 @@
   <name>MSE - coursiers</name>
   
   <modules>
-  <module>coursier_addition_account</module>
+      <module>coursiers-modification</module>
   </modules>
 </project>
