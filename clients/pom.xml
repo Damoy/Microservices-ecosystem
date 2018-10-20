@@ -12,10 +12,9 @@
 	<name>MSE - clients</name>
 
 	<modules>
-		<module>clients-addition</module>
-		<module>clients-accounts-modification</module>
-		<module>clients-accounts-deletion</module>
 		<module>clients-accounts-consultation</module>
+		<module>clients-accounts-modification</module>
+		<module>clients-orders-addition</module>
 	</modules>
 
 </project>

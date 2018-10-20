@@ -6,13 +6,13 @@
 		<artifactId>clients</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<artifactId>clients-accounts-modification</artifactId>
-	<name>MSE - clients - accounts - modification</name>
-
+	<artifactId>clients-orders-addition</artifactId>
+	<name>MSE - clients - orders - addition</name>
 	<packaging>jar</packaging>
+
 	<properties>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
-		<start-class>com.lama.mse.client.modification.accounts.app.Application</start-class>
+		<start-class>com.lama.mse.clients.orders.addition.Application</start-class>
 	</properties>
 </project>

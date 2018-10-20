@@ -14,8 +14,7 @@
 	<modules>
 		<module>commons-eta</module>
 		<module>commons-distanceEstimation</module>
-		<module>commons - moneyAddition</module>
-		<module>commons-moneyWithdrawal</module>
+		<module>commons-moneyModification</module>
 	</modules>
 
 </project>
