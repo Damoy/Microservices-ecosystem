@@ -10,5 +10,4 @@ public class MoneyModification implements IMoneyModification{
 		System.out.println(amount + "$ were credited to the restaurant " + RestaurantName);
 	}
 
-
 }

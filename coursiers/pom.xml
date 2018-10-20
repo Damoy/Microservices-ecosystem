@@ -12,5 +12,6 @@
   
   <modules>
       <module>coursiers-modification</module>
+      <module>coursiers-orders-consultation</module>
   </modules>
 </project>
