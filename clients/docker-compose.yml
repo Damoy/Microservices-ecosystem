@@ -1,0 +1,35 @@
+version: "2"
+services:
+  clients-accounts-consultation: 
+    container_name: clients-accounts-consultation
+    restart: always
+    build:
+      context: ./clients-accounts-consultation
+      dockerfile: Dockerfile
+    ports:
+      - "8081:8081"
+
+  clients-accounts-modification: 
+    container_name: clients-accounts-modification
+    restart: always
+    build:
+      context: ./clients-accounts-modification
+      dockerfile: Dockerfile
+    ports:
+      - "8082:8082"
+
+  clients-orders-addition: 
+    container_name: clients-orders-addition
+    restart: always
+    build:
+      context: ./clients-orders-addition
+      dockerfile: Dockerfile
+    ports:
+      - "8083:8083"
+
+  mongo1:
+    container_name: mongo1
+    image: mongo
+    restart: always
+    ports:
+      - "27017:27017"
