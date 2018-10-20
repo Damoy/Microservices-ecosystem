@@ -3,24 +3,20 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>coursiers</artifactId>
+        <artifactId>coursiers-modification</artifactId>
         <groupId>com.lama.mse</groupId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>coursiers-modification</artifactId>
-    <name>MSE - coursiers - modification</name>
-    <modules>
-        <module>coursiers-accounts-modification</module>
-        <module>coursiers-orders-consultation</module>
-        <module>coursiers-orders-modification</module>
-    </modules>
-    <packaging>pom</packaging>
+    <artifactId>coursiers-orders-consultation</artifactId>
+    <name>MSE - coursiers - orders - consultation</name>
 
+    <packaging>jar</packaging>
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
+        <start-class>com.lama.coursiers.orders.consultation.app.Application</start-class>
     </properties>
 
 
