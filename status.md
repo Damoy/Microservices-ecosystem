@@ -18,24 +18,24 @@
 - Business domains
 
 1. Users Management
-- Clients
-- Orders
+* Clients
+* Orders
 
 2. Commons
-- Shared domain between components
+* Shared domain between components
 
 3. Orders
-- Client
-- Coursier ?
-- Restaurant
+* Client
+* Coursier ?
+* Restaurant
 
 4. Restaurants
-- Order
-- Coursiers
+* Order
+* Coursiers
 
 5. Coursiers
-- Restaurants
-- Orders
+* Restaurants
+* Orders
 
 6. Billing ?
 
@@ -96,21 +96,12 @@ Each "-" is a new microservice (maven module: pom)
 	- commons
 		- ETA (estimated time of arrival)
 		- Distance estimation
-		- money addition
-		- money withdrawal
+		- money modification
 	- restaurants
 		- consultation
 			- food
 			- menus
 			- orders
-			- restaurants
-		- addition
-			- food
-			- menus
-			- restaurants
-		- deletion
-			- food
-			- menus
 			- restaurants
 		- modification
 			- food
@@ -118,38 +109,31 @@ Each "-" is a new microservice (maven module: pom)
 			- orders (set order ready to be delivered)
 			- restaurants
 	- clients
-		- addition (e.g. clients_addition > clients_addition_accounts)
-			- client
-			- order (e.g. clients_addition_order)
-		- modification (clients_modification_accounts)
-			- client
-		- deletion	   (clients_deletion_accounts)
+		- order addition (e.g. clients_addition_order)
+		- modification
 			- client
 		- consultation
 			- client
-			- order ?
 	- coursiers
-		- addition
-			- coursier
 		- modification
 			- coursier (account)
-			- orders (set order delivery to ongoing)
-			- orders (set order to delivered)
-		- deletion
-			- coursier (FIRED)
+			- orders (set order delivery to ongoing + delivered)
 		- consultation
 			- current orders (accepted offers)
 			- orders candidate
 
-Joanna:
-	- Coursiers
-Amandine:
-	- Commons
-	- restaurants - deletion
-Xavier:
-	- restaurants - addition / modification / consultation
-Damien:
-	- Clients
+Joanna:<br>
+	- coursiers<br>
+	<br>
+Amandine:<br>
+	- commons<br>
+	- restaurants - deletion<br>
+	<br>
+Xavier:<br>
+	- restaurants<br>
+	- addition / modification / consultation<br><br>
+Damien:<br>
+	- clients<br>
 
 
 # Simplifications
