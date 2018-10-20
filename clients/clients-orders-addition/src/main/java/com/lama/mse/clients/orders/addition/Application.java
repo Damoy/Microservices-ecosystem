@@ -1,4 +1,4 @@
-package com.lama.mse.client.addition.accounts.app;
+package com.lama.mse.clients.orders.addition;
 
 public class Application {
 

@@ -148,6 +148,6 @@ Damien:<br>
 # Tech
 - Java
 - Springboot
-- SQL > JPA ? | SQLite ?
+- NoSQL, Mongod
 - Kafka
 - Gatling
