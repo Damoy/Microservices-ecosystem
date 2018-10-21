@@ -9,10 +9,10 @@
 	<packaging>pom</packaging>
 
 	<modules>
-		<module>restaurants</module>
+		<module>clients</module>
 		<module>commons</module>
 		<module>coursiers</module>
-		<module>clients</module>
+		<module>restaurants</module>
 	</modules>
 
 	<parent>
