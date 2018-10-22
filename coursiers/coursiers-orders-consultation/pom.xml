@@ -10,6 +10,12 @@
 
 	<artifactId>coursiers-orders-consultation</artifactId>
 	<name>MSE - coursiers - orders - consultation</name>
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.kafka</groupId>
+			<artifactId>spring-kafka</artifactId>
+		</dependency>
+	</dependencies>
 
 	<packaging>jar</packaging>
 	<properties>
