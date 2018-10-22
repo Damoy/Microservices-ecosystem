@@ -10,8 +10,6 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 
-
-
 	<packaging>jar</packaging>
 	<artifactId>restaurants-modification-restaurant</artifactId>
 	<name>MSE - restaurants - modification - restaurant</name>
