@@ -134,7 +134,19 @@ Xavier:<br>
 	- addition / modification / consultation<br><br>
 Damien:<br>
 	- clients<br>
+	
+-Kafka verbs<br>
+TODO messages:<br>
+- create an object > "create-object"<br>
+- delete an object > "delete-object"<br>
+- edit all object attributes > "edit-object-all"<br>
+- edit an object > "edit-object-attribute"<br> 
 
+DONE messages:<br>
+- object has been created > "object-created"<br>
+- object has been deleted > "object-deleted"<br>
+- all object attributes has ben edited > "object-all-edited"<br>
+- object attribute has been edited > "object-attribute-edited"<br> 
 
 # Simplifications
 1. No data crypting on the network

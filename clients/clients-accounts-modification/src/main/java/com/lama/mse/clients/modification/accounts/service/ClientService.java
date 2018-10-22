@@ -1,9 +1,9 @@
 package com.lama.mse.clients.modification.accounts.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
+import com.lama.mse.clients.modification.accounts.kafka.IKafkaIO;
 import com.lama.mse.clients.modification.accounts.model.Client;
 import com.lama.mse.clients.modification.accounts.repository.IClientRepository;
 
@@ -14,20 +14,16 @@ public class ClientService implements IClientService {
 	private IClientRepository clientRepository;
 	
 	@Autowired
-	private KafkaTemplate<String, Client> kafkaTemplate;
+	private IKafkaIO kafkaIO;
 
 	public ClientService() {
 		
 	}
 	
-	public void sendCreateClientMessage(Client client) {
-		kafkaTemplate.send("client-create", client);
-	}
-
 	@Override
 	public void addClient(Client client) {
 		clientRepository.save(client);
-		sendCreateClientMessage(client);
+		kafkaIO.sendCreateClientMessage(client);
 	}
 
 	@Override
