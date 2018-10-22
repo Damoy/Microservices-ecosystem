@@ -1,9 +1,11 @@
 package com.lama.mse.clients.modification.accounts.kafka;
 
 import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.stereotype.Component;
 
 import com.lama.mse.clients.modification.accounts.model.Client;
 
+@Component
 public class KafkaIO implements IKafkaIO{
 
 	private KafkaTemplate<String, Client> kafkaTemplate;
@@ -13,13 +15,23 @@ public class KafkaIO implements IKafkaIO{
 	}
 	
 	@Override
-	public void sendCreateClientMessage(Client client) {
-		kafkaTemplate.send("client-create", client);
+	public void sendCreatedClientMessage(Client client) {
+		kafkaTemplate.send("client-created", client);
 	}
 	
 	@Override
-	public void sendDeleteClientMessage(Client client) {
-		kafkaTemplate.send("client-delete", client);
+	public void sendDeletedClientMessage(Client client) {
+		kafkaTemplate.send("client-deleted", client);
+	}
+	
+	@Override
+	public void sendEditedClientAllMessage(Client client) {
+		kafkaTemplate.send("client-all-edited", client);
+	}
+
+	@Override
+	public void sendEditedClientAttributeMessage(Client client, String clientAttributeModified) {
+		kafkaTemplate.send("client-" + clientAttributeModified + "-edited", client);
 	}
 	
 }

@@ -23,22 +23,23 @@ public class ClientService implements IClientService {
 	@Override
 	public void addClient(Client client) {
 		clientRepository.save(client);
-		kafkaIO.sendCreateClientMessage(client);
+		kafkaIO.sendCreatedClientMessage(client);
 	}
 
 	@Override
 	public void deleteClient(String mail) {
 		Client client = clientRepository.findByMail(mail).get(0);
 		clientRepository.delete(client);
-		kafkaIO.sendDeleteClientMessage(client);
+		kafkaIO.sendDeletedClientMessage(client);
 	}
 
 	@Override
-	public void modifyClientName(String mail, String name) {
+	public void editClientName(String mail, String name) {
 		Client client = clientRepository.findByMail(mail).get(0);
 		client.setName(name);
 		clientRepository.delete(client);
 		clientRepository.insert(client);
+		kafkaIO.sendEditedClientAttributeMessage(client, "name");
 	}
 
 	@Override
@@ -47,6 +48,7 @@ public class ClientService implements IClientService {
 		client.setAddress(address);
 		clientRepository.delete(client);
 		clientRepository.insert(client);
+		kafkaIO.sendEditedClientAttributeMessage(client, "address");
 	}
 
 	@Override
@@ -55,6 +57,7 @@ public class ClientService implements IClientService {
 		client.setNumber(phoneNumber);
 		clientRepository.delete(client);
 		clientRepository.insert(client);
+		kafkaIO.sendEditedClientAttributeMessage(client, "phone");
 	}
 
 }
