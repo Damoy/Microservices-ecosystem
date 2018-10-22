@@ -28,7 +28,9 @@ public class ClientService implements IClientService {
 
 	@Override
 	public void deleteClient(String mail) {
-		clientRepository.delete(clientRepository.findByMail(mail).get(0));
+		Client client = clientRepository.findByMail(mail).get(0);
+		clientRepository.delete(client);
+		kafkaIO.sendDeleteClientMessage(client);
 	}
 
 	@Override
