@@ -4,6 +4,6 @@ import com.lama.mse.consultation.accounts.model.Client;
 
 public interface IClientService {
 	
-	public Client findByEmail(String email);
+	public Client findByMail(String mail);
 
 }
