@@ -1,9 +1,9 @@
 package com.lama.mse.clients.modification.accounts.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
+import com.lama.mse.clients.modification.accounts.kafka.IKafkaIO;
 import com.lama.mse.clients.modification.accounts.model.Client;
 import com.lama.mse.clients.modification.accounts.repository.IClientRepository;
 
@@ -14,33 +14,32 @@ public class ClientService implements IClientService {
 	private IClientRepository clientRepository;
 	
 	@Autowired
-	private KafkaTemplate<String, Client> kafkaTemplate;
+	private IKafkaIO kafkaIO;
 
 	public ClientService() {
 		
 	}
 	
-	public void sendCreateClientMessage(Client client) {
-		kafkaTemplate.send("client-create", client);
-	}
-
 	@Override
 	public void addClient(Client client) {
 		clientRepository.save(client);
-		sendCreateClientMessage(client);
+		kafkaIO.sendCreatedClientMessage(client);
 	}
 
 	@Override
 	public void deleteClient(String mail) {
-		clientRepository.delete(clientRepository.findByMail(mail).get(0));
+		Client client = clientRepository.findByMail(mail).get(0);
+		clientRepository.delete(client);
+		kafkaIO.sendDeletedClientMessage(client);
 	}
 
 	@Override
-	public void modifyClientName(String mail, String name) {
+	public void editClientName(String mail, String name) {
 		Client client = clientRepository.findByMail(mail).get(0);
 		client.setName(name);
 		clientRepository.delete(client);
 		clientRepository.insert(client);
+		kafkaIO.sendEditedClientAttributeMessage(client, "name");
 	}
 
 	@Override
@@ -49,6 +48,7 @@ public class ClientService implements IClientService {
 		client.setAddress(address);
 		clientRepository.delete(client);
 		clientRepository.insert(client);
+		kafkaIO.sendEditedClientAttributeMessage(client, "address");
 	}
 
 	@Override
@@ -57,6 +57,7 @@ public class ClientService implements IClientService {
 		client.setNumber(phoneNumber);
 		clientRepository.delete(client);
 		clientRepository.insert(client);
+		kafkaIO.sendEditedClientAttributeMessage(client, "phone");
 	}
 
 }
