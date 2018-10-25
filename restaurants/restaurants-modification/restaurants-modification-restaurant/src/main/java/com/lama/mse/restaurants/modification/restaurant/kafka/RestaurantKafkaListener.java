@@ -1,4 +1,4 @@
-package com.lama.mse.restaurants.modification.kafka.listeners;
+package com.lama.mse.restaurants.modification.restaurant.kafka;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
