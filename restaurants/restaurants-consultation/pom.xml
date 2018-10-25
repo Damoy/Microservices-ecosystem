@@ -17,6 +17,5 @@
 		<module>restaurants-consultation-restaurant</module>
 		<module>restaurants-consultation-food</module>
 		<module>restaurants-consultation-orders</module>
-		<module>restaurants-consultation-menu</module>
 	</modules>
 </project>

@@ -17,6 +17,5 @@
 		<module>restaurants-modification-restaurant</module>
 		<module>restaurants-modification-food</module>
 		<module>restaurants-modification-orders</module>
-		<module>restaurants-modification-menu</module>
 	</modules>
 </project>
