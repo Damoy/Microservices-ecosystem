@@ -14,3 +14,6 @@ buildNumber.properties
 .project
 .classpath
 **/.settings/
+*.org.eclipse.*
+/.settings/
+.settings
