@@ -16,4 +16,5 @@ buildNumber.properties
 **/.settings/
 *.org.eclipse.*
 /.settings/
-.settings
+.settings/*.org.eclipse.*
+**/.settings/*.org.eclipse.*
