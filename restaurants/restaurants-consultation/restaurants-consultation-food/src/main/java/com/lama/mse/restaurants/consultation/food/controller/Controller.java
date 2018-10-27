@@ -11,39 +11,37 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.lama.mse.restaurants.consultation.food.kafka.IKafkaIO;
+import com.lama.mse.restaurants.consultation.food.model.Category;
 import com.lama.mse.restaurants.consultation.food.model.Food;
+import com.lama.mse.restaurants.consultation.food.service.IFoodService;
 
 @RestController
 @RequestMapping("/MS/CONSULT/")
 @SuppressWarnings({"rawtypes", "unchecked"})
 public class Controller {
 
-	private static Controller instance = null;
-	
 	@Autowired
 	private IKafkaIO kafkaIO;
 	
 	@Autowired
+	private IFoodService foodService;
+	
 	public Controller() {
-		instance = this;
 	}
 	
-	// TODO SEE
 	@RequestMapping(value = "FOOD/{category}", method = RequestMethod.GET)
-	public ResponseEntity consultAllFoodEntryPoint(@PathVariable("category") String category) {
-		if("all".equals(category)) {
-			kafkaIO.sendConsultAllFoodMessage();
-		} else {
-			kafkaIO.sendConsultFoodByCategoryMessage(category);
+	public ResponseEntity consultFoodEntryPoint(@PathVariable("category") String category) {
+		category = Category.parseCategory(category.trim()).getTitle();
+		List<Food> foods = foodService.getByCategory(category);
+		kafkaIO.sendConsultedFoodByCategoryMessage(category);
+		
+		HttpStatus status = HttpStatus.OK;
+		
+		if(foods == null || foods.isEmpty()){
+			status = HttpStatus.NOT_FOUND;
 		}
 		
-		// TODO get all foods
-		List<Food> foods = null;
-		return new ResponseEntity(foods, HttpStatus.OK);
-	}
-	
-	public static Controller getInstance() {
-		return instance;
+		return new ResponseEntity(foods, status);
 	}
 	
 }

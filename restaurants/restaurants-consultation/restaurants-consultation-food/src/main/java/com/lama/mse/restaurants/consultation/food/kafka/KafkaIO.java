@@ -15,13 +15,8 @@ public class KafkaIO implements IKafkaIO {
 	}
 	
 	@Override
-	public void sendConsultAllFoodMessage() {
-		kafkaTemplate.send("consult-food", "all");
-	}
-
-	@Override
-	public void sendConsultFoodByCategoryMessage(String category) {
-		kafkaTemplate.send("consult-food", category.trim());
+	public void sendConsultedFoodByCategoryMessage(String category) {
+		kafkaTemplate.send("food-consulted", category);
 	}
 
 }
