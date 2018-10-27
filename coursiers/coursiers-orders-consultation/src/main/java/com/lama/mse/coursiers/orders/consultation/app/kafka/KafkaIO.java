@@ -1,20 +1,17 @@
 package com.lama.mse.coursiers.orders.consultation.app.kafka;
 
-import com.lama.mse.coursiers.orders.consultation.app.model.Coursier;
 import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.stereotype.Component;
 
-public class KafkaIO implements IKafkaIO {
-	
-	private KafkaTemplate<String, Coursier> kafkaTemplate;
+import com.lama.mse.coursiers.orders.consultation.app.model.Order;
+
+@Component
+public class KafkaIO implements IKafkaIO{
+
+	private KafkaTemplate<String, Order> kafkaTemplate;
 	
 	public KafkaIO(){
 		
 	}
 	
-	@Override
-	public void sendConsultedCOursierMessage(Coursier coursier) {
-		kafkaTemplate.send("coursier-consulted", coursier);
-	}
-	
-
 }

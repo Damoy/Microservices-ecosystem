@@ -1,7 +1,8 @@
-package com.lama.mse.coursiers.orders.consultation.app.repository;
+package com.lama.mse.coursiers.accounts.modification.repository;
 
-import com.lama.mse.coursiers.orders.consultation.app.model.Coursier;
 import org.springframework.data.mongodb.repository.MongoRepository;
+
+import com.lama.mse.coursiers.accounts.modification.model.Coursier;
 
 import java.util.List;
 

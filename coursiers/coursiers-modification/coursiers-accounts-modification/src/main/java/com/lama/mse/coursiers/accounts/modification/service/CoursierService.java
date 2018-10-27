@@ -1,14 +1,17 @@
-package com.lama.mse.coursiers.orders.consultation.app.service;
+package com.lama.mse.coursiers.accounts.modification.service;
 
 import ch.qos.logback.core.net.server.Client;
-import com.lama.mse.coursiers.orders.consultation.app.model.Coursier;
-import com.lama.mse.coursiers.orders.consultation.app.repository.ICoursierRepository;
+
+import com.lama.mse.coursiers.accounts.modification.model.Coursier;
+import com.lama.mse.coursiers.accounts.modification.repository.ICoursierRepository;
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
-//@Transactionnal
-@Service("ClientService")
+@Service("CoursierService")
 public class CoursierService implements ICoursierService{
 
     @Autowired
@@ -17,13 +20,15 @@ public class CoursierService implements ICoursierService{
     @Autowired
     private KafkaTemplate<String, String> kafkaTemplate;
 
-    public void CoursierService() {}
-
+    public CoursierService() {
+    	
+    }
 
     @Override
     public Coursier findByEmail(String email) {
-        //	return Repository.findByEmail(email)
-        return null;
+    	List<Coursier> coursiers = repository.findByMail(email);
+    	if(coursiers == null || coursiers.isEmpty()) return null;
+    	return coursiers.get(0);
     }
 
 }
