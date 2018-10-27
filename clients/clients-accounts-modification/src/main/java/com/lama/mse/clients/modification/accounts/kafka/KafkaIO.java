@@ -1,5 +1,6 @@
 package com.lama.mse.clients.modification.accounts.kafka;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
 
@@ -8,6 +9,7 @@ import com.lama.mse.clients.modification.accounts.model.Client;
 @Component
 public class KafkaIO implements IKafkaIO{
 
+	@Autowired
 	private KafkaTemplate<String, Client> kafkaTemplate;
 	
 	public KafkaIO(){
@@ -32,6 +34,11 @@ public class KafkaIO implements IKafkaIO{
 	@Override
 	public void sendEditedClientAttributeMessage(Client client, String clientAttributeModified) {
 		kafkaTemplate.send("client-" + clientAttributeModified + "-edited", client);
+	}
+
+	@Override
+	public void sendPrelevedClientMessage(Client client) {
+		kafkaTemplate.send("client-preleved", client);
 	}
 	
 }

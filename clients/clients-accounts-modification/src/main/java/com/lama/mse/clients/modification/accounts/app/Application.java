@@ -10,6 +10,7 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 		"com.lama.mse.clients.modification.accounts.repository",
 		"com.lama.mse.clients.modification.accounts.service"
 })
+
 @EnableMongoRepositories("com.lama.mse.clients.modification.accounts.repository")
 public class Application {
 

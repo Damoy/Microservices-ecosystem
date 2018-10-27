@@ -8,5 +8,6 @@ public interface IKafkaIO {
 	public void sendDeletedClientMessage(Client client);
 	public void sendEditedClientAllMessage(Client client);
 	public void sendEditedClientAttributeMessage(Client client, String clientAttributeModified);
+	public void sendPrelevedClientMessage(Client client);
 	
 }
