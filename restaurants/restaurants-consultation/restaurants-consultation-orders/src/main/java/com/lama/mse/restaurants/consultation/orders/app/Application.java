@@ -1,4 +1,5 @@
-package com.lama.mse.restaurants.consultation.app;
+package com.lama.mse.restaurants.consultation.orders.app;
+
 
 public class Application {
 
