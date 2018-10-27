@@ -16,4 +16,12 @@
 		<start-class>com.lama.mse.commons.distanceEstimation.app.Application</start-class>
 	</properties>
 
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.kafka</groupId>
+			<artifactId>spring-kafka</artifactId>
+		</dependency>
+	</dependencies>
+
+
 </project>
