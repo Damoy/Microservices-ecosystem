@@ -1,4 +1,4 @@
-package com.lama.mse.coursiers.orders.consultation.app.kafka;
+package com.lama.mse.restaurants.consultation.orders.kafka;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -23,7 +23,7 @@ public class KafkaProducerConfig {
 	}
 
 	@Bean
-	public KafkaTemplate<String, String> send() {
+	public KafkaTemplate<String, String> kafkaTemplate() {
 		return new KafkaTemplate<>(producerFactory());
 	}
 

@@ -1,7 +1,4 @@
-package com.lama.mse.coursiers.orders.consultation.app.kafka;
-
-import java.util.HashMap;
-import java.util.Map;
+package com.lama.mse.coursiers.accounts.modification.kafka;
 
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
@@ -11,6 +8,9 @@ import org.springframework.kafka.annotation.EnableKafka;
 import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
 import org.springframework.kafka.core.ConsumerFactory;
 import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @EnableKafka
 @Configuration

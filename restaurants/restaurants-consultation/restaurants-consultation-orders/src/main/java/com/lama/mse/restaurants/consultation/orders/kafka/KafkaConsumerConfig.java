@@ -1,4 +1,4 @@
-package com.lama.mse.coursiers.orders.consultation.app.kafka;
+package com.lama.mse.restaurants.consultation.orders.kafka;
 
 import java.util.HashMap;
 import java.util.Map;

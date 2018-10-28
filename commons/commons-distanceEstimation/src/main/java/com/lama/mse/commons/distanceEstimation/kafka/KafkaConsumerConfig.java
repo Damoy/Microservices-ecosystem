@@ -1,4 +1,4 @@
-package com.lama.mse.coursiers.orders.consultation.app.kafka;
+package com.lama.mse.commons.distanceEstimation.kafka;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -11,6 +11,7 @@ import org.springframework.kafka.annotation.EnableKafka;
 import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
 import org.springframework.kafka.core.ConsumerFactory;
 import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
+
 
 @EnableKafka
 @Configuration
