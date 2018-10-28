@@ -2,6 +2,7 @@ package com.lama.mse.coursiers.orders.consultation.app.service;
 
 import java.util.List;
 
+import com.lama.mse.coursiers.orders.consultation.app.kafka.IKafkaIO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,9 +14,19 @@ public class OrderService implements IOrderService {
 
 	@Autowired
 	private IOrderRepository orderRepository;
+
+	@Autowired
+	private IKafkaIO kafka;
 	
 	public OrderService(){
-		
+	}
+
+	@Override
+	public Order findById(long id) {
+		Order order = orderRepository.findById((int)id).get();
+		kafka.sendConsultedClientMessage(order);
+		return order;
+
 	}
 
 	// TODO

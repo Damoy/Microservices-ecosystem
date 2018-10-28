@@ -7,5 +7,6 @@ import java.util.List;
 public interface IOrderService {
 
 	public List<Order> getOrdersWithCoursierLocation(String coursierLocation);
-	
-}
+	public Order findById(long id);
+
+	}

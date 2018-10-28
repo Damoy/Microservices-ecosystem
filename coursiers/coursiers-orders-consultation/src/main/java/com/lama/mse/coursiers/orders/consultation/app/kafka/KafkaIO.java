@@ -13,5 +13,12 @@ public class KafkaIO implements IKafkaIO{
 	public KafkaIO(){
 		
 	}
-	
+
+	@Override
+	public void sendConsultedOredrMessage(Order order){
+		kafkaTemplate.send("order-consulted", order);
+
+	}
+
+
 }

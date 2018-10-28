@@ -11,6 +11,16 @@
 
     <artifactId>coursiers-orders-modification</artifactId>
     <name>MSE - coursiers - orders - modification</name>
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.kafka</groupId>
+            <artifactId>kafka-clients</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.kafka</groupId>
+            <artifactId>spring-kafka</artifactId>
+        </dependency>
+    </dependencies>
 
     <packaging>jar</packaging>
     <properties>
