@@ -5,7 +5,7 @@ import com.lama.mse.coursiers.orders.consultation.app.model.Coursier;
 
 public interface IKafkaIO {
 
-    public void sendConsultedCOursierMessage(Coursier coursier);
+    public void sendConsultedCOursier(Coursier coursier);
 
 }
 

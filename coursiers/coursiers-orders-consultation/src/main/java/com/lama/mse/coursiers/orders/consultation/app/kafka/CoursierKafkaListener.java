@@ -14,8 +14,8 @@ public class CoursierKafkaListener {
     public CoursierKafkaListener() {
     }
 
-    @KafkaListener(topics = "consult-coursier")
-    public void consultClientListener(Coursier coursier, Acknowledgment acknowledgment) {
+    @KafkaListener(topics = "consult-orders")
+    public void consultCoursieristener(Coursier coursier, Acknowledgment acknowledgment) {
         coursierService.findByEmail(coursier.getEmail());
         acknowledgment.acknowledge();
     }

@@ -12,7 +12,7 @@ public class KafkaIO implements IKafkaIO {
 	}
 	
 	@Override
-	public void sendConsultedCOursierMessage(Coursier coursier) {
+	public void sendConsultedCOursier(Coursier coursier) {
 		kafkaTemplate.send("coursier-consulted", coursier);
 	}
 	
