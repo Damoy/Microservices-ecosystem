@@ -5,5 +5,7 @@ import com.lama.mse.coursiers.orders.consultation.app.model.Order;
 public interface IKafkaIO {
 
     public void sendConsultedOredrMessage(Order order);
+    public void sendEstimateLocationMessage(Order order);
 
-}
+
+    }

@@ -4,13 +4,13 @@ import com.lama.mse.coursiers.orders.modification.app.model.Order;
 
 public interface IKafkaIO {
 
-    public void sendDeletedOrder(Order order);
+    public void sendDeletedOrderMessage(Order order);
 
-    public void sendModifedClientMail(Order order);
+    public void sendModifedClientMailMessage(Order order);
 
-    public void sendModifiedRestaurantName(Order order);
+    public void sendModifiedRestaurantNameMessage(Order order);
 
-    public void sendModifiedDeliveryLocation(Order order);
+    public void sendModifiedDeliveryLocationMessage(Order order);
 
-    public void sendModifiedFoodNames(Order order);
+    public void sendModifiedFoodNamesMessage(Order order);
 }

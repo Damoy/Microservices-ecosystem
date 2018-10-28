@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface IOrderService {
 
-	public void addOrder(Order order);
+	public void saveOrder(Order order);
 	public void deleteOrder(long id);
 	public void modifyClientMail(long id, String mail);
 	public void modifyRestaurantName(long id, String restaurantName);

@@ -11,6 +11,7 @@ public class Order {
 	private String restaurantName;
 	private String deliveryLocation;
 	private List<String> foodNames;
+	private String Coursierid;
 	
 	public Order(long id, String clientMail, String restaurantName,
                  String deliveryLocation, List<String> foodNames) {
@@ -64,5 +65,12 @@ public class Order {
 	public void setDeliveryLocation(String deliveryLocation) {
 		this.deliveryLocation = deliveryLocation;
 	}
-	
+
+	public String getCoursierid() {
+		return Coursierid;
+	}
+
+	public void setCoursierid(String coursierid) {
+		Coursierid = coursierid;
+	}
 }

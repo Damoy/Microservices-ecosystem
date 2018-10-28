@@ -1,5 +1,8 @@
 package com.lama.mse.coursiers.orders.consultation.app.service;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import com.lama.mse.coursiers.orders.consultation.app.kafka.IKafkaIO;
@@ -24,20 +27,20 @@ public class OrderService implements IOrderService {
 	@Override
 	public Order findById(long id) {
 		Order order = orderRepository.findById((int)id).get();
-		kafka.sendConsultedClientMessage(order);
 		return order;
 
 	}
 
 	// TODO
 	@Override
-	public List<Order> getOrdersWithCoursierLocation(String coursierLocation) {
-		List<Order> orders = orderRepository.findAll();
-//		orders = orders.stream()
-//				.filter(o -> distance(o.getDeliveryLocation(), coursierLocation))
-//			.collect(Collections::list);
-		
-		return null;
+	public List<Order> getOrdersWithCoursierLocation(int distance) {
+		/*List<Order> orders = orderRepository.findAll();
+		orders = orders.stream()
+				.filter(o -> distance(o.getDeliveryLocation(), coursierLocation))
+			.collect( Collections::list);
+		//getOrdersWithCoursierLocation*/
+		List<Order> orders = new ArrayList<Order>( (Collection<? extends Order>) new Order() );
+		return orders;
 	}
 	
 }

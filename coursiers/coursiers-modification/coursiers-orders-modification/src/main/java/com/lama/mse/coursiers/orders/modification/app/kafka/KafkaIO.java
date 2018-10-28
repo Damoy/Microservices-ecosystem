@@ -15,29 +15,33 @@ public class KafkaIO implements IKafkaIO{
 
 	}
 
+	/*@Override
+	public void sendAddOrderMessage(Order order) {
+		kafkaTemplate.send("order-addition", order);
+	}*/
 
 	@Override
-	public void sendDeletedOrder(Order order) {
+	public void sendDeletedOrderMessage(Order order) {
 		kafkaTemplate.send("order-deleted", order);
 	}
 
 	@Override
-	public void sendModifedClientMail(Order order) {
+	public void sendModifedClientMailMessage(Order order) {
 		kafkaTemplate.send("order-modified-client-mail", order);
 	}
 
 	@Override
-	public void sendModifiedRestaurantName(Order order) {
+	public void sendModifiedRestaurantNameMessage(Order order) {
 		kafkaTemplate.send("order-modified-restaurantName", order);
 	}
 
 	@Override
-	public void sendModifiedDeliveryLocation(Order order) {
+	public void sendModifiedDeliveryLocationMessage(Order order) {
 		kafkaTemplate.send("order-modified-deliveryLocation", order);
 	}
 
 	@Override
-	public void sendModifiedFoodNames(Order order) {
+	public void sendModifiedFoodNamesMessage(Order order) {
 		kafkaTemplate.send("order-modified-foodName", order);
 	}
 	
