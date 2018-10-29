@@ -15,8 +15,8 @@ public class KafkaIO implements IKafkaIO {
 	}
 
 	@Override
-	public void sendEstimatedDistance(int distance, long id) {
-		kafkaTemplate.send("distance-estimated", distance, id);
+	public void sendEstimatedDistance(int distance) {
+		kafkaTemplate.send("distance-estimated", distance);
 		
 	}
 

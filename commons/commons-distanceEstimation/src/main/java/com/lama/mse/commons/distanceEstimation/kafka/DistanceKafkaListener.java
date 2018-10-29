@@ -25,7 +25,7 @@ public class DistanceKafkaListener {
 		
 		int distance = DistanceEstimator.getEstimator().estimate(startLocation, endLocation);
 		
-		kafka.sendEstimatedDistance(distance, id);
+		kafka.sendEstimatedDistance(distance);
 		
 		acknowledgment.acknowledge();
 	}
