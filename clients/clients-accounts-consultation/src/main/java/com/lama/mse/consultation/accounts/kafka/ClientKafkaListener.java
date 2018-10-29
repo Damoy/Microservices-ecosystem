@@ -24,4 +24,5 @@ public class ClientKafkaListener {
 		acknowledgment.acknowledge();
 	}
 
+
 }

@@ -1,8 +1,7 @@
-package com.lama.mse.coursiers.orders.consultation.app.repository;
+package com.lama.mse.coursiers.orders.modification.app.repository;
 
+import com.lama.mse.coursiers.orders.modification.app.model.Order;
 import org.springframework.data.mongodb.repository.MongoRepository;
-
-import com.lama.mse.coursiers.orders.consultation.app.model.Order;
 
 public interface IOrderRepository extends MongoRepository<Order, Integer> {
 

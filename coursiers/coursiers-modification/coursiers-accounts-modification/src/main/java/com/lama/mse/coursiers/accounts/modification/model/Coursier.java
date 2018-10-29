@@ -8,14 +8,16 @@ public class Coursier {
 	private String email;
 	private String name;
     private int phone;
+    private String location;
     
     public Coursier() {
     }
     
-	public Coursier(String email, String name, int phone) {
+	public Coursier(String email, String name, int phone, String location) {
 		this.email = email;
 		this.name = name;
 		this.phone = phone;
+		this.location = location;
 	}
 
 	public String getEmail() {
@@ -42,4 +44,11 @@ public class Coursier {
 		this.phone = phone;
 	}
 
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
 }

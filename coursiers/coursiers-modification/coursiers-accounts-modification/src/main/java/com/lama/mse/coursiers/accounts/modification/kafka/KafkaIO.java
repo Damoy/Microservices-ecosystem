@@ -21,4 +21,30 @@ public class KafkaIO implements IKafkaIO {
 		kafkaTemplate.send("coursier-consulted", coursier);
 	}
 
+	@Override
+	public void sendDeletedCoursierMessage(Coursier coursier) {
+		kafkaTemplate.send("coursier-deleted", coursier);
+	}
+
+	@Override
+	public void sendModifiedEmailMessage(Coursier coursier) {
+		kafkaTemplate.send("coursier-modified-email", coursier);
+	}
+
+	@Override
+	public void sendModifiedPhoneNumberMessage(Coursier coursier) {
+		kafkaTemplate.send("coursier-modified-phone", coursier);
+	}
+
+	@Override
+	public void sendModifiedNameMessage(Coursier coursier) {
+		kafkaTemplate.send("coursier-modified-name", coursier);
+	}
+
+	@Override
+	public void sendModifiedLocationMessage(Coursier coursier) {
+		kafkaTemplate.send("coursier-modified-location", coursier);
+	}
+
+
 }

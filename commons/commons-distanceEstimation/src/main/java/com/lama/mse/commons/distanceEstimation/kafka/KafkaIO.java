@@ -11,12 +11,12 @@ public class KafkaIO implements IKafkaIO {
 	private KafkaTemplate<String, Integer> kafkaTemplate;
 	
 	public KafkaIO(){
-		
+
 	}
 
 	@Override
-	public void sendEstimatedDistance(int distance) {
-		kafkaTemplate.send("distance-estimated", distance);
+	public void sendEstimatedDistance(int distance, long id) {
+		kafkaTemplate.send("distance-estimated", distance, id);
 		
 	}
 
