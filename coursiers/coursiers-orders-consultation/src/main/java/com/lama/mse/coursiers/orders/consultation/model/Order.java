@@ -1,4 +1,4 @@
-package com.lama.mse.coursiers.orders.consultation.app.model;
+package com.lama.mse.coursiers.orders.consultation.model;
 
 
 import java.util.List;
@@ -12,14 +12,16 @@ public class Order {
 	private String deliveryLocation;
 	private List<String> foodNames;
 	private String Coursierid;
+	private boolean nearby;
 
 	public Order(long id, String clientMail, String restaurantName,
-			String deliveryLocation, List<String> foodNames) {
+                 String deliveryLocation, List<String> foodNames, boolean nearby) {
 		this.id = id;
 		this.clientMail = clientMail;
 		this.restaurantName = restaurantName;
 		this.deliveryLocation = deliveryLocation;
 		this.foodNames = foodNames;
+		this.nearby = nearby;
 	}
 
 	public Order(){

@@ -1,6 +1,7 @@
-package com.lama.mse.coursiers.orders.consultation.app.service;
+package com.lama.mse.coursiers.orders.consultation.repository;
 
-import com.lama.mse.coursiers.orders.consultation.app.model.Order;
+
+import com.lama.mse.coursiers.orders.consultation.model.Order;
 
 import java.util.List;
 

@@ -18,14 +18,14 @@ public class DistanceKafkaListener {
 	}
 
 	@KafkaListener(topics = "estimate-distance")
-	public void listenToEstimateDistanceEvent(String startLocationEndLocation, Acknowledgment acknowledgment) {
+	public void listenToEstimateDistanceEvent(long id, String startLocationEndLocation, Acknowledgment acknowledgment) {
 		String[] location = startLocationEndLocation.split(";");
 		String startLocation = location[0];
 		String endLocation = location[1];
 		
 		int distance = DistanceEstimator.getEstimator().estimate(startLocation, endLocation);
 		
-		kafka.sendEstimatedDistance(distance);
+		kafka.sendEstimatedDistance(distance, id);
 		
 		acknowledgment.acknowledge();
 	}
