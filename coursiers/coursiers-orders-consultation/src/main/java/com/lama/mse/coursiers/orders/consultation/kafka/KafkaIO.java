@@ -8,11 +8,16 @@ import java.util.concurrent.ExecutionException;
 @Component
 public class KafkaIO implements IKafkaIO{
 
+
+
+}
+
+
 	/*private KafkaTemplate<String, Order> kafkaTemplate;
 	private KafkaTemplate<String, String> kafkaTemplateString;
 
 	public KafkaIO(){
-		
+
 	}
 
 	@Override
@@ -48,6 +53,3 @@ public class KafkaIO implements IKafkaIO{
 		return consumerRecord.value(); }*/
 
 
-
-
-}
