@@ -13,6 +13,5 @@
   <modules>
       <module>coursiers-modification</module>
       <module>coursiers-orders-consultation</module>
-    <module>coursiers-orders-consultation2</module>
   </modules>
 </project>
