@@ -10,7 +10,9 @@ import java.util.List;
 public class KafkaIO implements IKafkaIO{
 
 	private KafkaTemplate<String, Order> kafkaTemplate;
-	
+	private KafkaTemplate<String, Long> kafkaTemplateLong;
+
+
 	public KafkaIO(){
 
 	}
@@ -44,5 +46,15 @@ public class KafkaIO implements IKafkaIO{
 	public void sendModifiedFoodNamesMessage(Order order) {
 		kafkaTemplate.send("order-modified-foodName", order);
 	}
-	
+
+	@Override
+	public void sendNotificationDeliverdOrderMessage(long orderId) {
+		kafkaTemplateLong.send( "order-deliverd", orderId);
+	}
+
+	@Override
+	public void sendNotificationAccidentMessage(long orderId) {
+		kafkaTemplateLong.send( "coursier-accident", orderId);
+	}
+
 }

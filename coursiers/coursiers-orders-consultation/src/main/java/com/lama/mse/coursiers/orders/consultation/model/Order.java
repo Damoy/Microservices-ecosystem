@@ -12,7 +12,7 @@ public class Order {
 	private String deliveryLocation;
 	private List<String> foodNames;
 	private String Coursierid;
-	private boolean nearby;
+	private boolean nearby = false;
 
 	public Order(long id, String clientMail, String restaurantName,
                  String deliveryLocation, List<String> foodNames, boolean nearby) {
@@ -74,5 +74,13 @@ public class Order {
 
 	public void setCoursierid(String coursierid) {
 		Coursierid = coursierid;
+	}
+
+	public boolean getNearby() {
+		return nearby;
+	}
+
+	public void setNearby(boolean nearby) {
+		this.nearby = nearby;
 	}
 }
