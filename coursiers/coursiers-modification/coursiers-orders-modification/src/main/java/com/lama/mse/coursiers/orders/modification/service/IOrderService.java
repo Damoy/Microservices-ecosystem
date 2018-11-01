@@ -1,8 +1,8 @@
-package com.lama.mse.coursiers.orders.modification.app.service;
-
-import com.lama.mse.coursiers.orders.modification.app.model.Order;
+package com.lama.mse.coursiers.orders.modification.service;
 
 import java.util.List;
+
+import com.lama.mse.coursiers.orders.modification.model.Order;
 
 public interface IOrderService {
 

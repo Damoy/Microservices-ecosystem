@@ -1,8 +1,9 @@
-package com.lama.mse.coursiers.orders.modification.app.service;
+package com.lama.mse.coursiers.orders.modification.service;
 
-import com.lama.mse.coursiers.orders.modification.app.kafka.IKafkaIO;
-import com.lama.mse.coursiers.orders.modification.app.model.Order;
-import com.lama.mse.coursiers.orders.modification.app.repository.IOrderRepository;
+import com.lama.mse.coursiers.orders.modification.kafka.IKafkaIO;
+import com.lama.mse.coursiers.orders.modification.model.Order;
+import com.lama.mse.coursiers.orders.modification.repository.IOrderRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

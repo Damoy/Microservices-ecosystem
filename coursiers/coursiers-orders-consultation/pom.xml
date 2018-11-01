@@ -63,7 +63,7 @@
 <packaging>jar</packaging>
 <properties>
     <maven.compiler.target>1.8</maven.compiler.target>
-    <start-class>com.lama.mse.coursiers.orders.modification.app.Application</start-class>
+    <start-class>com.lama.mse.coursiers.orders.consultation.app.Application</start-class>
 </properties>
 <build>
     <plugins>

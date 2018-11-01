@@ -1,7 +1,13 @@
 package com.lama.mse.coursiers.orders.consultation.kafka;
 
+import org.apache.kafka.clients.consumer.ConsumerRecord;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.kafka.support.SendResult;
 import org.springframework.stereotype.Component;
 import org.springframework.util.concurrent.ListenableFuture;
+
+import com.lama.mse.coursiers.orders.consultation.model.Order;
 
 import java.util.concurrent.ExecutionException;
 
@@ -10,10 +16,11 @@ public class KafkaIO implements IKafkaIO{
 
 
 
-}
 
 
-	/*private KafkaTemplate<String, Order> kafkaTemplate;
+//	@Autowired
+//	private KafkaTemplate<String, Order> kafkaTemplate;
+	@Autowired
 	private KafkaTemplate<String, String> kafkaTemplateString;
 
 	public KafkaIO(){
@@ -22,7 +29,7 @@ public class KafkaIO implements IKafkaIO{
 
 	@Override
 	public void sendConsultedOredrMessage(Order order){
-		kafkaTemplate.send("order-consulted", order);
+//		kafkaTemplate.send("order-consulted", order);
 
 	}
 
@@ -39,17 +46,19 @@ public class KafkaIO implements IKafkaIO{
 			e.printStackTrace();
 		} catch (InterruptedException e) {
 			e.printStackTrace();
-		}*/
+		}
 
 
 
-		/*// confirm if producer produced successfully
-		SendResult<String, Model> sendResult = sendAndReceive.getSendFuture().get();
-		//print all headers
-		sendResult.getProducerRecord().headers().forEach(header -> System.out.println(header.key() + ":" + header.value().toString()));
-		// get consumer record
-		ConsumerRecord<String, Model> consumerRecord = sendAndReceive.get();
-		// return consumer value
-		return consumerRecord.value(); }*/
+		//		// confirm if producer produced successfully
+		//		SendResult<String, Model> sendResult = sendAndReceive.getSendFuture().get();
+		//		//print all headers
+		//		sendResult.getProducerRecord().headers().forEach(header -> System.out.println(header.key() + ":" + header.value().toString()));
+		//		// get consumer record
+		//		ConsumerRecord<String, Model> consumerRecord = sendAndReceive.get();
+		//		// return consumer value
+		//		return consumerRecord.value(); 
+	}
+}
 
 

@@ -8,14 +8,14 @@ import org.springframework.stereotype.Component;
 public class KafkaIO implements IKafkaIO {
 	
 	@Autowired
-	private KafkaTemplate<String, Integer> kafkaTemplate;
+	private KafkaTemplate<String, Long> kafkaTemplate;
 	
 	public KafkaIO(){
 
 	}
 
 	@Override
-	public void sendEstimatedDistance(int distance) {
+	public void sendEstimatedDistance(Long distance) {
 		kafkaTemplate.send("distance-estimated", distance);
 		
 	}

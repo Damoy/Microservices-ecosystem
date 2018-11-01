@@ -10,7 +10,7 @@ import java.util.List;
 public interface ICoursierRepository extends MongoRepository<Coursier, String> {
 
 
-    public List<Coursier> findByMail(String mail);
+    public List<Coursier> findByEmail(String mail);
 
 
 }

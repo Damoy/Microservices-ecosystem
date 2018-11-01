@@ -5,12 +5,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
 @SpringBootApplication(scanBasePackages = {
-		"com.lama.mse.restaurants.consultation.food.app",
-		"com.lama.mse.restaurants.consultation.food.controller",
-		"com.lama.mse.restaurants.consultation.food.model",
-		"com.lama.mse.restaurants.consultation.food.kafka",
-		"com.lama.mse.restaurants.consultation.food.repository",
-		"com.lama.mse.restaurants.consultation.food.service"
+		"com.lama.mse.consultation.accounts.app",
+		"com.lama.mse.restaurants.consultation.accounts.controller",
+		"com.lama.mse.restaurants.consultation.accounts.model",
+		"com.lama.mse.restaurants.consultation.accounts.kafka",
+		"com.lama.mse.restaurants.consultation.accounts.repository",
+		"com.lama.mse.restaurants.consultation.accounts.service"
 })
 @EnableMongoRepositories("com.lama.mse.restaurants.consultation.food.repository")
 public class Application {

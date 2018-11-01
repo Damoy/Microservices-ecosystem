@@ -1,4 +1,4 @@
-package com.lama.mse.coursiers.orders.modification.app.model;
+package com.lama.mse.coursiers.orders.modification.model;
 
 
 import java.util.List;

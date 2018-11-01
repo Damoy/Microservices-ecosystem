@@ -9,8 +9,8 @@ public class DistanceEstimator implements IDistanceEstimator {
 	public DistanceEstimator() {};
 
 	@Override
-	public int estimate(String startLocation, String endLocation) {	
-		return 15 + new Random().nextInt(20);
+	public Long estimate(String startLocation, String endLocation) {	
+		return (long) (15 + new Random().nextInt(20));
 	}
 
 	public static IDistanceEstimator getEstimator() {

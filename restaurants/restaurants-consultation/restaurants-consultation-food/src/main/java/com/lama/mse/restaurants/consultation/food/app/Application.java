@@ -2,6 +2,7 @@ package com.lama.mse.restaurants.consultation.food.app;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
 @SpringBootApplication(scanBasePackages = {
@@ -13,6 +14,7 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 		"com.lama.mse.restaurants.consultation.food.service",
 })
 @EnableMongoRepositories("com.lama.mse.restaurants.consultation.food.repository")
+
 public class Application {
 
 	public static void main(String[] args) {

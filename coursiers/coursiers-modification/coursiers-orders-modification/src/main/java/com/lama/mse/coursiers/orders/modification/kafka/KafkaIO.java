@@ -1,8 +1,9 @@
-package com.lama.mse.coursiers.orders.modification.app.kafka;
+package com.lama.mse.coursiers.orders.modification.kafka;
 
-import com.lama.mse.coursiers.orders.modification.app.model.Order;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
+
+import com.lama.mse.coursiers.orders.modification.model.Order;
 
 import java.util.List;
 

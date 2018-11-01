@@ -1,6 +1,6 @@
-package com.lama.mse.coursiers.orders.modification.app.kafka;
+package com.lama.mse.coursiers.orders.modification.kafka;
 
-import com.lama.mse.coursiers.orders.modification.app.model.Order;
+import com.lama.mse.coursiers.orders.modification.model.Order;
 
 public interface IKafkaIO {
 
