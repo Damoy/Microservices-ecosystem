@@ -13,4 +13,8 @@ public interface IKafkaIO {
     public void sendModifiedDeliveryLocationMessage(Order order);
 
     public void sendModifiedFoodNamesMessage(Order order);
+    
+    public void sendNotificationDeliverdOrderMessage(long orderId);
+
+    public void sendNotificationAccidentMessage(long orderId);
 }

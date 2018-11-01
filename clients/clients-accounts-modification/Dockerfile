@@ -9,7 +9,7 @@ VOLUME /tmp
 
 
 # Make port 8082 available to the world outside this container
-EXPOSE 8082
+EXPOSE 8080
 
 # The application's jar file
 ARG JAR_FILE=target/clients-accounts-modification-0.0.1-SNAPSHOT.jar

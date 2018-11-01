@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 //import com.lama.mse.coursiers.orders.consultation.app.kafka.IKafkaIO;
 import com.lama.mse.coursiers.orders.consultation.kafka.IKafkaIO;
@@ -32,16 +33,17 @@ public class OrderService implements IOrderService {
 
 	}
 
-	// TODO
 	@Override
-	public List<Order> getOrdersWithCoursierLocation(int distance) {
-		/*List<Order> orders = orderRepository.findAll();
-		orders = orders.stream()
-				.filter(o -> distance(o.getDeliveryLocation(), coursierLocation))
-			.collect( Collections::list);
-		//getOrdersWithCoursierLocation*/
-		List<Order> orders = new ArrayList<Order>( (Collection<? extends Order>) new Order() );
+	public List<Order> getOrdersNearBy() {
+		List<Order> orders = new ArrayList<>(  );
+		orders =  orderRepository.findAll().stream().filter( order -> order.getNearby() == true).collect( Collectors.toList());
 		return orders;
 	}
-	
+
+	@Override
+	public List<Order> findAll() {
+		return orderRepository.findAll();
+	}
+
+
 }

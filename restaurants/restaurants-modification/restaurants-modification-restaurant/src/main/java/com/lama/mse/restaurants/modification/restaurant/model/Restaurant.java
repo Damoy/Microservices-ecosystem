@@ -1,5 +1,6 @@
 package com.lama.mse.restaurants.modification.restaurant.model;
 
+
 public class Restaurant {
     
     // @ID

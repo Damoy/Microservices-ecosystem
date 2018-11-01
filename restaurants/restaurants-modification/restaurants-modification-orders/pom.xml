@@ -19,6 +19,18 @@
 	<properties>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
-		<start-class>com.lama.mse.restaurants.modification.menu.app.Application</start-class>
+		<start-class>com.lama.mse.restaurants.modification.order.app.Application</start-class>
 	</properties>
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.kafka</groupId>
+			<artifactId>spring-kafka</artifactId>
+		</dependency>
+
+		<!-- For @document, @Indexed, and other NoSQL related stuff -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-mongodb</artifactId>
+		</dependency>
+	</dependencies>
 </project>

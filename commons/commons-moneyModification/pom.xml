@@ -16,4 +16,14 @@
 		<start-class>com.lama.mse.commons.moneyModification.app.Application</start-class>
 	</properties>
 
+<dependencies>
+		<!-- <dependency>
+			<groupId>org.springframework.kafka</groupId>
+			<artifactId>spring-kafka</artifactId>
+		</dependency> -->
+				<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+	</dependencies>
 </project>

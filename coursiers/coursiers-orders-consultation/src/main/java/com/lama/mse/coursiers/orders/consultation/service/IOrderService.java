@@ -6,7 +6,8 @@ import java.util.List;
 
 public interface IOrderService {
 
-	public List<Order> getOrdersWithCoursierLocation(int distance);
+	public List<Order> getOrdersNearBy();
 	public Order findById(long id);
+	public List<Order> findAll();
 
 	}

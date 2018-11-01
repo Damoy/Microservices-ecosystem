@@ -1,5 +1,6 @@
 package com.lama.mse.coursiers.orders.modification.kafka;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
 
@@ -10,10 +11,12 @@ import java.util.List;
 @Component
 public class KafkaIO implements IKafkaIO{
 
-	private KafkaTemplate<String, Order> kafkaTemplate;
 	
-	public KafkaIO(){
+	@Autowired
+	private KafkaTemplate<String, Order> kafkaTemplate;
+	//private KafkaTemplate<String, Long> kafkaTemplateLong;
 
+	public KafkaIO(){
 	}
 
 	/*@Override
@@ -45,5 +48,14 @@ public class KafkaIO implements IKafkaIO{
 	public void sendModifiedFoodNamesMessage(Order order) {
 		kafkaTemplate.send("order-modified-foodName", order);
 	}
-	
+	//TODO
+	@Override
+	public void sendNotificationDeliverdOrderMessage(long orderId) {
+		//kafkaTemplateLong.send( "order-deliverd", orderId);
+	}
+	//TODO
+	@Override
+	public void sendNotificationAccidentMessage(long orderId) {
+		//kafkaTemplateLong.send( "coursier-accident", orderId);
+	}
 }
