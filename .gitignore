@@ -18,3 +18,5 @@ buildNumber.properties
 /.settings/
 .settings/*.org.eclipse.*
 **/.settings/*.org.eclipse.*
+.settings/
+.vscode/
