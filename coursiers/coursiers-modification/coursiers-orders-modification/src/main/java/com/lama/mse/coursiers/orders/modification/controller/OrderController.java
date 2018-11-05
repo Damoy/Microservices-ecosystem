@@ -1,4 +1,4 @@
-package com.lama.mse.coursiers.orders.modification.app.controller;
+package com.lama.mse.coursiers.orders.modification.controller;
 
 
 import com.lama.mse.coursiers.orders.modification.kafka.IKafkaIO;

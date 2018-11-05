@@ -37,7 +37,6 @@ public class KafkaIO implements IKafkaIO{
 	        ListenableFuture<SendResult<String, String>> result = kafkaTemplateString.send( "estimate-distance", startEndLocation );
 	        try {
 	            SendResult<String, String> sendResult = result.get();
-	            //int sendDistance = sendResult.getProducerRecord().headers().forEach( header -> System.out.println( header.key() + ":" + header.value().toString() ) );
 	            int sendDistance = 10;
 	            if (sendDistance >= distance ) order.setNearby(true);
 	        } catch (ExecutionException e) {
@@ -45,7 +44,6 @@ public class KafkaIO implements IKafkaIO{
 	        } catch (InterruptedException e) {
 	            e.printStackTrace();
 	        }
-
 	    }
 }
 
