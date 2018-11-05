@@ -139,16 +139,44 @@ Damien:<br>
 TODO messages:<br>
 - create an object > "create-object"<br>
 - delete an object > "delete-object"<br>
-- edit all object attributes > "edit-object-all"<br>
+- edit all object attributes > "edit-object"<br>
 - edit an object > "edit-object-attribute"<br>
 - consult an object > "consult-object"<br>
 
 DONE messages:<br>
 - object has been created > "object-created"<br>
 - object has been deleted > "object-deleted"<br>
-- all object attributes has been edited > "object-all-edited"<br>
+- all object attributes has been edited > "object-edited"<br>
 - object attribute has been edited > "object-attribute-edited"<br>
 - an object has been consulted > "object-consulted"<br> 
+
+
+As Gail or Erin, I can order my lunch from a restaurant so that the food is delivered to my place;
+
+As Gail, I can browse the food catalogue by categories so that I can immediately identify my favorite junk food;
+
+As Erin, I want to know before ordering the estimated time of delivery of the meal so that I can schedule my work around it, and be ready when it arrives.
+
+As Erin, I can pay directly by credit card on the platform, so that I only have to retrieve my food when delivered;
+
+List of listened events:
+- clients-accounts
+"consult-client"
+"edit-client-name"
+"edit-client-address"
+"edit-client-creditCard"
+"edit-client-phone"
+
+List of sent events:
+- clients-accounts
+"client-consulted"
+"client-created"
+"client-deleted"
+"client-edited" // edit all client attributes
+"client-name-edited" // edit one client attribute
+"client-address-edited"
+"client-creditCard-edited"
+"client-phone-edited"
 
 # Simplifications
 1. No data crypting on the network
@@ -165,3 +193,6 @@ DONE messages:<br>
 - NoSQL, Mongod
 - Kafka
 - Gatling
+
+- Refactoring, 05/11/18
+Reducing number of microservices because of performances issues.
