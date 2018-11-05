@@ -12,8 +12,7 @@
 	<name>MSE - commons</name>
 
 	<modules>
-		<module>commons-eta</module>
-		<module>commons-distanceEstimation</module>
+		<module>commons-estimation</module>
 		<module>commons-moneyModification</module>
 	</modules>
 

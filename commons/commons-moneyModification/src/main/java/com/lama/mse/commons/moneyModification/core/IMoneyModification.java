@@ -2,8 +2,8 @@ package com.lama.mse.commons.moneyModification.core;
 
 public interface IMoneyModification {
 	
-	public void moneyWitdrawal(String creditCard, float amount);
-	public void moneyAddition(String restaurantName, float amount);
+	public String moneyWitdrawal(String creditCard, String amount);
+	public String moneyAddition(String restaurantName, String amount);
 
 	
 
