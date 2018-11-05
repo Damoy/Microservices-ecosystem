@@ -4,7 +4,8 @@ package com.lama.mse.coursiers.orders.consultation.controller;
 import com.lama.mse.coursiers.orders.consultation.kafka.IKafkaIO;
 import com.lama.mse.coursiers.orders.consultation.model.Order;
 import com.lama.mse.coursiers.orders.consultation.repository.IOrderRepository;
-import com.lama.mse.coursiers.orders.consultation.repository.IOrderService;
+import com.lama.mse.coursiers.orders.consultation.service.IOrderService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
