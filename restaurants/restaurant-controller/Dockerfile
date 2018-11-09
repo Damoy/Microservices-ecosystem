@@ -12,10 +12,10 @@ VOLUME /tmp
 EXPOSE 8080
 
 # The application's jar file
-ARG JAR_FILE=target/restaurants-consultation-0.0.1-SNAPSHOT.jar
+ARG JAR_FILE=target/restaurants-controller-0.0.1-SNAPSHOT.jar
 
 # Add the application's jar to the container
-ADD ${JAR_FILE} restaurants-consultation.jar
+ADD ${JAR_FILE} restaurants-controller.jar
 
 # Run the jar file 
-ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/restaurants-consultation.jar"]
+ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/restaurants-controller.jar"]

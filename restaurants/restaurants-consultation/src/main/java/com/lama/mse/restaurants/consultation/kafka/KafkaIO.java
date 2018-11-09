@@ -29,24 +29,5 @@ public class KafkaIO implements IKafkaIO {
 		kafkaTemplate.send("restaurant-consulted", restaurantName);
 	}
 	
-	@Override
-	public void sendConsultRestaurant(String restaurantName) {
-		kafkaTemplate.send("consult-food", restaurantName);
-	}
-	
-	@Override
-	public void sendConsultOrder(String restaurantName) {
-		kafkaTemplate.send("consult-order", restaurantName);
-	}
-	
-	@Override
-	public void sendConsultFood(String restaurantName) {
-		kafkaTemplate.send("consult-food", restaurantName);
-	}
-	
-	@Override
-	public void sendConsultFoodByCategory(String restaurantName) {
-		kafkaTemplate.send("consult-category-food", restaurantName);
-	}
 	
 }
