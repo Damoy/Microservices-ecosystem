@@ -1,5 +1,25 @@
 version: "3"
 services: 
+    commons-estimation:
+    container_name: commons-estimation
+    restart: always
+    build: ./commons/commons-estimation
+    ports : 
+      - "8081:8080"
+    depends_on:
+     - kafka
+    links: 
+     - kafka
+    commons-moneyModification:
+    container_name: commons-moneyModification
+    restart: always
+    build: ./commons/commons-moneyModification
+    ports : 
+      - "8081:8080"
+    depends_on:
+     - kafka
+    links: 
+     - kafka
   restaurant-consultation-food:
     container_name: rest_consult_food
     restart: always
