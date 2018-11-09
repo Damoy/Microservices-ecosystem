@@ -19,7 +19,7 @@ import com.lama.mse.clients.accounts.model.Client;
 public class KafkaProducerConfig {
 
 	@Bean
-	public ProducerFactory<String, Client> producerFactory() {
+	public ProducerFactory<String, String> producerFactory() {
 		Map<String, Object> configProps = new HashMap<>();
 		configProps.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, 
 		          "kafka:9092");
@@ -29,7 +29,7 @@ public class KafkaProducerConfig {
 	}
 
 	@Bean
-	public KafkaTemplate<String, Client> kafkaTemplate() {
+	public KafkaTemplate<String, String> kafkaTemplate() {
 		return new KafkaTemplate<>(producerFactory());
 	}
 }
