@@ -10,12 +10,10 @@
 
 
 	<packaging>jar</packaging>
-	<artifactId>restaurants-modification</artifactId>
-	<name>MSE - restaurants - modification</name>
+	<artifactId>restaurants-controller</artifactId>
+	<name>MSE - restaurants - controller</name>
 
-	<!-- <modules> <module>restaurants-modification-restaurant</module> <module>restaurants-modification-food</module> 
-		<module>resta urants-modification-orders</module> </modules> -->
-
+	
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.kafka</groupId>
