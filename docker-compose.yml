@@ -51,8 +51,8 @@ services:
     links: 
      - kafka
     
-  commons-moneyModification:
-    container_name: commons-moneyModification
+  commons-money-modification:
+    container_name: commons-money-modification
     restart: always
     build: ./commons/commons-moneyModification
     ports : 
@@ -88,18 +88,18 @@ services:
     - mongodb
     - kafka
 
-  # restaurants-controller:
-  #   container_name: restaurants-controller
-  #   restart: always
-  #   build: ./restaurants/restaurants-controller
-  #   ports:
-  #   - "8088:8080"
-  #   depends_on:
-  #   - mongodb
-  #   - kafka
-  #   links:
-  #   - mongodb
-  #   - kafka
+  restaurants-controller:
+    container_name: restaurants-controller
+    restart: always
+    build: ./restaurants/restaurants-controller
+    ports:
+    - "8088:8080"
+    depends_on:
+    - mongodb
+    - kafka
+    links:
+    - mongodb
+    - kafka
 
   restaurants-consultation:
     container_name: restaurants-consultation
