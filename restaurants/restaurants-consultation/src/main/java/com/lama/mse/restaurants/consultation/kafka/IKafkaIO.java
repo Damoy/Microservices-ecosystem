@@ -9,13 +9,5 @@ public interface IKafkaIO {
 
 	public void sendConsultedRestaurantOrderMessage(String restaurantName);
 
-	public void sendConsultRestaurant(String restaurantName);
-
-	public void sendConsultOrder(String restaurantName);
-
-	public void sendConsultFood(String restaurantName);
-
-	public void sendConsultFoodByCategory(String restaurantName);
-
 }
 

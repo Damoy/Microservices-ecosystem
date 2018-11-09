@@ -1,137 +1,137 @@
 version: "3"
 services: 
-  restaurant-consultation-food:
-    container_name: rest_consult_food
-    restart: always
-    build: ./restaurants/restaurants-consultation/restaurants-consultation-food
-    ports : 
-      - "8081:8080"
-    depends_on:
-     - kafka
-     - mongodb
-    links: 
-     - kafka
-     - mongodb
-  restaurant-consultation-orders:
-    container_name: rest_consult_orders
-    restart: always
-    build: ./restaurants/restaurants-consultation/restaurants-consultation-orders
-    ports : 
-      - "8082:8080"
-    depends_on:
-     - kafka
-     - mongodb
-    links: 
-     - kafka
-     - mongodb
-  restaurant-modification-food:
-    container_name: rest_modif_food
-    restart: always
-    build: ./restaurants/restaurants-modification/restaurants-modification-food
-    ports : 
-      - "8083:8080"
-    depends_on:
-     - mongodb
-     - kafka
-    links: 
-     - kafka
-     - mongodb
-  # restaurant-modification-orders:
-  #   container_name: rest_modif_orders
+  # restaurant-consultation-food:
+  #   container_name: rest_consult_food
   #   restart: always
-  #   build: ./restaurants/restaurants-modification/restaurants-modification-orders
+  #   build: ./restaurants/restaurants-consultation/restaurants-consultation-food
   #   ports : 
-  #     - "8084:8080"
+  #     - "8081:8080"
   #   depends_on:
   #    - kafka
   #    - mongodb
   #   links: 
   #    - kafka
   #    - mongodb
-  # restaurant-modification-restaurant:
-  #   container_name: rest_modif_restaurant
+  # restaurant-consultation-orders:
+  #   container_name: rest_consult_orders
   #   restart: always
-  #   build: ./restaurants/restaurants-modification/restaurants-modification-restaurant
+  #   build: ./restaurants/restaurants-consultation/restaurants-consultation-orders
   #   ports : 
-  #     - "8085:8080"
+  #     - "8082:8080"
+  #   depends_on:
+  #    - kafka
+  #    - mongodb
+  #   links: 
+  #    - kafka
+  #    - mongodb
+  # restaurant-modification-food:
+  #   container_name: rest_modif_food
+  #   restart: always
+  #   build: ./restaurants/restaurants-modification/restaurants-modification-food
+  #   ports : 
+  #     - "8083:8080"
   #   depends_on:
   #    - mongodb
   #    - kafka
   #   links: 
   #    - kafka
   #    - mongodb
-  clients-accounts-consultation:
-    container_name: clients_accounts_consultation
-    restart: always
-    build: ./clients/clients-accounts-consultation
-    ports : 
-      - "8086:8080"
-    depends_on:
-     - kafka
-     - mongodb
-    links: 
-     - kafka
-     - mongodb 
-  clients-accounts-modification:
-    container_name: clients_accounts_modification
-    restart: always
-    build: ./clients/clients-accounts-modification
-    ports : 
-      - "8087:8080"
-    depends_on:
-     - mongodb
-     - kafka
-    links: 
-     - mongodb  
-     - kafka
-  clients-orders-addition:
-    container_name: clients-orders-addition
-    restart: always
-    build: ./clients/clients-orders-addition
-    ports : 
-      - "8088:8080"
-    depends_on:
-     - mongodb
-     - kafka
-    links: 
-     - mongodb 
-     - kafka
-  coursiers-account-modification:
-    container_name: coursiers-account-modification
-    restart: always
-    build: ./coursiers/coursiers-modification/coursiers-accounts-modification
-    ports : 
-      - "8089:8080"
-    depends_on:
-     - mongodb
-     - kafka
-    links: 
-     - mongodb 
-     - kafka
-  coursiers-orders-modification:
-    container_name: coursiers-order-modification
-    restart: always
-    build: ./coursiers/coursiers-modification/coursiers-orders-modification
-    ports : 
-      - "8090:8080"
-    depends_on:
-     - mongodb
-     - kafka
-    links: 
-     - mongodb 
-     - kafka
-  coursiers-orders-consultation:
-    container_name: coursiers-order-consultation
-    restart: always
-    build: ./coursiers/coursiers-orders-consultation
-    ports : 
-      - "8091:8080"
-    depends_on:
-     - mongodb
-     - kafka
-    links: 
-     - mongodb 
-     - kafka
+  # # restaurant-modification-orders:
+  # #   container_name: rest_modif_orders
+  # #   restart: always
+  # #   build: ./restaurants/restaurants-modification/restaurants-modification-orders
+  # #   ports : 
+  # #     - "8084:8080"
+  # #   depends_on:
+  # #    - kafka
+  # #    - mongodb
+  # #   links: 
+  # #    - kafka
+  # #    - mongodb
+  # # restaurant-modification-restaurant:
+  # #   container_name: rest_modif_restaurant
+  # #   restart: always
+  # #   build: ./restaurants/restaurants-modification/restaurants-modification-restaurant
+  # #   ports : 
+  # #     - "8085:8080"
+  # #   depends_on:
+  # #    - mongodb
+  # #    - kafka
+  # #   links: 
+  # #    - kafka
+  # #    - mongodb
+  # clients-accounts-consultation:
+  #   container_name: clients_accounts_consultation
+  #   restart: always
+  #   build: ./clients/clients-accounts-consultation
+  #   ports : 
+  #     - "8086:8080"
+  #   depends_on:
+  #    - kafka
+  #    - mongodb
+  #   links: 
+  #    - kafka
+  #    - mongodb 
+  # clients-accounts-modification:
+  #   container_name: clients_accounts_modification
+  #   restart: always
+  #   build: ./clients/clients-accounts-modification
+  #   ports : 
+  #     - "8087:8080"
+  #   depends_on:
+  #    - mongodb
+  #    - kafka
+  #   links: 
+  #    - mongodb  
+  #    - kafka
+  # clients-orders-addition:
+  #   container_name: clients-orders-addition
+  #   restart: always
+  #   build: ./clients/clients-orders-addition
+  #   ports : 
+  #     - "8088:8080"
+  #   depends_on:
+  #    - mongodb
+  #    - kafka
+  #   links: 
+  #    - mongodb 
+  #    - kafka
+  # coursiers-account-modification:
+  #   container_name: coursiers-account-modification
+  #   restart: always
+  #   build: ./coursiers/coursiers-modification/coursiers-accounts-modification
+  #   ports : 
+  #     - "8089:8080"
+  #   depends_on:
+  #    - mongodb
+  #    - kafka
+  #   links: 
+  #    - mongodb 
+  #    - kafka
+  # coursiers-orders-modification:
+  #   container_name: coursiers-order-modification
+  #   restart: always
+  #   build: ./coursiers/coursiers-modification/coursiers-orders-modification
+  #   ports : 
+  #     - "8090:8080"
+  #   depends_on:
+  #    - mongodb
+  #    - kafka
+  #   links: 
+  #    - mongodb 
+  #    - kafka
+  # coursiers-orders-consultation:
+  #   container_name: coursiers-order-consultation
+  #   restart: always
+  #   build: ./coursiers/coursiers-orders-consultation
+  #   ports : 
+  #     - "8091:8080"
+  #   depends_on:
+  #    - mongodb
+  #    - kafka
+  #   links: 
+  #    - mongodb 
+  #    - kafka
   commons-distanceestimation:
     container_name: commons-distanceestimation
     restart: always

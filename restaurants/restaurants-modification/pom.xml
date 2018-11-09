@@ -13,17 +13,19 @@
 	<artifactId>restaurants-modification</artifactId>
 	<name>MSE - restaurants - modification</name>
 
-	<!-- <modules> <module>restaurants-modification-restaurant</module> <module>restaurants-modification-food</module> 
-		<module>resta urants-modification-orders</module> </modules> -->
 
 	<dependencies>
+	
 		<dependency>
 			<groupId>org.springframework.kafka</groupId>
 			<artifactId>spring-kafka</artifactId>
 		</dependency>
+	
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
+	
 	</dependencies>
+	
 </project>
