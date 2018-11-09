@@ -14,7 +14,6 @@ import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
 
 import com.lama.mse.clients.orders.model.Order;
 
-//@EnableKafka
 @EnableKafka
 @Configuration
 public class KafkaConsumerConfig {

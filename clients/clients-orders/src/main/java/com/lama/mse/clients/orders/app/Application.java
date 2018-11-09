@@ -6,9 +6,8 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 
 @SpringBootApplication(scanBasePackages = {
 		"com.lama.mse.clients.orders.app",
-		"com.lama.mse.clients.orders.controller",
-		"com.lama.mse.clients.orders.kafka", 
-		"com.lama.mse.clients.orders.model", 
+		"com.lama.mse.clients.orders.kafka",
+		"com.lama.mse.clients.orders.model",
 		"com.lama.mse.clients.orders.repository", 
 		"com.lama.mse.clients.orders.service"
 })

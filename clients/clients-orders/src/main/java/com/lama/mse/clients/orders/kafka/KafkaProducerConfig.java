@@ -14,7 +14,6 @@ import org.springframework.kafka.core.ProducerFactory;
 
 import com.lama.mse.clients.orders.model.Order;
 
-@EnableKafka
 @Configuration
 public class KafkaProducerConfig {
 

@@ -2,7 +2,7 @@ version: "2"
 services:
   clients-accounts: 
     container_name: clients-accounts
-    restart: always
+    # restart: always
     build:
       context: ./clients-accounts
       dockerfile: Dockerfile
@@ -11,7 +11,7 @@ services:
 
   clients-controller: 
     container_name: clients-controller
-    restart: always
+    # restart: always
     build:
       context: ./clients-controller
       dockerfile: Dockerfile
@@ -20,7 +20,7 @@ services:
 
   clients-orders: 
     container_name: clients-orders
-    restart: always
+    # restart: always
     build:
       context: ./clients-orders
       dockerfile: Dockerfile
