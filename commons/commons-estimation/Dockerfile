@@ -12,10 +12,10 @@ VOLUME /tmp
 EXPOSE 8080
 
 # The application's jar file
-ARG JAR_FILE=target/commons-eta-0.0.1-SNAPSHOT.jar
+ARG JAR_FILE=target/commons-estimation-0.0.1-SNAPSHOT.jar
 
 # Add the application's jar to the container
-ADD ${JAR_FILE} commons-eta.jar
+ADD ${JAR_FILE} commons-estimation.jar
 
 # Run the jar file 
-ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/commons-eta.jar"]
+ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/commons-estimation.jar"]
