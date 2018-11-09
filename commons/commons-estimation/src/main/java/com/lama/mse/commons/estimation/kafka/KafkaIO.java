@@ -17,13 +17,11 @@ public class KafkaIO implements IKafkaIO {
 	@Override
 	public void sendETA(int eta) {
 		kafkaTemplate.send("eta-calculated", eta);
-		
 	}
 	
 	@Override
 	public void sendEstimatedDistance(int distance) {
 		kafkaTemplate.send("distance-estimated", distance);
-		
 	}
 
 }
