@@ -1,19 +1,22 @@
-package com.lama.mse.commons.estimation.kafka;
+package com.lama.mse.coursiers.orders.kafka;
 
-import java.util.HashMap;
-import java.util.Map;
+import org.apache.kafka.clients.consumer.ConsumerConfig;
 
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.core.DefaultKafkaProducerFactory;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.core.ProducerFactory;
 
+import org.springframework.context.annotation.Configuration;
+
+import java.util.HashMap;
+import java.util.Map;
+
 @Configuration
 public class KafkaProducerConfig {
-	
+
 	@Bean
 	public ProducerFactory<String, String> producerFactory() {
 		Map<String, Object> configProps = new HashMap<>();
@@ -28,4 +31,5 @@ public class KafkaProducerConfig {
 	public KafkaTemplate<String, String> kafkaTemplate() {
 		return new KafkaTemplate<>(producerFactory());
 	}
+
 }

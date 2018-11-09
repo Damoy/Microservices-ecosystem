@@ -38,7 +38,7 @@ public class MoneyModificationListener {
 		String bankAccount = bankAmount[0];
 		String amountS = bankAmount[1];
 		
-		String restaurantName = MoneyModification.getModificator().moneyWitdrawal(bankAccount, amountS);
+		MoneyModification.getModificator().moneyWitdrawal(bankAccount, amountS);
 		
 		kafka.sendBankAccount(bankAccount);
 		
