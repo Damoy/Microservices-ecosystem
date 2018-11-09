@@ -17,8 +17,8 @@
   <name>MSE - coursiers</name>
   
   <modules>
-      <module>coursier-account</module>
-      <module>coursier-order</module>
+      <module>coursiers-accounts</module>
+      <module>coursiers-orders</module>
   </modules>
 </project>
 
