@@ -56,6 +56,31 @@ services:
     links: 
      - kafka
      - mongodb
+  coursiers-accounts:
+    container_name: coursiers-accounts
+    restart: always
+    build: ./coursiers/coursiers-accounts
+    ports:
+    - "8084:8080"
+    depends_on:
+    - mongodb
+    - kafka
+    links:
+    - mongodb
+    - kafka
+  coursiers-orders:
+    container_name: coursiers-orders
+    restart: always
+    build: ./coursiers/coursiers-orders
+    ports:
+    - "8085:8080"
+    depends_on:
+    - mongodb
+    - kafka
+    links:
+    - mongodb
+    - kafka
+
   # restaurant-modification-orders:
   #   container_name: rest_modif_orders
   #   restart: always
