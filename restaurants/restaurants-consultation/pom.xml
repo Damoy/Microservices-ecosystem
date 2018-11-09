@@ -9,13 +9,52 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 
-	<packaging>pom</packaging>
+	<packaging>jar</packaging>
 	<artifactId>restaurants-consultation</artifactId>
 	<name>MSE - restaurants - consultation</name>
 
-	<modules>
-		<module>restaurants-consultation-restaurant</module>
-		<module>restaurants-consultation-food</module>
-		<module>restaurants-consultation-orders</module>
-	</modules>
+		<properties>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<start-class>com.lama.mse.restaurants.consultation.food.app.Application</start-class>
+	</properties>
+
+	<dependencies>
+		
+		<dependency>
+			<groupId>org.springframework.kafka</groupId>
+			<artifactId>spring-kafka</artifactId>
+		</dependency>
+		<!-- <dependency> <groupId>org.springframework.kafka</groupId> <artifactId>spring-kafka</artifactId> 
+			</dependency> -->
+
+		<!-- For @document, @Indexed, and other NoSQL related stuff -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-mongodb</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-test-autoconfigure</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>javax.persistence</groupId>
+			<artifactId>persistence-api</artifactId>
+			<version>1.0.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+	</dependencies>
 </project>

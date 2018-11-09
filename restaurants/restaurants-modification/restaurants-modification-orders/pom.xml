@@ -9,9 +9,6 @@
 		<artifactId>restaurants-modification</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-
-
-
 	<packaging>jar</packaging>
 	<artifactId>restaurants-modification-orders</artifactId>
 	<name>MSE - restaurants - modification - orders</name>
