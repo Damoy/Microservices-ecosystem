@@ -24,7 +24,7 @@ public class Controller {
 	
 	@RequestMapping(value = "/CREATE/COURSIER", method = RequestMethod.POST)
 	public ResponseEntity createOrderEntryPoint(@RequestBody String coursierJson) {
-		kafkaIO.sendCreateCoursierRequest(coursierJson);
+		//kafkaIO.sendCreateCoursierRequest(coursierJson);
 		return new ResponseEntity<>("Coursier created", HttpStatus.ACCEPTED);
 	}
 	
