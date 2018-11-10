@@ -3,6 +3,8 @@ package com.lama.mse.clients.controller.core;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.kafka.support.SendResult;
+import org.springframework.util.concurrent.ListenableFuture;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,7 +27,8 @@ public class Controller {
 	@RequestMapping(value = "/CREATE/ORDER", method = RequestMethod.POST)
 	public ResponseEntity createOrderEntryPoint(@RequestBody String orderJson) {
 		Logs.infoln("Listener new event on /CREATE/ORDER");
-		kafkaIO.sendCreateOrderRequest(orderJson);
+		ListenableFuture<SendResult<String, String>> future = kafkaIO.sendCreateOrderRequest(orderJson);
+		// TODO
 		return new ResponseEntity<>("Order created", HttpStatus.ACCEPTED);
 	}
 	
@@ -33,7 +36,8 @@ public class Controller {
 	public ResponseEntity createOrderEntryPoint(@PathVariable String clientMail,
 			@PathVariable String clientAttribute, @PathVariable String attributeValue) {
 		Logs.infoln("Listener new event on /EDIT/ATTRIBUTE");
-		kafkaIO.sendEditClientRequest(clientMail, clientAttribute, attributeValue);
+		ListenableFuture<SendResult<String, String>> future = kafkaIO.sendEditClientRequest(clientMail, clientAttribute, attributeValue);
+		// TODO
 		return new ResponseEntity<>("Client attribute edited.", HttpStatus.ACCEPTED);
 	}
 	
