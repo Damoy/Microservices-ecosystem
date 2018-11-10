@@ -27,6 +27,7 @@ public class ClientKafkaListener {
 	public String createClientListener(String clientJson) {
 		Client client = new Gson().fromJson(clientJson, Client.class);
 		clientService.addClient(client);
+		kafkaIO.sendCreatedClientMessage(clientJson);
 		return "Client " + client.getMail() + " successfully created.\n";
 	}
 
@@ -36,7 +37,9 @@ public class ClientKafkaListener {
 	public String consultClientListener(String clientMail) {
 		Gson gson = new Gson();
 		Client clientToConsult = clientService.findByMail(clientMail);
-		return clientToConsult != null ? gson.toJson(clientToConsult) : "Client does not exist.\n";
+		String res = clientToConsult != null ? gson.toJson(clientToConsult) : "Client does not exist.\n";
+		kafkaIO.sendConsultedClientMessage(res);
+		return res;
 	}
 	
 	// >> EDIT-NAME-CLIENT  <<

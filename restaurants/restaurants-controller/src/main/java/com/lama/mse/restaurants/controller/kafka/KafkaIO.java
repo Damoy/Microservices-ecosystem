@@ -83,8 +83,8 @@ public class KafkaIO {
 	// }
 	//
 	public RequestReplyFuture<String, String, String> sendCreateFood(String foodJson) {
-		ProducerRecord<String, String> record = new ProducerRecord<String, String>("create-food", foodJson);
 		// set reply topic in header
+		ProducerRecord<String, String> record = new ProducerRecord<String, String>("create-food", foodJson);
 		record.headers().add(new RecordHeader(KafkaHeaders.REPLY_TOPIC, "food-created".getBytes()));
 		return kafkaTemplate.sendAndReceive(record);
 	}

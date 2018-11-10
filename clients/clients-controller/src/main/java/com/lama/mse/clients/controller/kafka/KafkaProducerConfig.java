@@ -46,7 +46,10 @@ public class KafkaProducerConfig {
 				"edit-client-name", "edit-client-address", "edit-client-creditCard", "edit-client-phone",
 				"create-order", "estimate-eta", "estimate-distance", "add-money", "withdraw-money", "create-coursier",
 				"consult-restaurant", "consult-food", "consult-category-food", "consult-order", "create-food",
-				"create-order", "create-restaurant", "create-food", "food-created" });
+				"create-order", "create-restaurant", "food-created", "order-created", "client-created",
+				"client-orders-consulted", "edit-client-phoneNumber", "edit-client-name", "edit-client-address",
+				"edit-client-creditCard", "client-phoneNumber-edited", "client-name-edited", "client-address-edited",
+				"client-creditCard-edited"});
 		return new KafkaMessageListenerContainer<>(cf, containerProperties);
 	}
 

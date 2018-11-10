@@ -41,7 +41,7 @@ public class KafkaIO {
 	}
 	
 	public void sendEditedPhoneClientMessage(String clientJson) {
-		kafkaTemplate.send("client-phone-edited", clientJson);
+		kafkaTemplate.send("client-phoneNumber-edited", clientJson);
 	}
 
 }
