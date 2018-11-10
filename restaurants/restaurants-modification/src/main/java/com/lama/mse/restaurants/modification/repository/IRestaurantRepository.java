@@ -1,4 +1,4 @@
-package com.lama.mse.restaurants.modification.service;
+package com.lama.mse.restaurants.modification.repository;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 

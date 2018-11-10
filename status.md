@@ -194,5 +194,7 @@ List of sent events:
 - Kafka
 - Gatling
 
-- Refactoring, 05/11/18
+# Refactoring
 Reducing number of microservices because of performances issues.
+We now have 14 modules (including agregators) instead of 30.
+The application is still heavy but it is now well more acceptable.

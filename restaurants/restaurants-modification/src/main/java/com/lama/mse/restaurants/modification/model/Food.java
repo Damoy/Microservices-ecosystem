@@ -6,15 +6,17 @@ public class Food {
 
 	@Id
 	private String name;
+	private String description;
 	private long restaurantId;
 	private float price;
-	private String description;
+	private FoodCategory category;
 
-	public Food(long restaurantId, float price, String name, String description) {
+	public Food(long restaurantId, float price, String name, String description, FoodCategory category) {
 		this.restaurantId = restaurantId;
 		this.price = price;
 		this.name = name;
 		this.description = description;
+		this.category = category;
 	}
 
 	public Food() {
@@ -56,4 +58,13 @@ public class Food {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+
+	public FoodCategory getCategory() {
+		return category;
+	}
+
+	public void setCategory(FoodCategory category) {
+		this.category = category;
+	}
+	
 }
