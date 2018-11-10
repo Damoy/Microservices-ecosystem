@@ -12,7 +12,7 @@ import com.lama.mse.commons.moneyModification.core.MoneyModification;
 public class MoneyModificationListener {
 	
 	@Autowired
-	private KafkaIO kafka;
+	private IKafkaIO kafka;
 	
 	public MoneyModificationListener() {
 	}
@@ -38,7 +38,7 @@ public class MoneyModificationListener {
 		String bankAccount = bankAmount[0];
 		String amountS = bankAmount[1];
 		
-		String restaurantName = MoneyModification.getModificator().moneyWitdrawal(bankAccount, amountS);
+		MoneyModification.getModificator().moneyWitdrawal(bankAccount, amountS);
 		
 		kafka.sendBankAccount(bankAccount);
 		

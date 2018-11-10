@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
 
+import com.lama.mse.clients.controller.commons.Logs;
+
 @Component
 public class KafkaIO {
 
@@ -16,6 +18,7 @@ public class KafkaIO {
 	
 	public void sendCreateOrderRequest(String orderJson) {
 		template.send("create-order", orderJson);
+		Logs.infoln("Sent create-order.");
 	}
 	
 	public void sendEditClientRequest(String mail, String clientAttribute, String attributeValue) {
@@ -27,6 +30,7 @@ public class KafkaIO {
 		
 		String requestContent = mail + ";" + attributeValue;
 		template.send(verb, requestContent);
+		Logs.infoln("Sent edit-client: " + requestContent);
 	}
 	
 }

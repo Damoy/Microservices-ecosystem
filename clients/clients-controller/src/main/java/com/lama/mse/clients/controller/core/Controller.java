@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.lama.mse.clients.controller.commons.Logs;
 import com.lama.mse.clients.controller.kafka.KafkaIO;
 
 @RestController
@@ -23,6 +24,7 @@ public class Controller {
 	
 	@RequestMapping(value = "/CREATE/ORDER", method = RequestMethod.POST)
 	public ResponseEntity createOrderEntryPoint(@RequestBody String orderJson) {
+		Logs.infoln("Listener new event on /CREATE/ORDER");
 		kafkaIO.sendCreateOrderRequest(orderJson);
 		return new ResponseEntity<>("Order created", HttpStatus.ACCEPTED);
 	}
@@ -30,6 +32,7 @@ public class Controller {
 	@RequestMapping(value = "{clientMail}/EDIT/{clientAttribute}/{attributeValue}", method = RequestMethod.POST)
 	public ResponseEntity createOrderEntryPoint(@PathVariable String clientMail,
 			@PathVariable String clientAttribute, @PathVariable String attributeValue) {
+		Logs.infoln("Listener new event on /EDIT/ATTRIBUTE");
 		kafkaIO.sendEditClientRequest(clientMail, clientAttribute, attributeValue);
 		return new ResponseEntity<>("Client attribute edited.", HttpStatus.ACCEPTED);
 	}

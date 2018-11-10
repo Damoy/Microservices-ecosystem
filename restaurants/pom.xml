@@ -14,8 +14,8 @@
 
 	<modules>
 		<module>restaurants-consultation</module>
-		<module>restaurants-modification</module>
 		<module>restaurants-controller</module>
+		<module>restaurants-modification</module>
 	</modules>
 
 </project>

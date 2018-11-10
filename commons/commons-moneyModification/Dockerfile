@@ -1,12 +1,10 @@
 FROM openjdk:8-jdk-alpine
 
-
 RUN mkdir -p src/main
 COPY src/main src/main
 
 # Add a volume pointing to /tmp
 VOLUME /tmp
-
 
 # Make port 8081 available to the world outside this container
 EXPOSE 8080

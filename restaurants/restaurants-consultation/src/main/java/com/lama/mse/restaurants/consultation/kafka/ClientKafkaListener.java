@@ -21,14 +21,42 @@ public class ClientKafkaListener {
 	private OrderService orderService;
 
 	public ClientKafkaListener() {
+	
 	}
-
-	@KafkaListener(topics = {"consult-client"},
+	
+	
+	
+	@KafkaListener(topics = {"consult-Restaurant"},
 			topicPartitions = {@TopicPartition(topic = "consult-client", partitions = {"0"})})
-	public void consultClientListener(Order client, Acknowledgment acknowledgment) {
+	public void consultRestaurantListener(String restaurant, Acknowledgment acknowledgment) {
+		acknowledgment.acknowledge();
+	}
+	
+	@KafkaListener(topics = {"consult-food"},
+			topicPartitions = {@TopicPartition(topic = "consult-client", partitions = {"0"})})
+	public void consultFoodListener(String restaurant, Acknowledgment acknowledgment) {
 
 		acknowledgment.acknowledge();
 	}
+	
+	@KafkaListener(topics = {"consult-category-food"},
+			topicPartitions = {@TopicPartition(topic = "consult-category-food", partitions = {"0"})})
+	public void consultConsultCategoryFood(String food, Acknowledgment acknowledgment) {
 
+		acknowledgment.acknowledge();
+	}
+	
+	@KafkaListener(topics = {"consult-order"},
+			topicPartitions = {@TopicPartition(topic = "consult-order", partitions = {"0"})})
+	public void consultConsultOrder(String restaurant, Acknowledgment acknowledgment) {
+		
+		acknowledgment.acknowledge();
+	}
+	
+
+
+
+	
+	
 
 }
