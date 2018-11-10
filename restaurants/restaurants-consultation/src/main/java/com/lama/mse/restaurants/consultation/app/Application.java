@@ -2,18 +2,17 @@ package com.lama.mse.restaurants.consultation.app;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
 @SpringBootApplication(scanBasePackages = {
-		"com.lama.mse.restaurants.consultation.food.app",
-		"com.lama.mse.restaurants.consultation.food.controller",
-		"com.lama.mse.restaurants.consultation.food.kafka",
-		"com.lama.mse.restaurants.consultation.food.model",
-		"com.lama.mse.restaurants.consultation.food.repository",
-		"com.lama.mse.restaurants.consultation.food.service",
+		"com.lama.mse.restaurants.consultation.app",
+		"com.lama.mse.restaurants.consultation.controller",
+		"com.lama.mse.restaurants.consultation.kafka",
+		"com.lama.mse.restaurants.consultation.model",
+		"com.lama.mse.restaurants.consultation.repository",
+		"com.lama.mse.restaurants.consultationservice",
 })
-@EnableMongoRepositories("com.lama.mse.restaurants.consultation.food.repository")
+@EnableMongoRepositories("com.lama.mse.restaurants.consultation.repository")
 
 public class Application {
 

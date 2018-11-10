@@ -1,4 +1,4 @@
-package com.lama.mse.restaurants.kafka;
+package com.lama.mse.restaurants.controller.kafka;
 
 import java.util.HashMap;
 import java.util.Map;
