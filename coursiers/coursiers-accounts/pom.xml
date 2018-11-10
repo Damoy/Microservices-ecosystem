@@ -16,7 +16,7 @@
 	<properties>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
-		<start-class>com.lama.mse.coursiers.accounts.app</start-class>
+		<start-class>com.lama.mse.coursiers.accounts.app.Application</start-class>
 	</properties>
 
 	<dependencies>

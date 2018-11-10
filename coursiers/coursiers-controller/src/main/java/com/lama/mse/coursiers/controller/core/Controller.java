@@ -1,4 +1,4 @@
-package com.lama.mse.clients.controller.core;
+package com.lama.mse.coursiers.controller.core;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.Order;
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.lama.mse.clients.controller.kafka.KafkaIO;
+import com.lama.mse.coursiers.controller.kafka.KafkaIO;
 
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
