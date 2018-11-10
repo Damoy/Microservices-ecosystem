@@ -6,12 +6,13 @@ import org.springframework.core.annotation.Order;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.annotation.TopicPartition;
 import org.springframework.kafka.support.Acknowledgment;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import com.lama.mse.coursiers.accounts.model.Coursier;
 import com.lama.mse.coursiers.accounts.service.ICoursierService;
 
-
+@Component
 public class CoursierKafkaListener {
 
     @Autowired
@@ -96,8 +97,8 @@ public class CoursierKafkaListener {
         acknowledgment.acknowledge();
     }
 
-    @KafkaListener(topics = "edit-couriser-name",
-            topicPartitions = {@TopicPartition(topic = "edit-couriser-name", partitions = {"0"})})
+    @KafkaListener(topics = "edit-coursier-name",
+            topicPartitions = {@TopicPartition(topic = "edit-coursier-name", partitions = {"0"})})
     public void modifyNameCoursier(String email, Acknowledgment acknowledgment) {
         String[] split = email.split(";");
         String sentMessageContent = null;
@@ -112,8 +113,8 @@ public class CoursierKafkaListener {
         acknowledgment.acknowledge();
     }
 
-    @KafkaListener(topics = "edit-couriser-phone",
-            topicPartitions = {@TopicPartition(topic = "edit-couriser-phone", partitions = {"0"})})
+    @KafkaListener(topics = "edit-coursier-phone",
+            topicPartitions = {@TopicPartition(topic = "edit-coursier-phone", partitions = {"0"})})
     public void modifyPhoneCoursier(String email, Acknowledgment acknowledgment) {
         String[] split = email.split(";");
         String sentMessageContent = null;
@@ -129,8 +130,8 @@ public class CoursierKafkaListener {
 
     }
 
-    @KafkaListener(topics = "edit-couriser-location",
-            topicPartitions = {@TopicPartition(topic = "edit-couriser-location", partitions = {"0"})})
+    @KafkaListener(topics = "edit-coursier-location",
+            topicPartitions = {@TopicPartition(topic = "edit-coursier-location", partitions = {"0"})})
     public void modifyLocatinCoursier(String email, Acknowledgment acknowledgment) {
         String[] split = email.split(";");
         String sentMessageContent = null;
@@ -146,9 +147,5 @@ public class CoursierKafkaListener {
 
 
     }
-
-
-
-
 
 }

@@ -1,4 +1,4 @@
-package com.lama.mse.clients.controller.kafka;
+package com.lama.mse.coursiers.controller.kafka;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
