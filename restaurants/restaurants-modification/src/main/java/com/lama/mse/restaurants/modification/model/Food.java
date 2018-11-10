@@ -4,11 +4,11 @@ public class Food {
 
 	private String name;
 	private String description;
-	private long restaurantId;
+	private String restaurantId;
 	private float price;
 	private FoodCategory category;
 
-	public Food(long restaurantId, float price, String name, String description, FoodCategory category) {
+	public Food(String restaurantId, float price, String name, String description, FoodCategory category) {
 		this.restaurantId = restaurantId;
 		this.price = price;
 		this.name = name;
@@ -24,11 +24,11 @@ public class Food {
 		return name;
 	}
 
-	public long getRestaurantId() {
+	public String getRestaurantId() {
 		return restaurantId;
 	}
 
-	public void setRestaurantId(long restaurantId) {
+	public void setRestaurantId(String restaurantId) {
 		this.restaurantId = restaurantId;
 	}
 
