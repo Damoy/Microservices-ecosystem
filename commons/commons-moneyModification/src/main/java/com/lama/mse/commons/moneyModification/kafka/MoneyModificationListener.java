@@ -12,7 +12,7 @@ import com.lama.mse.commons.moneyModification.core.MoneyModification;
 public class MoneyModificationListener {
 	
 	@Autowired
-	private KafkaIO kafka;
+	private IKafkaIO kafka;
 	
 	public MoneyModificationListener() {
 	}
