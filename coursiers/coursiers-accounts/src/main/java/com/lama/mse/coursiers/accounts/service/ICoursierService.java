@@ -12,6 +12,7 @@ public interface ICoursierService {
     public void modifyPhoneNumber(String email, int phone);
     public void modifyName(String email, String name);
     public void modifyLocation(String email, String Location);
+    public void addCoursier(Coursier coursier);
 
 
 }

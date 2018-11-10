@@ -1,6 +1,5 @@
 package com.lama.mse.coursiers.accounts.model;
 
-import org.springframework.data.annotation.Id;
 
 public class Coursier {
 

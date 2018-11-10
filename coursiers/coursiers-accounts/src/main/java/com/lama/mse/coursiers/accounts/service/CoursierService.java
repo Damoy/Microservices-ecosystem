@@ -25,6 +25,12 @@ public class CoursierService implements ICoursierService{
     }
 
     @Override
+    public void addCoursier(Coursier coursier) {
+        repository.save(coursier);
+    }
+
+
+    @Override
     public Coursier findByEmail(String email) {
     	List<Coursier> coursiers = repository.findByEmail(email);
     	if(coursiers == null || coursiers.isEmpty()) return null;
@@ -35,28 +41,28 @@ public class CoursierService implements ICoursierService{
     public void modifyEmail(String email) {
         Coursier coursier = repository.findByEmail( email ).get(0);
         coursier.setEmail(email);
-        kafkaIO.sendModifiedEmailMessage(coursier);
+        //kafkaIO.sendModifiedEmailMessage(coursier);
     }
 
     @Override
     public void modifyPhoneNumber(String email, int phone) {
         Coursier coursier = repository.findByEmail( email ).get(0);
         coursier.setPhone( phone );
-        kafkaIO.sendModifiedPhoneNumberMessage(coursier);
+        //kafkaIO.sendModifiedPhoneNumberMessage(coursier);
     }
 
     @Override
     public void modifyName(String email, String name){
         Coursier coursier = repository.findByEmail( email ).get(0);
         coursier.setName( name );
-        kafkaIO.sendModifiedNameMessage( coursier );
+        //kafkaIO.sendModifiedNameMessage( coursier );
     }
 
     @Override
     public void modifyLocation(String email, String location) {
         Coursier coursier = repository.findByEmail( email ).get(0);
         coursier.setLocation( location );
-        kafkaIO.sendModifiedLocationMessage( coursier );
+        //kafkaIO.sendModifiedLocationMessage( coursier );
 
     }
 
@@ -64,7 +70,7 @@ public class CoursierService implements ICoursierService{
     public void deleteCoursier(String email) {
         Coursier coursier = repository.findByEmail( email ).get(0);
         repository.delete( coursier );
-        kafkaIO.sendDeletedCoursierMessage( coursier );
+        //kafkaIO.sendDeletedCoursierMessage( coursier );
     }
 
 }
