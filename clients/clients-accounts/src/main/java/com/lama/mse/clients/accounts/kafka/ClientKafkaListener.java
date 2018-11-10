@@ -25,18 +25,17 @@ public class ClientKafkaListener {
 	// >> CONSULT-CLIENT <<
 	@KafkaListener(topics = {"consult-client"},
 			topicPartitions = {@TopicPartition(topic = "consult-client", partitions = {"0"})})
-	public void consultClientListener(String clientMail, Acknowledgment acknowledgment) {
+	public void consultClientListener(String clientMail) {
 		Gson gson = new Gson();
 		Client clientToConsult = clientService.findByMail(clientMail);
 		String clientJson = clientToConsult != null ? gson.toJson(clientToConsult) : null;
 		kafkaIO.sendConsultedClientMessage(clientJson);
-		acknowledgment.acknowledge();
 	}
 	
 	// >> EDIT-NAME-CLIENT  <<
 	@KafkaListener(topics = {"edit-client-name"},
 			topicPartitions = {@TopicPartition(topic = "edit-client-name", partitions = {"0"})})
-	public void editNameClientListener(String clientMailName, Acknowledgment acknowledgment) {
+	public void editNameClientListener(String clientMailName) {
 		String[] split = clientMailName.split(";");
 		String sentMessageContent = null;
 			
@@ -48,13 +47,12 @@ public class ClientKafkaListener {
 		}
 		
 		kafkaIO.sendEditedNameClientMessage(sentMessageContent);
-		acknowledgment.acknowledge();
 	}
 	
 	// >> EDIT-ADDRESS-CLIENT  <<
 	@KafkaListener(topics = {"edit-client-address"},
 			topicPartitions = {@TopicPartition(topic = "edit-client-address", partitions = {"0"})})
-	public void editAddressClientListener(String clientMailAddress, Acknowledgment acknowledgment) {
+	public void editAddressClientListener(String clientMailAddress) {
 		String[] split = clientMailAddress.split(";");
 		String sentMessageContent = null;
 			
@@ -64,13 +62,12 @@ public class ClientKafkaListener {
 		}
 		
 		kafkaIO.sendEditedAddressClientMessage(sentMessageContent);
-		acknowledgment.acknowledge();
 	}
 	
 	// >> EDIT-CREDITCARD-CLIENT  <<
 	@KafkaListener(topics = {"edit-client-creditCard"},
 			topicPartitions = {@TopicPartition(topic = "edit-client-creditCard", partitions = {"0"})})
-	public void editCreditCardClientListener(String clientMailCreditCard, Acknowledgment acknowledgment) {
+	public void editCreditCardClientListener(String clientMailCreditCard) {
 		String[] split = clientMailCreditCard.split(";");
 		String sentMessageContent = null;
 			
@@ -80,13 +77,12 @@ public class ClientKafkaListener {
 		}
 		
 		kafkaIO.sendEditedCreditCardClientMessage(sentMessageContent);
-		acknowledgment.acknowledge();
 	}
 	
 	// >> EDIT-PHONE-CLIENT  <<
 	@KafkaListener(topics = {"edit-client-phone"},
 			topicPartitions = {@TopicPartition(topic = "edit-client-phone", partitions = {"0"})})
-	public void editPhoneClientListener(String clientMailPhone, Acknowledgment acknowledgment) {
+	public void editPhoneClientListener(String clientMailPhone) {
 		String[] split = clientMailPhone.split(";");
 		String sentMessageContent = null;
 			
@@ -107,7 +103,6 @@ public class ClientKafkaListener {
 		}
 		
 		kafkaIO.sendEditedPhoneClientMessage(sentMessageContent);
-		acknowledgment.acknowledge();
 	}
 	
 }
