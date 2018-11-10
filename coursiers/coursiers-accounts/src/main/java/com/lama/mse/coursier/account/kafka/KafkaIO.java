@@ -10,33 +10,37 @@ import org.springframework.stereotype.Component;
 public class KafkaIO  {
 	
 	@Autowired
-	private KafkaTemplate<String, Coursier> kafkaTemplate;
+	private KafkaTemplate<String, String> kafkaTemplate;
 	
 	public KafkaIO(){
 		
 	}
-	
-	public void sendConsultedCoursierMessage(Coursier coursier) {
+
+	public void sendCreationCoursierMessage(String coursier) {
+		kafkaTemplate.send("coursier-created", coursier);
+	}
+
+	public void sendConsultedCoursierMessage(String coursier) {
 		kafkaTemplate.send("coursier-consulted", coursier);
 	}
 
-	public void sendDeletedCoursierMessage(Coursier coursier) {
+	public void sendDeletedCoursierMessage(String coursier) {
 		kafkaTemplate.send("coursier-deleted", coursier);
 	}
 
-	public void sendModifiedEmailMessage(Coursier coursier) {
+	public void sendModifiedEmailMessage(String coursier) {
 		kafkaTemplate.send("coursier-modified-email", coursier);
 	}
 
-	public void sendModifiedPhoneNumberMessage(Coursier coursier) {
+	public void sendModifiedPhoneNumberMessage(String coursier) {
 		kafkaTemplate.send("coursier-modified-phone", coursier);
 	}
 
-	public void sendModifiedNameMessage(Coursier coursier) {
+	public void sendModifiedNameMessage(String coursier) {
 		kafkaTemplate.send("coursier-modified-name", coursier);
 	}
 
-	public void sendModifiedLocationMessage(Coursier coursier) {
+	public void sendModifiedLocationMessage(String coursier) {
 		kafkaTemplate.send("coursier-modified-location", coursier);
 	}
 

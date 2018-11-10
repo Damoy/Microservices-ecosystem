@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface IOrderService {
 
-	//public List<Order> getOrdersNearBy();
+	public List<Order> getOrdersAroundMe();
 	public Order findById(long id);
 	public List<Order> findAll();
 	public void saveOrder(Order order);

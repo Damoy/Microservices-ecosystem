@@ -24,6 +24,12 @@ public class CoursierService implements ICoursierService{
     }
 
     @Override
+    public void addCoursier(Coursier coursier) {
+        repository.save(coursier);
+    }
+
+
+    @Override
     public Coursier findByEmail(String email) {
     	List<Coursier> coursiers = repository.findByEmail(email);
     	if(coursiers == null || coursiers.isEmpty()) return null;

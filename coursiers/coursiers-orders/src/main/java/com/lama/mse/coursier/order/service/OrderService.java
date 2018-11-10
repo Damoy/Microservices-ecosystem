@@ -30,12 +30,12 @@ public class OrderService implements IOrderService {
 
 	}
 
-	/*@Override
-	public List<Order> getOrdersNearBy() {
+	@Override
+	public List<Order> getOrdersAroundMe() {
 		List<Order> orders = new ArrayList<>(  );
-		orders =  orderRepository.findAll().stream().filter( order -> order.getNearby() == true).collect( Collectors.toList());
+		orders =  orderRepository.findAll().stream().filter( order -> order.getAroundMe() == true).collect( Collectors.toList());
 		return orders;
-	}*/
+	}
 
 	@Override
 	public List<Order> findAll() {
@@ -82,5 +82,8 @@ public class OrderService implements IOrderService {
 		order.setFoodNames(foodNames);
 		kafkaIO.sendDeletedOrderMessage( order );
 	}
+
+
+
 
 }

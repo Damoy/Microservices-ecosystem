@@ -12,6 +12,7 @@ public class Order {
 	private String deliveryLocation;
 	private List<String> foodNames;
 	private String Coursierid;
+	private boolean aroundMe;
 	
 	public Order(long id, String clientMail, String restaurantName,
                  String deliveryLocation, List<String> foodNames) {
@@ -72,5 +73,13 @@ public class Order {
 
 	public void setCoursierid(String coursierid) {
 		Coursierid = coursierid;
+	}
+
+	public boolean getAroundMe() {
+		return aroundMe;
+	}
+
+	public void setAroundMe(boolean aroundMe) {
+		this.aroundMe = aroundMe;
 	}
 }

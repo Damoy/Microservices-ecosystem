@@ -29,7 +29,7 @@ public class KafkaIO {
 
     }
 
-    /*public void sendEstimateLocationMessage(Order order, int distance) {
+    public void sendEstimateLocationMessage(Order order, int distance) {
         String startLocation = order.getDeliveryLocation();
         String endLocation = startLocation;
         String startEndLocation = startLocation + ";" + endLocation;
@@ -38,14 +38,14 @@ public class KafkaIO {
             SendResult<String, String> sendResult = result.get();
             //int sendDistance = sendResult.getProducerRecord().headers().forEach( header -> System.out.println( header.key() + ":" + header.value().toString() ) );
             int sendDistance = 10;
-            if (sendDistance >= distance ) order.setNearby(true);
+            if (sendDistance >= distance ) order.setAroundMe(true);
         } catch (ExecutionException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
-    }*/
+    }
 
 
 	/*@Override
