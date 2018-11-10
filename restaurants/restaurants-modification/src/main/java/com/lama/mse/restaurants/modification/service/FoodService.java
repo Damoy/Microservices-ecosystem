@@ -9,7 +9,7 @@ import com.lama.mse.restaurants.modification.model.Food;
 import com.lama.mse.restaurants.modification.repository.IFoodRepository;
 
 @Service("FoodService")
-public class FoodService implements IFoodService {
+public class FoodService {
 
 	@Autowired
 	private IFoodRepository foodRepository;
@@ -17,11 +17,14 @@ public class FoodService implements IFoodService {
 	public FoodService() {
 	}
 	
-	@Override
 	public Food getByName(String name) {
 		List<Food> foods = foodRepository.findByName(name);
 		if(foods.isEmpty()) return null;
 		return foods.get(0);
+	}
+	
+	public void store(Food food) {
+		foodRepository.save(food);
 	}
 
 }

@@ -4,7 +4,5 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 import com.lama.mse.restaurants.modification.model.Order;
 
-
-public interface IOrdersRepositiory  extends MongoRepository<Order, String> 
-{
+public interface IOrderRepository extends MongoRepository<Order, String> {
 }
