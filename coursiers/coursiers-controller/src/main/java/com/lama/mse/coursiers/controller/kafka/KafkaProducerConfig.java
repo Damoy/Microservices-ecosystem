@@ -1,4 +1,4 @@
-package com.lama.mse.clients.controller.kafka;
+package com.lama.mse.coursiers.controller.kafka;
 
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;
