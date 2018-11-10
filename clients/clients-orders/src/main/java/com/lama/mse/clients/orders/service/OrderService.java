@@ -19,8 +19,8 @@ public class OrderService implements IOrderService {
 	}
 	
 	@Override
-	public List<Order> getByClientId(int clientId) {
-		return orderRepository.findByClientId(clientId);
+	public List<Order> getByClientMail(String clientMail) {
+		return orderRepository.findByClientMail(clientMail);
 	}
 
 	@Override

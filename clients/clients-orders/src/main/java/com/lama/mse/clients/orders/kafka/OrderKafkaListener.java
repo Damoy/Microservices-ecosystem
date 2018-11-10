@@ -3,7 +3,6 @@ package com.lama.mse.clients.orders.kafka;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.annotation.TopicPartition;
-import org.springframework.kafka.support.Acknowledgment;
 import org.springframework.stereotype.Component;
 
 import com.google.gson.Gson;
@@ -23,15 +22,10 @@ public class OrderKafkaListener {
 
 	@KafkaListener(topics = {"create-order"},
 			topicPartitions = {@TopicPartition(topic = "create-order", partitions = {"0"})})
-	public void createClientOrderListener(String orderJson, Acknowledgment acknowledgment) {
-		try {
-			orderService.storeNewOrder(new Gson().fromJson(orderJson, Order.class));
-		} catch(Exception e) {
-			// prevent crash in case user gives bad json
-		}
-		
+	public String createClientOrderListener(String orderJson) {
+		orderService.storeNewOrder(new Gson().fromJson(orderJson, Order.class));
 		kafkaIO.sendCreatedOrderMessage(orderJson);
-		acknowledgment.acknowledge();
+		return orderJson;
 	}
 
 }

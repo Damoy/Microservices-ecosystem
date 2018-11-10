@@ -2,7 +2,9 @@ package com.lama.mse.clients.controller.kafka;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.kafka.support.SendResult;
 import org.springframework.stereotype.Component;
+import org.springframework.util.concurrent.ListenableFuture;
 
 import com.lama.mse.clients.controller.commons.Logs;
 
@@ -16,12 +18,13 @@ public class KafkaIO {
 		
 	}
 	
-	public void sendCreateOrderRequest(String orderJson) {
-		template.send("create-order", orderJson);
+	public ListenableFuture<SendResult<String, String>> sendCreateOrderRequest(String orderJson) {
+		ListenableFuture<SendResult<String, String>> future = template.send("create-order", orderJson);
 		Logs.infoln("Sent create-order.");
+		return future;
 	}
 	
-	public void sendEditClientRequest(String mail, String clientAttribute, String attributeValue) {
+	public ListenableFuture<SendResult<String, String>> sendEditClientRequest(String mail, String clientAttribute, String attributeValue) {
 		String verb = "edit-client";
 		
 		if(clientAttribute != null) {
@@ -29,8 +32,9 @@ public class KafkaIO {
 		}
 		
 		String requestContent = mail + ";" + attributeValue;
-		template.send(verb, requestContent);
+		ListenableFuture<SendResult<String, String>> future = template.send(verb, requestContent);
 		Logs.infoln("Sent edit-client: " + requestContent);
+		return future;
 	}
 	
 }

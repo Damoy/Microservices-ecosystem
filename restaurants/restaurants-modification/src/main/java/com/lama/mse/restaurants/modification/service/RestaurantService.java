@@ -19,5 +19,4 @@ public class RestaurantService {
 	public void store(Restaurant restaurant) {
 		restaurantRepository.insert(restaurant);
 	}
-
 }

@@ -4,31 +4,31 @@ import java.util.List;
 
 public class Order {
 
-	private int clientId;
-	private List<Integer> content;
+	private String clientMail;
+	private List<String> content;
 	
 	public Order(){
 		
 	}
 	
-	public Order(int clientId, List<Integer> content) {
-		this.clientId = clientId;
+	public Order(String clientMail, List<String> content) {
+		this.clientMail = clientMail;
 		this.content = content;
 	}
 
-	public int getClientId() {
-		return clientId;
+	public String getClientMail() {
+		return clientMail;
 	}
 
-	public void setClientId(int clientId) {
-		this.clientId = clientId;
+	public void setClientMail(String clientMail) {
+		this.clientMail = clientMail;
 	}
 
-	public List<Integer> getContent() {
+	public List<String> getContent() {
 		return content;
 	}
 
-	public void setContent(List<Integer> content) {
+	public void setContent(List<String> content) {
 		this.content = content;
 	}
 	

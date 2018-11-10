@@ -1,26 +1,16 @@
 package com.lama.mse.restaurants.modification.model;
 
+import com.google.gson.Gson;
 
 public class Restaurant {
-    
-    // @ID
-    private long ID;
+
+	private String name;
     private String address;
-    private String name;
     private String adminLogin;
     private String hashedPassWord; 
     private String phoneNumber;
     private String fax;
-
    
-    public long getID() {
-        return this.ID;
-    }
-
-    public void setID(long ID) {
-        this.ID = ID;
-    }
-
     public String getAddress() {
         return this.address;
     }
@@ -71,15 +61,7 @@ public class Restaurant {
     
     @Override
     public String toString() {
-        return "{" +
-            " ID='" + getID() + "'" +
-            ", address='" + getAddress() + "'" +
-            ", name='" + getName() + "'" +
-            ", adminLogin='" + getAdminLogin() + "'" +
-            ", hashedPassWord='" + getHashedPassWord() + "'" +
-            ", phoneNumber='" + getPhoneNumber() + "'" +
-            ", fax='" + getFax() + "'" +
-            "}";
+    	return new Gson().toJson(this);
     }
 }
 

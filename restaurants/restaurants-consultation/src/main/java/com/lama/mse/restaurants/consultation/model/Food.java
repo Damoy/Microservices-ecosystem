@@ -1,10 +1,7 @@
 package com.lama.mse.restaurants.consultation.model;
 
-import org.springframework.data.annotation.Id;
-
 public class Food {
 
-	@Id
 	private String name;
 	private String description;
 	private String category;
