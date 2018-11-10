@@ -6,11 +6,10 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 
 @SpringBootApplication(scanBasePackages = {
 		"com.lama.mse.restaurants.consultation.app",
-		"com.lama.mse.restaurants.consultation.controller",
 		"com.lama.mse.restaurants.consultation.kafka",
 		"com.lama.mse.restaurants.consultation.model",
 		"com.lama.mse.restaurants.consultation.repository",
-		"com.lama.mse.restaurants.consultationservice",
+		"com.lama.mse.restaurants.consultation.service",
 })
 @EnableMongoRepositories("com.lama.mse.restaurants.consultation.repository")
 
