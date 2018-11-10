@@ -26,28 +26,6 @@ public class CoursierKafkaListener {
 
 
 
-    // >> CONSULT-CLIENT <<
-   /*
-    // >> EDIT-NAME-CLIENT  <<
-    @KafkaListener(topics = {"edit-client-name"},
-            topicPartitions = {@TopicPartition(topic = "edit-client-name", partitions = {"0"})})
-    public void editNameClientListener(String clientMailName, Acknowledgment acknowledgment) {
-        String[] split = clientMailName.split(";");
-        String sentMessageContent = null;
-
-        if(split.length == 2) {
-            Client client = clientService.findByMail(split[0].trim());
-            if(client != null)
-                client.setName(split[1].trim());
-            sentMessageContent = new Gson().toJson(client);
-        }
-
-        kafkaIO.sendEditedNameClientMessage(sentMessageContent);
-        acknowledgment.acknowledge();
-    } */
-
-
-
     @KafkaListener(topics = "create-coursier",
 			topicPartitions = {@TopicPartition(topic = "create-coursier", partitions = {"0"})})
     public void createCoursier(String coursier, Acknowledgment acknowledgment) {
@@ -58,14 +36,7 @@ public class CoursierKafkaListener {
         }
         kafkaIO.sendCreationCoursierMessage(coursier);
         acknowledgment.acknowledge();
-
     }
-
-    /*@KafkaListener(topics = "delete-coursier",
-            topicPartitions = {@TopicPartition(topic = "delete-coursier", partitions = {"0"})})
-    public void deleteCoursier(String email, Acknowledgment acknowledgment) {
-
-    }*/
 
 
     @KafkaListener(topics = "consult-coursier",
@@ -98,8 +69,8 @@ public class CoursierKafkaListener {
 
     @KafkaListener(topics = "edit-couriser-name",
             topicPartitions = {@TopicPartition(topic = "edit-couriser-name", partitions = {"0"})})
-    public void modifyNameCoursier(String email, Acknowledgment acknowledgment) {
-        String[] split = email.split(";");
+    public void modifyNameCoursier(String name, Acknowledgment acknowledgment) {
+        String[] split = name.split(";");
         String sentMessageContent = null;
 
         if(split.length == 2) {
@@ -114,8 +85,8 @@ public class CoursierKafkaListener {
 
     @KafkaListener(topics = "edit-couriser-phone",
             topicPartitions = {@TopicPartition(topic = "edit-couriser-phone", partitions = {"0"})})
-    public void modifyPhoneCoursier(String email, Acknowledgment acknowledgment) {
-        String[] split = email.split(";");
+    public void modifyPhoneCoursier(String phone, Acknowledgment acknowledgment) {
+        String[] split = phone.split(";");
         String sentMessageContent = null;
 
         if(split.length == 2) {
@@ -131,8 +102,8 @@ public class CoursierKafkaListener {
 
     @KafkaListener(topics = "edit-couriser-location",
             topicPartitions = {@TopicPartition(topic = "edit-couriser-location", partitions = {"0"})})
-    public void modifyLocatinCoursier(String email, Acknowledgment acknowledgment) {
-        String[] split = email.split(";");
+    public void modifyLocatinCoursier(String location, Acknowledgment acknowledgment) {
+        String[] split = location.split(";");
         String sentMessageContent = null;
 
         if(split.length == 2) {
@@ -146,6 +117,13 @@ public class CoursierKafkaListener {
 
 
     }
+
+      /*@KafkaListener(topics = "delete-coursier",
+            topicPartitions = {@TopicPartition(topic = "delete-coursier", partitions = {"0"})})
+    public void deleteCoursier(String email, Acknowledgment acknowledgment) {
+
+    }*/
+
 
 
 
