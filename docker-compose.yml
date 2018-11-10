@@ -1,66 +1,66 @@
 version: "3"
 services:
 
-  # clients-accounts:
-  #   container_name: clients-accounts
-  #   restart: always
-  #   build: ./clients/clients-accounts
-  #   ports:
-  #     - "8081:8080"
-  #   depends_on:
-  #    - kafka
-  #    - mongodb
-  #   links:
-  #    - kafka
-  #    - mongodb
-
-  # clients-controller:
-  #   container_name: clients-controller
-  #   restart: always
-  #   build: ./clients/clients-controller
-  #   ports:
-  #     - "8082:8080"
-  #   depends_on:
-  #    - kafka
-  #    - mongodb
-  #   links:
-  #    - kafka
-  #    - mongodb
-
-  # clients-orders:
-  #   container_name: clients-orders
-  #   restart: always
-  #   build: ./clients/clients-orders
-  #   ports:
-  #     - "8083:8080"
-  #   depends_on:
-  #    - kafka
-  #    - mongodb
-  #   links:
-  #    - kafka
-  #    - mongodb
-
-  commons-estimation:
-    container_name: commons-estimation
+  clients-accounts:
+    container_name: clients-accounts
     restart: always
-    build: ./commons/commons-estimation
-    ports : 
-      - "8084:8080"
+    build: ./clients/clients-accounts
+    ports:
+      - "8081:8080"
     depends_on:
      - kafka
-    links: 
+     - mongodb
+    links:
      - kafka
+     - mongodb
+
+  clients-controller:
+    container_name: clients-controller
+    restart: always
+    build: ./clients/clients-controller
+    ports:
+      - "8082:8080"
+    depends_on:
+     - kafka
+     - mongodb
+    links:
+     - kafka
+     - mongodb
+
+  clients-orders:
+    container_name: clients-orders
+    restart: always
+    build: ./clients/clients-orders
+    ports:
+      - "8083:8080"
+    depends_on:
+     - kafka
+     - mongodb
+    links:
+     - kafka
+     - mongodb
+
+  # commons-estimation:
+  #   container_name: commons-estimation
+  #   restart: always
+  #   build: ./commons/commons-estimation
+  #   ports : 
+  #     - "8084:8080"
+  #   depends_on:
+  #    - kafka
+  #   links: 
+  #    - kafka
     
-  commons-money-modification:
-    container_name: commons-money-modification
-    restart: always
-    build: ./commons/commons-moneyModification
-    ports : 
-      - "8085:8080"
-    depends_on:
-     - kafka
-    links: 
-     - kafka
+  # commons-money-modification:
+  #   container_name: commons-money-modification
+  #   restart: always
+  #   build: ./commons/commons-moneyModification
+  #   ports : 
+  #     - "8085:8080"
+  #   depends_on:
+  #    - kafka
+  #   links: 
+  #    - kafka
 
   # coursiers-accounts:
   #   container_name: coursiers-accounts
