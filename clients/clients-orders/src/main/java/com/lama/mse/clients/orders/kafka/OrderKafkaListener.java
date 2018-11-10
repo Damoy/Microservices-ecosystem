@@ -1,5 +1,7 @@
 package com.lama.mse.clients.orders.kafka;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.annotation.TopicPartition;
@@ -26,6 +28,14 @@ public class OrderKafkaListener {
 		orderService.storeNewOrder(new Gson().fromJson(orderJson, Order.class));
 		kafkaIO.sendCreatedOrderMessage(orderJson);
 		return orderJson;
+	}
+	
+	@KafkaListener(topics = {"consult-client-orders"},
+			topicPartitions = {@TopicPartition(topic = "consult-client-orders", partitions = {"0"})})
+	public String consultClientOrdersListener(String clientMail) {
+		List<Order> clientOrders = orderService.getByClientMail(clientMail);
+		return clientOrders == null || clientOrders.isEmpty() ? ("No order could be found for "
+				+ clientMail + ".\n") : new Gson().toJson(clientOrders);
 	}
 
 }

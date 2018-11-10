@@ -3,7 +3,6 @@ package com.lama.mse.clients.accounts.kafka;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.annotation.TopicPartition;
-import org.springframework.kafka.support.Acknowledgment;
 import org.springframework.stereotype.Component;
 
 import com.google.gson.Gson;
@@ -21,15 +20,23 @@ public class ClientKafkaListener {
 
 	public ClientKafkaListener() {
 	}
+	
+	// >> CREATE-CLIENT <<
+	@KafkaListener(topics = {"create-client"},
+			topicPartitions = {@TopicPartition(topic = "create-client", partitions = {"0"})})
+	public String createClientListener(String clientJson) {
+		Client client = new Gson().fromJson(clientJson, Client.class);
+		clientService.addClient(client);
+		return "Client " + client.getMail() + " successfully created.\n";
+	}
 
 	// >> CONSULT-CLIENT <<
 	@KafkaListener(topics = {"consult-client"},
 			topicPartitions = {@TopicPartition(topic = "consult-client", partitions = {"0"})})
-	public void consultClientListener(String clientMail) {
+	public String consultClientListener(String clientMail) {
 		Gson gson = new Gson();
 		Client clientToConsult = clientService.findByMail(clientMail);
-		String clientJson = clientToConsult != null ? gson.toJson(clientToConsult) : null;
-		kafkaIO.sendConsultedClientMessage(clientJson);
+		return clientToConsult != null ? gson.toJson(clientToConsult) : "Client does not exist.\n";
 	}
 	
 	// >> EDIT-NAME-CLIENT  <<

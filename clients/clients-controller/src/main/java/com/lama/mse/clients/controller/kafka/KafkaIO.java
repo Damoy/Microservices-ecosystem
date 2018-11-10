@@ -14,13 +14,29 @@ public class KafkaIO {
 	@Autowired
 	private KafkaTemplate<String, String> template;
 	
-	public KafkaIO() {
-		
-	}
+	public KafkaIO() {}
 	
 	public ListenableFuture<SendResult<String, String>> sendCreateOrderRequest(String orderJson) {
 		ListenableFuture<SendResult<String, String>> future = template.send("create-order", orderJson);
 		Logs.infoln("Sent create-order.");
+		return future;
+	}
+	
+	public ListenableFuture<SendResult<String, String>> sendCreateClientRequest(String clientJson) {
+		ListenableFuture<SendResult<String, String>> future = template.send("create-client", clientJson);
+		Logs.infoln("Sent create-client.");
+		return future;
+	}
+	
+	public ListenableFuture<SendResult<String, String>> sendConsultClientRequest(String clientMail) {
+		ListenableFuture<SendResult<String, String>> future = template.send("consult-client", clientMail);
+		Logs.infoln("Sent consult-client.");
+		return future;
+	}
+	
+	public ListenableFuture<SendResult<String, String>> sendConsultClientOrdersRequest(String clientMail) {
+		ListenableFuture<SendResult<String, String>> future = template.send("consult-client-orders", clientMail);
+		Logs.infoln("Sent consult-client-orders.");
 		return future;
 	}
 	

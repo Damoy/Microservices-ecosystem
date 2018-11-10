@@ -28,9 +28,11 @@ public class Controller {
 	
 	public Controller() {}
 	
+	// -------------------------------- CREATE ----------------------------------
+	
 	@RequestMapping(value = "/CREATE/ORDER", method = RequestMethod.POST)
 	public ResponseEntity createOrderEntryPoint(@RequestBody String orderJson) {
-		Logs.infoln("Listener new event on /CREATE/ORDER");
+		Logs.infoln("Listened new event on /MS/CREATE/ORDER");
 		ListenableFuture<SendResult<String, String>> future = kafkaIO.sendCreateOrderRequest(orderJson);
 		String result = "Order could not been created.";
 		HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;
@@ -45,13 +47,77 @@ public class Controller {
 		return new ResponseEntity<>(result,status);
 	}
 	
+	@RequestMapping(value = "/CREATE/CLIENT", method = RequestMethod.POST)
+	public ResponseEntity createClientrEntryPoint(@RequestBody String clientJson) {
+		Logs.infoln("Listened new event on /MS/CREATE/CLIENT");
+		ListenableFuture<SendResult<String, String>> future = kafkaIO.sendCreateClientRequest(clientJson);
+		String result = "Client could not been created.";
+		HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;
+		
+		try {
+			result = future.get(2000, TimeUnit.MILLISECONDS).getProducerRecord().value();
+			status = HttpStatus.OK;
+		} catch (InterruptedException | ExecutionException | TimeoutException e) {
+			e.printStackTrace();
+		}
+		
+		return new ResponseEntity<>(result,status);
+	}
+	
+	// -------------------------------- CONSULT ----------------------------------
+	@RequestMapping(value = "/CONSULT/CLIENT", method = RequestMethod.POST)
+	public ResponseEntity consultClientEntryPoint(@RequestBody String clientMail) {
+		Logs.infoln("Listened new event on /MS/CONSULT/CLIENT");
+		ListenableFuture<SendResult<String, String>> future = kafkaIO.sendConsultClientRequest(clientMail);
+		String result = "Client could not be consulted.";
+		HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;
+		
+		try {
+			result = future.get(2000, TimeUnit.MILLISECONDS).getProducerRecord().value();
+			status = HttpStatus.OK;
+		} catch (InterruptedException | ExecutionException | TimeoutException e) {
+			e.printStackTrace();
+		}
+		
+		return new ResponseEntity<>(result,status);
+	}
+	
+	@RequestMapping(value = "/CONSULT/ORDERS{clientMail}", method = RequestMethod.POST)
+	public ResponseEntity consultClientOrdersEntryPoint(@PathVariable String clientMail) {
+		Logs.infoln("Listened new event on /MS/CONSULT/CLIENT");
+		ListenableFuture<SendResult<String, String>> future = kafkaIO.sendConsultClientOrdersRequest(clientMail)
+;		String result = "Client orders could not be consulted.";
+		HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;
+		
+		try {
+			result = future.get(2000, TimeUnit.MILLISECONDS).getProducerRecord().value();
+			status = HttpStatus.OK;
+		} catch (InterruptedException | ExecutionException | TimeoutException e) {
+			e.printStackTrace();
+		}
+		
+		return new ResponseEntity<>(result,status);
+	}
+	
+	
+	// -------------------------------- EDITION ----------------------------------
+	
 	@RequestMapping(value = "{clientMail}/EDIT/{clientAttribute}/{attributeValue}", method = RequestMethod.POST)
 	public ResponseEntity createOrderEntryPoint(@PathVariable String clientMail,
 			@PathVariable String clientAttribute, @PathVariable String attributeValue) {
-		Logs.infoln("Listener new event on /EDIT/ATTRIBUTE");
+		Logs.infoln("Listened new event on /MS/EDIT/ATTRIBUTE");
+		String result = "Could not edit " + clientMail + "'s" + clientAttribute + ".";
+		HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;
 		ListenableFuture<SendResult<String, String>> future = kafkaIO.sendEditClientRequest(clientMail, clientAttribute, attributeValue);
-		// TODO
-		return new ResponseEntity<>("Client attribute edited.", HttpStatus.ACCEPTED);
+		
+		try {
+			result = future.get(2000, TimeUnit.MILLISECONDS).getProducerRecord().value();
+			status = HttpStatus.OK;
+		} catch (InterruptedException | ExecutionException | TimeoutException e) {
+			e.printStackTrace();
+		}
+		
+		return new ResponseEntity<>(result,status);
 	}
 	
 }
