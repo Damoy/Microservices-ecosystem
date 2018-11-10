@@ -7,9 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.lama.mse.restaurants.controller.kafka.IKafkaIO;
-
+import com.lama.mse.restaurants.controller.kafka.KafkaIO;
 
 
 @RestController
@@ -18,13 +16,11 @@ import com.lama.mse.restaurants.controller.kafka.IKafkaIO;
 public class Controller {
 
 	@Autowired
-	private IKafkaIO kafkaIO;
+	private KafkaIO kafkaIO;
 	
 		
 	public Controller() {
 	}
-	
-	
 	
 	@RequestMapping(value = "FOOD/{category}", method = RequestMethod.GET)
 	public ResponseEntity consultFoodByCategoryEntryPoint(@PathVariable("category") String category) {

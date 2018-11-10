@@ -24,12 +24,7 @@ public class OrderKafkaListener {
 	@KafkaListener(topics = {"create-order"},
 			topicPartitions = {@TopicPartition(topic = "create-order", partitions = {"0"})})
 	public void createClientOrderListener(String orderJson, Acknowledgment acknowledgment) {
-		try {
-			orderService.storeNewOrder(new Gson().fromJson(orderJson, Order.class));
-		} catch(Exception e) {
-			// prevent crash in case user gives bad json
-		}
-		
+		orderService.storeNewOrder(new Gson().fromJson(orderJson, Order.class));
 		kafkaIO.sendCreatedOrderMessage(orderJson);
 		acknowledgment.acknowledge();
 	}

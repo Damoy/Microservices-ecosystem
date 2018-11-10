@@ -26,8 +26,12 @@ public class FoodService implements IFoodService {
 	}
 
 	@Override
-	public List<Food> getByCategory(String foodCategory) {
-		return foodRepository.findByCategory(foodCategory);
+	public Food getByCategory(String foodCategory) {
+		List<Food> foods = foodRepository.findByCategory(foodCategory);
+		if(foods == null || foods.isEmpty())
+			return null;
+		
+		return foods.get(0);
 	}
 
 }
