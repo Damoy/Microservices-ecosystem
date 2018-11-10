@@ -18,7 +18,7 @@ public class KafkaIO {
 	
 	public void sendCreateOrderRequest(String orderJson) {
 		template.send("create-order", orderJson);
-		Logs.infoln("Sent create-order: " + orderJson);
+		Logs.infoln("Sent create-order.");
 	}
 	
 	public void sendEditClientRequest(String mail, String clientAttribute, String attributeValue) {
