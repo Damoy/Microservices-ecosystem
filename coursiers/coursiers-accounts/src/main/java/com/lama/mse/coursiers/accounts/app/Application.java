@@ -5,13 +5,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
 @SpringBootApplication(scanBasePackages = {
-		"com.lama.mse.coursier.account.app",
-		"com.lama.mse.coursier.account.kafka",
-		"com.lama.mse.coursier.account.model",
-		"com.lama.mse.coursier.account.repository",
-		"com.lama.mse.coursier.account.service",
+		"com.lama.mse.coursiers.accounts.app",
+		"com.lama.mse.coursiers.accounts.kafka",
+		"com.lama.mse.coursiers.accounts.model",
+		"com.lama.mse.coursiers.accounts.repository",
+		"com.lama.mse.coursiers.accounts.service",
 })
-@EnableMongoRepositories("com.lama.mse.coursier.account.repository")
+@EnableMongoRepositories("com.lama.mse.coursiers.accounts.repository")
 public class Application {
 
 	// TODO MODULE
