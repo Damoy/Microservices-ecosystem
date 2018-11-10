@@ -1,0 +1,1 @@
+curl -X POST -H "Accept: application/json" -H "Content-type: application/json" localhost:8082/MS/CREATE/CLIENT -d '{"mail":"gail@me.fr","phoneNumber":"0677889900","name":"Gail","address":"11 rue du Green-Sophia","creditCard":"6567321498760987"}'

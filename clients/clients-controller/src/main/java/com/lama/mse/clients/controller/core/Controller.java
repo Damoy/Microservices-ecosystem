@@ -65,8 +65,8 @@ public class Controller {
 	}
 	
 	// -------------------------------- CONSULT ----------------------------------
-	@RequestMapping(value = "/CONSULT/CLIENT", method = RequestMethod.POST)
-	public ResponseEntity consultClientEntryPoint(@RequestBody String clientMail) {
+	@RequestMapping(value = "/CONSULT/CLIENT/{clientMail]", method = RequestMethod.POST)
+	public ResponseEntity consultClientEntryPoint(@PathVariable String clientMail) {
 		Logs.infoln("Listened new event on /MS/CONSULT/CLIENT");
 		ListenableFuture<SendResult<String, String>> future = kafkaIO.sendConsultClientRequest(clientMail);
 		String result = "Client could not be consulted.";
@@ -82,11 +82,11 @@ public class Controller {
 		return new ResponseEntity<>(result,status);
 	}
 	
-	@RequestMapping(value = "/CONSULT/ORDERS{clientMail}", method = RequestMethod.POST)
+	@RequestMapping(value = "/CONSULT/ORDERS/{clientMail}", method = RequestMethod.POST)
 	public ResponseEntity consultClientOrdersEntryPoint(@PathVariable String clientMail) {
 		Logs.infoln("Listened new event on /MS/CONSULT/CLIENT");
-		ListenableFuture<SendResult<String, String>> future = kafkaIO.sendConsultClientOrdersRequest(clientMail)
-;		String result = "Client orders could not be consulted.";
+		ListenableFuture<SendResult<String, String>> future = kafkaIO.sendConsultClientOrdersRequest(clientMail);
+		String result = "Client orders could not be consulted.";
 		HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;
 		
 		try {
