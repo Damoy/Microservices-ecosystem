@@ -28,13 +28,4 @@
         <maven.compiler.target>1.8</maven.compiler.target>
         <start-class>com.lama.mse.coursiers.orders.app.Application</start-class>
     </properties>
-    
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
 </project>
