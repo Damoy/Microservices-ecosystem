@@ -1,4 +1,4 @@
-package com.lama.mse.restaurants.modification.kafka;
+package com.lama.mse.restaurants.controller.kafka;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -14,7 +14,6 @@ import org.springframework.kafka.core.ConsumerFactory;
 import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.listener.ConcurrentMessageListenerContainer;
-
 
 @EnableKafka
 @Configuration
@@ -32,26 +31,22 @@ public class KafkaConsumerConfig {
 		props.put(
 				ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, 
 				StringDeserializer.class);
-	
+		props.put(ConsumerConfig.GROUP_ID_CONFIG, "test-consumer-group");
 		return new DefaultKafkaConsumerFactory<>(props);
 	}
-	
+
 	@Bean
-	public ConcurrentKafkaListenerContainerFactory<String, String> 	kafkaListenerContainerFactory() {
-		
-		ConcurrentKafkaListenerContainerFactory<String, String> factory
-		= new ConcurrentKafkaListenerContainerFactory<>();
+	public ConcurrentKafkaListenerContainerFactory<String, String> kafkaListenerContainerFactory() {
+		ConcurrentKafkaListenerContainerFactory<String, String> factory = new ConcurrentKafkaListenerContainerFactory<>();
 		factory.setConsumerFactory(consumerFactory());
-		factory.setReplyTemplate(kafkaTemplate());
 		return factory;
 	}
-	
-	@Bean
-	public KafkaTemplate<String, String> kafkaTemplate() {
-	  
-		return new KafkaTemplate<>(new KafkaProducerConfig().producerFactory());
-	}
 
+//	
+//	@Bean
+//	public KafkaTemplate<String, String> kafkaTemplate() {
+//	  return new KafkaTemplate<>(new KafkaProducerConfig().producerFactory());
+//	}
 
 
 }
