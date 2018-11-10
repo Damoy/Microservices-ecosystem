@@ -1,4 +1,4 @@
-package com.lama.mse.restaurants.modification.kafka;
+package com.lama.mse.restaurants.kafka;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;

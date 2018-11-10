@@ -1,4 +1,4 @@
-package com.lama.mse.restaurants.modification.kafka;
+package com.lama.mse.restaurants.kafka;
 
 public interface IKafkaIO {
 	

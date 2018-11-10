@@ -1,4 +1,4 @@
-package com.lama.mse.restaurants.consultation.controller;
+package com.lama.mse.restaurants.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.lama.mse.restaurants.modification.kafka.IKafkaIO;
+import com.lama.mse.restaurants.kafka.IKafkaIO;
 
 
 
