@@ -137,8 +137,8 @@ services:
     ports:
       - "2181:2181"
   kafka:
-    logging:
-      driver: none
+    # logging:
+    #   driver: none
     container_name: kafka
     build: ./kafka
     ports:
