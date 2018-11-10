@@ -37,7 +37,7 @@ public class KafkaProducerConfig {
         return new KafkaTemplate<>(producerFactory());
     }
 
- // ReplyingKafkaTemplate
+    // ReplyingKafkaTemplate
     @Bean
     public ReplyingKafkaTemplate<String, String, String> replyKafkaTemplate(ProducerFactory<String,String> pf, KafkaMessageListenerContainer<String, String> container) {
       return new ReplyingKafkaTemplate<>(pf, container);

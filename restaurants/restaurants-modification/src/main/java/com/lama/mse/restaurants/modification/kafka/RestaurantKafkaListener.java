@@ -3,7 +3,6 @@ package com.lama.mse.restaurants.modification.kafka;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.annotation.TopicPartition;
-import org.springframework.kafka.support.Acknowledgment;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Component;
 
@@ -37,8 +36,7 @@ public class RestaurantKafkaListener {
 	@SendTo("food-created")
 	public String createFood(String foodJson) {
 		foodService.store(new Gson().fromJson(foodJson, Food.class));
-		
-//		kafkaIO.sendFoodCreated(foodJson);
+		kafkaIO.sendFoodCreated(foodJson);
 		Logs.infoln("Listened create-food");
 		return "FOOD CREATED";
 	}
