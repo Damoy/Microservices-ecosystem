@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.google.gson.Gson;
 import com.lama.mse.coursiers.orders.kafka.KafkaIO;
 import com.lama.mse.coursiers.orders.model.Order;
 import com.lama.mse.coursiers.orders.repository.IOrderRepository;
@@ -50,34 +51,34 @@ public class OrderService implements IOrderService {
 	public void deleteOrder(long id) {
 		Order order = orderRepository.findById((int) id);
 		orderRepository.delete(order);
-		kafkaIO.sendDeletedOrderMessage(order);
+		kafkaIO.sendDeletedOrderMessage(new Gson().toJson(order));
 	}
 
 	@Override
 	public void modifyClientMail(long id, String mail) {
 		Order order = orderRepository.findById((int) id);
 		order.setClientMail(mail);
-		kafkaIO.sendDeletedOrderMessage(order);
+		kafkaIO.sendDeletedOrderMessage(new Gson().toJson(order));
 	}
 
 	@Override
 	public void modifyRestaurantName(long id, String restaurantName) {
 		Order order = orderRepository.findById((int) id);
 		order.setRestaurantName(restaurantName);
-		kafkaIO.sendDeletedOrderMessage(order);
+		kafkaIO.sendDeletedOrderMessage(new Gson().toJson(order));
 	}
 
 	@Override
 	public void modifyDeliveryLocation(long id, String deliveryLocation) {
 		Order order = orderRepository.findById((int) id);
 		order.setDeliveryLocation(deliveryLocation);
-		kafkaIO.sendDeletedOrderMessage(order);
+		kafkaIO.sendDeletedOrderMessage(new Gson().toJson(order));
 	}
 
 	@Override
 	public void modifyFoodNames(long id, List<String> foodNames) {
 		Order order = orderRepository.findById((int) id);
 		order.setFoodNames(foodNames);
-		kafkaIO.sendDeletedOrderMessage(order);
+		kafkaIO.sendDeletedOrderMessage(new Gson().toJson(order));
 	}
 }

@@ -1,10 +1,8 @@
 package com.lama.mse.coursiers.accounts.model;
 
-
 public class Coursier {
 
-	//@Id
-	private String email;
+	private String mail;
 	private String name;
     private int phone;
     private String location;
@@ -12,19 +10,19 @@ public class Coursier {
     public Coursier() {
     }
     
-	public Coursier(String email, String name, int phone, String location) {
-		this.email = email;
+	public Coursier(String mail, String name, int phone, String location) {
+		this.mail = mail;
 		this.name = name;
 		this.phone = phone;
 		this.location = location;
 	}
 
-	public String getEmail() {
-		return email;
+	public String getMail() {
+		return mail;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setMail(String mail) {
+		this.mail = mail;
 	}
 
 	public String getName() {

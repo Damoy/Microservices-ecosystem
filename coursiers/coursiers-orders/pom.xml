@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <parent>
-        <artifactId>coursiers</artifactId>
-        <groupId>com.lama.mse</groupId>
-        <version>0.0.1-SNAPSHOT</version>
-    </parent>
-    <modelVersion>4.0.0</modelVersion>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<parent>
+		<artifactId>coursiers</artifactId>
+		<groupId>com.lama.mse</groupId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	<modelVersion>4.0.0</modelVersion>
 
-    <artifactId>coursiers-orders</artifactId>
-    <name>MSE - coursiers - orders</name>
+	<artifactId>coursiers-orders</artifactId>
+	<name>MSE - coursiers - orders</name>
 
 	<dependencies>
 		<dependency>
@@ -21,11 +20,15 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-mongodb</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+		</dependency>
 	</dependencies>
 
-    <packaging>jar</packaging>
-    <properties>
-        <maven.compiler.target>1.8</maven.compiler.target>
-        <start-class>com.lama.mse.coursiers.orders.app.Application</start-class>
-    </properties>
+	<packaging>jar</packaging>
+	<properties>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<start-class>com.lama.mse.coursiers.orders.app.Application</start-class>
+	</properties>
 </project>

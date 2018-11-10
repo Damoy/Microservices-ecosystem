@@ -62,55 +62,53 @@ services:
   #   links: 
   #    - kafka
 
-  # coursiers-accounts283:
-  #   container_name: coursiers-accounts283
-  #   restart: always
-  #   build: ./coursiers/coursiers-accounts
-  #   ports:
-  #   - "8086:8080"
-  #   depends_on:
-  #   - mongodb
-  #   - kafka
-  #   links:
-  #   - mongodb
-  #   - kafka
-
-  # coursiers-controller283:
-  #   container_name: coursiers-controller283
-  #   restart: always
-  #   build: ./coursiers/coursiers-controller
-  #   ports:
-  #   - "8087:8080"
-  #   depends_on:
-  #   - kafka
-  #   links:
-  #   - kafka
-
-  # coursiers-orders283:
-  #   container_name: coursiers-orders283
-  #   restart: always
-  #   build: ./coursiers/coursiers-orders
-  #   ports:
-  #   - "8088:8080"
-  #   depends_on:
-  #   - mongodb
-  #   - kafka
-  #   links:
-  #   - mongodb
-  #   - kafka
-
-  restaurants-controller283:
-    container_name: restaurants-controller283
+  coursiers-accounts283:
+    container_name: coursiers-accounts283
     restart: always
-    build: ./restaurants/restaurants-controller
+    build: ./coursiers/coursiers-accounts
     ports:
-    - "8089:8080"
+    - "8086:8080"
     depends_on:
     - mongodb
     - kafka
     links:
     - mongodb
     - kafka
+
+  coursiers-controller283:
+    container_name: coursiers-controller283
+    restart: always
+    build: ./coursiers/coursiers-controller
+    ports:
+    - "8087:8080"
+    depends_on:
+    - kafka
+    links:
+    - kafka
+
+  coursiers-orders283:
+    container_name: coursiers-orders283
+    restart: always
+    build: ./coursiers/coursiers-orders
+    ports:
+    - "8088:8080"
+    depends_on:
+    - mongodb
+    - kafka
+    links:
+    - mongodb
+    - kafka
+
+  # restaurants-controller283:
+  #   container_name: restaurants-controller283
+  #   restart: always
+  #   build: ./restaurants/restaurants-controller
+  #   ports:
+  #   - "8089:8080"
+  #   depends_on:
+  #   - kafka
+  #   links:
+  #   - kafka
 
   # restaurants-consultation283:
   #   container_name: restaurants-consultation283
@@ -125,18 +123,18 @@ services:
   #   - mongodb
   #   - kafka
 
-  restaurants-modification283:
-    container_name: restaurants-modification283
-    restart: always
-    build: ./restaurants/restaurants-modification
-    ports:
-    - "8091:8080"
-    depends_on:
-    - mongodb
-    - kafka
-    links:
-    - mongodb
-    - kafka
+  # restaurants-modification283:
+  #   container_name: restaurants-modification283
+  #   restart: always
+  #   build: ./restaurants/restaurants-modification
+  #   ports:
+  #   - "8091:8080"
+  #   depends_on:
+  #   - mongodb
+  #   - kafka
+  #   links:
+  #   - mongodb
+  #   - kafka
 
   mongodb:
     container_name: mongodb
