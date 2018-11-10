@@ -13,8 +13,8 @@
 
 	<modules>
 		<module>clients-accounts</module>
-		<module>clients-orders</module>
 		<module>clients-controller</module>
+		<module>clients-orders</module>
 	</modules>
 
 </project>

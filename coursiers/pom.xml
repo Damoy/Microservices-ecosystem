@@ -1,23 +1,20 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <parent>
-    <groupId>com.lama.mse</groupId>
-    <artifactId>mse</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-  </parent>
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.lama.mse</groupId>
+		<artifactId>mse</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
 
-  <artifactId>coursiers</artifactId>
-  <packaging>pom</packaging>
-  <name>MSE - coursiers</name>
+	<artifactId>coursiers</artifactId>
+	<packaging>pom</packaging>
+	<name>MSE - coursiers</name>
 
-  <modules>
-    <module>coursiers-orders</module>
-    <module>coursiers-controller</module>
-    <module>coursiers-accounts</module>
-  </modules>
+	<modules>
+		<module>coursiers-accounts</module>
+		<module>coursiers-controller</module>
+		<module>coursiers-orders</module>
+	</modules>
 
 </project>
-
-
-
