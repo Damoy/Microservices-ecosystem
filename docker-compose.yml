@@ -1,8 +1,8 @@
 version: "3"
 services:
 
-  clients-accounts:
-    container_name: clients-accounts
+  clients-accounts283:
+    container_name: clients-accounts283
     restart: always
     build: ./clients/clients-accounts
     ports:
@@ -14,8 +14,8 @@ services:
      - kafka
      - mongodb
 
-  clients-controller:
-    container_name: clients-controller
+  clients-controller283:
+    container_name: clients-controller283
     restart: always
     build: ./clients/clients-controller
     ports:
@@ -27,8 +27,8 @@ services:
      - kafka
      - mongodb
 
-  clients-orders:
-    container_name: clients-orders
+  clients-orders283:
+    container_name: clients-orders283
     restart: always
     build: ./clients/clients-orders
     ports:
@@ -40,8 +40,8 @@ services:
      - kafka
      - mongodb
 
-  # commons-estimation:
-  #   container_name: commons-estimation
+  # commons-estimation283:
+  #   container_name: commons-estimation283
   #   restart: always
   #   build: ./commons/commons-estimation
   #   ports : 
@@ -51,8 +51,8 @@ services:
   #   links: 
   #    - kafka
     
-  # commons-money-modification:
-  #   container_name: commons-money-modification
+  # commons-money-modification283:
+  #   container_name: commons-money-modification283
   #   restart: always
   #   build: ./commons/commons-moneyModification
   #   ports : 
@@ -62,8 +62,8 @@ services:
   #   links: 
   #    - kafka
 
-  # coursiers-accounts:
-  #   container_name: coursiers-accounts
+  # coursiers-accounts283:
+  #   container_name: coursiers-accounts283
   #   restart: always
   #   build: ./coursiers/coursiers-accounts
   #   ports:
@@ -75,8 +75,8 @@ services:
   #   - mongodb
   #   - kafka
 
-  # coursiers-orders:
-  #   container_name: coursiers-orders
+  # coursiers-orders283:
+  #   container_name: coursiers-orders283
   #   restart: always
   #   build: ./coursiers/coursiers-orders
   #   ports:
@@ -88,8 +88,8 @@ services:
   #   - mongodb
   #   - kafka
 
-  # restaurants-controller:
-  #   container_name: restaurants-controller
+  # restaurants-controller283:
+  #   container_name: restaurants-controller283
   #   restart: always
   #   build: ./restaurants/restaurants-controller
   #   ports:
@@ -101,8 +101,8 @@ services:
   #   - mongodb
   #   - kafka
 
-  # restaurants-consultation:
-  #   container_name: restaurants-consultation
+  # restaurants-consultation283:
+  #   container_name: restaurants-consultation283
   #   restart: always
   #   build: ./restaurants/restaurants-consultation
   #   ports:
@@ -114,8 +114,8 @@ services:
   #   - mongodb
   #   - kafka
 
-  # restaurants-modification:
-  #   container_name: restaurants-modification
+  # restaurants-modification283:
+  #   container_name: restaurants-modification283
   #   restart: always
   #   build: ./restaurants/restaurants-modification
   #   ports:

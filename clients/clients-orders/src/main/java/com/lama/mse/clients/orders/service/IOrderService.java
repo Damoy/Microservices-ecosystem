@@ -6,7 +6,7 @@ import com.lama.mse.clients.orders.model.Order;
 
 public interface IOrderService {
 
-	public List<Order> getByClientId(int clientId);
+	public List<Order> getByClientMail(String mail);
 	public void storeNewOrder(Order order);
 	
 }
