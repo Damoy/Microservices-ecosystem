@@ -22,10 +22,8 @@ services:
       - "8082:8080"
     depends_on:
      - kafka
-     - mongodb
     links:
      - kafka
-     - mongodb
 
   clients-orders283:
     container_name: clients-orders283
