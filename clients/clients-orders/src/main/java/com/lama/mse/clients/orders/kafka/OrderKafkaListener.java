@@ -22,9 +22,10 @@ public class OrderKafkaListener {
 
 	@KafkaListener(topics = {"create-order"},
 			topicPartitions = {@TopicPartition(topic = "create-order", partitions = {"0"})})
-	public void createClientOrderListener(String orderJson) {
+	public String createClientOrderListener(String orderJson) {
 		orderService.storeNewOrder(new Gson().fromJson(orderJson, Order.class));
 		kafkaIO.sendCreatedOrderMessage(orderJson);
+		return orderJson;
 	}
 
 }

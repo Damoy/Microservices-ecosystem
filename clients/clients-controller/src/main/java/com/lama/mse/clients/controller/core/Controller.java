@@ -1,5 +1,9 @@
 package com.lama.mse.clients.controller.core;
 
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,8 +32,17 @@ public class Controller {
 	public ResponseEntity createOrderEntryPoint(@RequestBody String orderJson) {
 		Logs.infoln("Listener new event on /CREATE/ORDER");
 		ListenableFuture<SendResult<String, String>> future = kafkaIO.sendCreateOrderRequest(orderJson);
-		// TODO
-		return new ResponseEntity<>("Order created", HttpStatus.ACCEPTED);
+		String result = "Order could not been created.";
+		HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;
+		
+		try {
+			result = future.get(2000, TimeUnit.MILLISECONDS).getProducerRecord().value();
+			status = HttpStatus.OK;
+		} catch (InterruptedException | ExecutionException | TimeoutException e) {
+			e.printStackTrace();
+		}
+		
+		return new ResponseEntity<>(result,status);
 	}
 	
 	@RequestMapping(value = "{clientMail}/EDIT/{clientAttribute}/{attributeValue}", method = RequestMethod.POST)
