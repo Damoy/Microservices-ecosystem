@@ -1,42 +1,44 @@
 version: "3"
 services:
 
-  clients-accounts283:
-    container_name: clients-accounts283
-    restart: always
-    build: ./clients/clients-accounts
-    ports:
-      - "8081:8080"
-    depends_on:
-     - kafka
-     - mongodb
-    links:
-     - kafka
-     - mongodb
+  # clients-accounts283:
+  #   container_name: clients-accounts283
+  #   restart: always
+  #   build: ./clients/clients-accounts
+  #   ports:
+  #     - "8081:8080"
+  #   depends_on:
+  #    - kafka
+  #    - mongodb
+  #   links:
+  #    - kafka
+  #    - mongodb
 
-  clients-controller283:
-    container_name: clients-controller283
-    restart: always
-    build: ./clients/clients-controller
-    ports:
-      - "8082:8080"
-    depends_on:
-     - kafka
-    links:
-     - kafka
+  # clients-controller283:
+  #   container_name: clients-controller283
+  #   restart: always
+  #   build: ./clients/clients-controller
+  #   ports:
+  #     - "8082:8080"
+  #   depends_on:
+  #    - kafka
+  #    - mongodb
+  #   links:
+  #    - kafka
+  #    - mongodb
 
-  clients-orders283:
-    container_name: clients-orders283
-    restart: always
-    build: ./clients/clients-orders
-    ports:
-      - "8083:8080"
-    depends_on:
-     - kafka
-     - mongodb
-    links:
-     - kafka
-     - mongodb
+  # clients-orders283:
+  #   container_name: clients-orders283
+  #   restart: always
+  #   build: ./clients/clients-orders
+  #   ports:
+  #     - "8083:8080"
+  #   depends_on:
+  #    - kafka
+  #    - mongodb
+  #   links:
+  #    - kafka
+  #    - mongodb
 
   # commons-estimation283:
   #   container_name: commons-estimation283
@@ -60,38 +62,49 @@ services:
   #   links: 
   #    - kafka
 
-  # coursiers-accounts283:
-  #   container_name: coursiers-accounts283
-  #   restart: always
-  #   build: ./coursiers/coursiers-accounts
-  #   ports:
-  #   - "8086:8080"
-  #   depends_on:
-  #   - mongodb
-  #   - kafka
-  #   links:
-  #   - mongodb
-  #   - kafka
+  coursiers-accounts283:
+    container_name: coursiers-accounts283
+    restart: always
+    build: ./coursiers/coursiers-accounts
+    ports:
+    - "8086:8080"
+    depends_on:
+    - mongodb
+    - kafka
+    links:
+    - mongodb
+    - kafka
 
-  # coursiers-orders283:
-  #   container_name: coursiers-orders283
-  #   restart: always
-  #   build: ./coursiers/coursiers-orders
-  #   ports:
-  #   - "8087:8080"
-  #   depends_on:
-  #   - mongodb
-  #   - kafka
-  #   links:
-  #   - mongodb
-  #   - kafka
+  coursiers-controller283:
+    container_name: coursiers-controller283
+    restart: always
+    build: ./coursiers/coursiers-controller
+    ports:
+    - "8087:8080"
+    depends_on:
+    - kafka
+    links:
+    - kafka
+
+  coursiers-orders283:
+    container_name: coursiers-orders283
+    restart: always
+    build: ./coursiers/coursiers-orders
+    ports:
+    - "8088:8080"
+    depends_on:
+    - mongodb
+    - kafka
+    links:
+    - mongodb
+    - kafka
 
   # restaurants-controller283:
   #   container_name: restaurants-controller283
   #   restart: always
   #   build: ./restaurants/restaurants-controller
   #   ports:
-  #   - "8088:8080"
+  #   - "8089:8080"
   #   depends_on:
   #   - mongodb
   #   - kafka
@@ -104,7 +117,7 @@ services:
   #   restart: always
   #   build: ./restaurants/restaurants-consultation
   #   ports:
-  #   - "8089:8080"
+  #   - "8090:8080"
   #   depends_on:
   #   - mongodb
   #   - kafka
@@ -117,7 +130,7 @@ services:
   #   restart: always
   #   build: ./restaurants/restaurants-modification
   #   ports:
-  #   - "8090:8080"
+  #   - "8091:8080"
   #   depends_on:
   #   - mongodb
   #   - kafka
