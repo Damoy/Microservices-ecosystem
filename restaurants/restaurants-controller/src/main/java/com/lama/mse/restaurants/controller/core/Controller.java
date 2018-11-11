@@ -32,7 +32,7 @@ public class Controller {
 
 	public Controller() {
 	}
-
+ 
 	@RequestMapping(value = "FOOD/{category}", method = RequestMethod.GET)
 	public ResponseEntity consultFoodByCategoryEntryPoint(@PathVariable("category") String category) {	
 		ListenableFuture<ConsumerRecord<String, String>> future = kafkaIO.sendConsultFoodByCategory(category);
