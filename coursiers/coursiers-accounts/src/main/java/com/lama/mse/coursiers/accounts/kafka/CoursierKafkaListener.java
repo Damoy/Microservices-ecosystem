@@ -23,8 +23,8 @@ public class CoursierKafkaListener {
 	public CoursierKafkaListener() {
 	}
 
-	@KafkaListener(id="1",topics = "create-coursier", topicPartitions = {
-			@TopicPartition(topic = "create-coursier", partitions = { "0" }) })
+	@KafkaListener(id="1", topics="create-coursier", topicPartitions={
+			@TopicPartition(topic="create-coursier", partitions = { "0" }) })
 	@SendTo(value= {"topic"})
 	public String createCoursier(String coursier) {
 		try {
@@ -41,7 +41,7 @@ public class CoursierKafkaListener {
 	@SendTo(value= {"topic"})
 	public String consultCoursier(String email) {
 		Gson gson = new Gson();
-		Coursier coursierToConsult = coursierService.findByEmail(email);
+		Coursier coursierToConsult = coursierService.findByMail(email);
 		String coursierJson = coursierToConsult != null ? gson.toJson(coursierToConsult) : null;
 		kafkaIO.sendConsultedCoursierMessage(coursierJson);
 		return coursierJson ;
@@ -50,12 +50,12 @@ public class CoursierKafkaListener {
 	@KafkaListener(id="3",topics = "edit-coursier-mail", topicPartitions = {
 			@TopicPartition(topic = "edit-coursier-email", partitions = { "0" }) })
 	@SendTo(value= {"topic"})
-	public void modifyEmailCoursier(String email, Acknowledgment acknowledgment) {
+	public String modifyEmailCoursier(String email, Acknowledgment acknowledgment) {
 		String[] split = email.split(";");
 		String sentMessageContent = null;
 
 		if (split.length == 2) {
-			Coursier coursier = coursierService.findByEmail(split[0].trim());
+			Coursier coursier = coursierService.findByMail(split[0].trim());
 			if (coursier != null)
 				coursier.setMail(split[1].trim());
 			sentMessageContent = new Gson().toJson(coursier);
@@ -63,57 +63,61 @@ public class CoursierKafkaListener {
 
 		kafkaIO.sendModifiedEmailMessage(sentMessageContent);
 		acknowledgment.acknowledge();
+		return sentMessageContent;
 	}
 
 	@KafkaListener(id="4",topics = "edit-coursier-name", topicPartitions = {
 			@TopicPartition(topic = "edit-coursier-name", partitions = { "0" }) })
 	@SendTo(value= {"topic"})
-	public void modifyNameCoursier(String name, Acknowledgment acknowledgment) {
+	public String modifyNameCoursier(String name, Acknowledgment acknowledgment) {
 		String[] split = name.split(";");
 		String sentMessageContent = null;
 
 		if (split.length == 2) {
-			Coursier coursier = coursierService.findByEmail(split[0].trim());
+			Coursier coursier = coursierService.findByMail(split[0].trim());
 			if (coursier != null)
 				coursier.setName(split[1].trim());
 			sentMessageContent = new Gson().toJson(coursier);
 		}
 		kafkaIO.sendModifiedNameMessage(sentMessageContent);
 		acknowledgment.acknowledge();
+		return sentMessageContent;
 	}
 
 	@KafkaListener(id="5", topics = "edit-coursier-phone", topicPartitions = {
 			@TopicPartition(topic = "edit-coursier-phone", partitions = { "0" }) })
 	@SendTo(value= {"topic"})
-	public void modifyPhoneCoursier(String phone, Acknowledgment acknowledgment) {
+	public String modifyPhoneCoursier(String phone, Acknowledgment acknowledgment) {
 		String[] split = phone.split(";");
 		String sentMessageContent = null;
 
 		if (split.length == 2) {
-			Coursier coursier = coursierService.findByEmail(split[0].trim());
+			Coursier coursier = coursierService.findByMail(split[0].trim());
 			if (coursier != null)
 				coursier.setPhone(Integer.parseInt(split[1].trim()));
 			sentMessageContent = new Gson().toJson(coursier);
 		}
 		kafkaIO.sendModifiedPhoneNumberMessage(sentMessageContent);
 		acknowledgment.acknowledge();
-
+		return sentMessageContent;
 	}
 
 	@KafkaListener(id="6",topics = "edit-coursier-location", topicPartitions = {
 			@TopicPartition(topic = "edit-coursier-location", partitions = { "0" }) })
 	@SendTo(value= {"topic"})
-	public void modifyLocatinCoursier(String location, Acknowledgment acknowledgment) {
+	public String modifyLocatinCoursier(String location, Acknowledgment acknowledgment) {
 		String[] split = location.split(";");
 		String sentMessageContent = null;
 
 		if (split.length == 2) {
-			Coursier coursier = coursierService.findByEmail(split[0].trim());
+			Coursier coursier = coursierService.findByMail(split[0].trim());
 			if (coursier != null)
 				coursier.setLocation(split[1].trim());
 			sentMessageContent = new Gson().toJson(coursier);
 		}
 		kafkaIO.sendModifiedLocationMessage(sentMessageContent);
 		acknowledgment.acknowledge();
+		return sentMessageContent;
 	}
+	
 }
