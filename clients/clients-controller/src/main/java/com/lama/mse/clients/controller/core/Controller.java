@@ -4,12 +4,10 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
-import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.kafka.requestreply.RequestReplyFuture;
-import org.springframework.util.concurrent.ListenableFuture;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -55,13 +53,16 @@ public class Controller {
 		String result = "Client could not been created.";
 		HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;
 		
-		while(!future.isDone()) {System.out.println("no");}
+		while(future.isDone()) {}
+		
 		try {
 			result = future.get().value();
 		} catch (InterruptedException | ExecutionException e) {
+			Logs.infoln("WTF");
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		status = HttpStatus.OK;
 		
 //		try {
 //			result = future.get(10000, TimeUnit.MILLISECONDS).value();
@@ -91,9 +92,9 @@ public class Controller {
 		return new ResponseEntity<>(result,status);
 	}
 	
-	@RequestMapping(value = "/CONSULT/ORDERS/{clientMail}", method = RequestMethod.POST)
+	@RequestMapping(value = "/CONSULT/ORDERS/{clientMail}", method = RequestMethod.GET)
 	public ResponseEntity consultClientOrdersEntryPoint(@PathVariable String clientMail) {
-		Logs.infoln("Listened new event on /MS/CONSULT/CLIENT");
+		Logs.infoln("Listened new event on /MS/CONSULT/ORDERS/" + clientMail);
 		RequestReplyFuture<String,String,String>  future = kafkaIO.sendConsultClientOrdersRequest(clientMail);
 		String result = "Client orders could not be consulted.";
 		HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;

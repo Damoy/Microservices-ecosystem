@@ -45,6 +45,4 @@ public class KafkaConsumerConfig {
         return messagingMessageConverter;
     }
 	
-
-
 }

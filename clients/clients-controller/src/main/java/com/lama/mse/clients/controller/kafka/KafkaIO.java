@@ -1,6 +1,5 @@
 package com.lama.mse.clients.controller.kafka;
 
-import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.common.header.internals.RecordHeader;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +7,6 @@ import org.springframework.kafka.requestreply.ReplyingKafkaTemplate;
 import org.springframework.kafka.requestreply.RequestReplyFuture;
 import org.springframework.kafka.support.KafkaHeaders;
 import org.springframework.stereotype.Component;
-import org.springframework.util.concurrent.ListenableFuture;
 
 import com.lama.mse.clients.controller.commons.Logs;
 
@@ -60,7 +58,6 @@ public class KafkaIO {
 		}
 		
 		String requestContent = mail + ";" + attributeValue;
-		String replyVerb = "client-" + attributeValue + "-edited";
 		
 		ProducerRecord<String, String> record = new ProducerRecord<String, String>(verb, requestContent);
 		record.headers().add(new RecordHeader(KafkaHeaders.REPLY_TOPIC, "topic".getBytes()));

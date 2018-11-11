@@ -25,18 +25,18 @@ services:
     links:
      - kafka
 
-  # clients-orders283:
-  #   container_name: clients-orders283
-  #   restart: always
-  #   build: ./clients/clients-orders
-  #   ports:
-  #     - "8083:8080"
-  #   depends_on:
-  #    - kafka
-  #    - mongodb
-  #   links:
-  #    - kafka
-  #    - mongodb
+  clients-orders283:
+    container_name: clients-orders283
+    restart: always
+    build: ./clients/clients-orders
+    ports:
+      - "8083:8080"
+    depends_on:
+     - kafka
+     - mongodb
+    links:
+     - kafka
+     - mongodb
 
   # commons-estimation283:
   #   container_name: commons-estimation283

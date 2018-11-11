@@ -1,5 +1,7 @@
 package com.lama.mse.clients.accounts.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -40,7 +42,13 @@ public class ClientService implements IClientService {
 
 	@Override
 	public Client editClientAddress(String mail, String address) {
-		Client client = clientRepository.findByMail(mail).get(0);
+		List<Client> clients = clientRepository.findByMail(mail);
+		
+		if(clients == null || clients.isEmpty()) {
+			return null;
+		}
+		
+		Client client = clients.get(0);
 		client.setAddress(address);
 		clientRepository.delete(client);
 		clientRepository.insert(client);
@@ -49,7 +57,13 @@ public class ClientService implements IClientService {
 
 	@Override
 	public Client editClientPhone(String mail, int phoneNumber) {
-		Client client = clientRepository.findByMail(mail).get(0);
+		List<Client> clients = clientRepository.findByMail(mail);
+		
+		if(clients == null || clients.isEmpty()) {
+			return null;
+		}
+		
+		Client client = clients.get(0);
 		client.setNumber(phoneNumber);
 		clientRepository.delete(client);
 		clientRepository.insert(client);
@@ -58,7 +72,13 @@ public class ClientService implements IClientService {
 	
 	@Override
 	public Client editClientCreditCard(String mail, String creditCard) {
-		Client client = clientRepository.findByMail(mail).get(0);
+		List<Client> clients = clientRepository.findByMail(mail);
+		
+		if(clients == null || clients.isEmpty()) {
+			return null;
+		}
+		
+		Client client = clients.get(0);
 		client.setCreditCard(creditCard);
 		clientRepository.delete(client);
 		clientRepository.insert(client);

@@ -28,6 +28,11 @@ public class ClientKafkaListener {
 	@SendTo(value= {"topic"})
 	public String createClientListener(String clientJson) {
 		Client client = new Gson().fromJson(clientJson, Client.class);
+		
+		if(clientService.findByMail(client.getMail()) != null) {
+			return "Client " + client.getMail() + " already exists.\n";
+		}
+		
 		clientService.addClient(client);
 		kafkaIO.sendCreatedClientMessage(clientJson);
 		return "Client " + client.getMail() + " successfully created.\n";
@@ -63,27 +68,30 @@ public class ClientKafkaListener {
 		kafkaIO.sendEditedNameClientMessage(sentMessageContent);
 		return sentMessageContent;
 	}
+	
 	// >> EDIT-ADDRESS-CLIENT  <<
-	@KafkaListener(id="createClient",topics = {"edit-client-address"},
+	@KafkaListener(id="editAddressClient",topics = {"edit-client-address"},
 			topicPartitions = {@TopicPartition(topic = "edit-client-address", partitions = {"0"})})
 	public String editAddressClientListener(String clientMailAddress) {
 		String[] split = clientMailAddress.split(";");
 		String sentMessageContent = null;
 			
 		if(split.length == 2) {
-			sentMessageContent = new Gson().toJson(
-					clientService.editClientAddress(split[0], split[1]));
+			Client client = clientService.editClientAddress(split[0], split[1]);
+			if(client != null) {
+				sentMessageContent = new Gson().toJson(client);
+			} else {
+				sentMessageContent = "Client " + split[0] + " does not exist.\n";
+			}
 		}
 		
 		kafkaIO.sendEditedAddressClientMessage(sentMessageContent);
 		return sentMessageContent;
-		
 	}
-	
 	
 	//TODO RAJOUTER ID
 	// >> EDIT-CREDITCARD-CLIENT  <<
-	@KafkaListener(topics = {"edit-client-creditCard"},
+	@KafkaListener(id="editClientCreditCard", topics = {"edit-client-creditCard"},
 			topicPartitions = {@TopicPartition(topic = "edit-client-creditCard", partitions = {"0"})})
 	@SendTo(value= {"topic"})
 	public String editCreditCardClientListener(String clientMailCreditCard) {
@@ -91,16 +99,21 @@ public class ClientKafkaListener {
 		String sentMessageContent = null;
 			
 		if(split.length == 2) {
-			sentMessageContent = new Gson().toJson(
-					clientService.editClientCreditCard(split[0], split[1]));
+			Client client = clientService.editClientCreditCard(split[0], split[1]);
+			if(client != null) {
+				sentMessageContent = new Gson().toJson(client);
+			} else {
+				sentMessageContent = "Client " + split[0] + " does not exist.\n";
+			}
 		}
 		
 		kafkaIO.sendEditedCreditCardClientMessage(sentMessageContent);
 		return sentMessageContent;
 	}
+	
 	//TODO RAJOUTER ID
 	// >> EDIT-PHONE-CLIENT  <<
-	@KafkaListener(topics = {"edit-client-phone"},
+	@KafkaListener(id="editClientPhone", topics = {"edit-client-phone"},
 			topicPartitions = {@TopicPartition(topic = "edit-client-phone", partitions = {"0"})})
 	@SendTo(value= {"topic"})
 	public String editPhoneClientListener(String clientMailPhone) {
@@ -116,11 +129,19 @@ public class ClientKafkaListener {
 				// prevent potential exception
 			}
 			
-			if(newPhone == -1)
-				newPhone = clientService.findByMail(split[0]).getPhoneNumber();
+			if(newPhone == -1) {
+				Client client = clientService.findByMail(split[0]);
+				if(client != null) {
+					newPhone = client.getPhoneNumber();
+				}
+			}
 			
-			sentMessageContent = new Gson().toJson(
-					clientService.editClientPhone(split[0], newPhone));
+			Client client = clientService.editClientPhone(split[0], newPhone);
+			if(client != null) {
+				sentMessageContent = new Gson().toJson(client);
+			} else {
+				sentMessageContent = "Client " + split[0] + " does not exist.\n";
+			}
 		}
 		
 		kafkaIO.sendEditedPhoneClientMessage(sentMessageContent);
