@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.annotation.TopicPartition;
-import org.springframework.kafka.support.Acknowledgment;
+import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Component;
 
 import com.google.gson.Gson;
@@ -18,7 +18,7 @@ import com.lama.mse.restaurants.consultation.service.RestaurantService;
 
 @Component
 public class RestaurantKafkaListener {
-	
+
 	@Autowired
 	private KafkaIO kafkaIO;
 
@@ -27,7 +27,7 @@ public class RestaurantKafkaListener {
 
 	@Autowired
 	private OrderService orderService;
-	
+
 	@Autowired
 	private RestaurantService restaurantService;
 
@@ -35,34 +35,46 @@ public class RestaurantKafkaListener {
 
 	@KafkaListener(topics = { "consult-restaurant" }, topicPartitions = {
 			@TopicPartition(topic = "consult-restaurant", partitions = { "0" }) })
-	public void consultRestaurantListener(String restaurantName, Acknowledgment acknowledgment) {
+	@SendTo(value= {"topic"})
+	public String consultRestaurantListener(String restaurantName) {
 		Restaurant restaurant = restaurantService.findByName(restaurantName);
-		kafkaIO.sendConsultedRestaurant(new Gson().toJson(restaurant));
-		acknowledgment.acknowledge();
+		String res = new Gson().toJson(restaurant);
+		kafkaIO.sendConsultedRestaurant(res);
+		return res;
 	}
 
+
+	
 	@KafkaListener(topics = { "consult-food" }, topicPartitions = {
 			@TopicPartition(topic = "consult-food", partitions = { "0" }) })
-	public void consultFoodByNameListener(String foodName, Acknowledgment acknowledgment) {
+	@SendTo(value= {"topic"})
+	public String consultFoodByNameListener(String foodName) {
 		Food food = foodService.getByName(foodName);
 		kafkaIO.sendConsultedRestaurant(new Gson().toJson(food));
-		acknowledgment.acknowledge();
+		String res = new Gson().toJson(food);
+		return res;
 	}
-
+	
 	@KafkaListener(topics = { "consult-category-food" }, topicPartitions = {
-			@TopicPartition(topic = "consult-category-food", partitions = { "0" }) })
-	public void consultConsultCategoryFood(String foodCategory, Acknowledgment acknowledgment) {
+			@TopicPartition(topic="consult-category-food", partitions = { "0" })})
+	@SendTo(value={"topic"})
+	public String consultConsultCategoryFood(String foodCategory) {
 		Food food = foodService.getByCategory(foodCategory);
+		//List<Food> x = foodService.getAll();
+		System.out.println("ici");
+		System.out.println(foodCategory);
 		kafkaIO.sendConsultedFoodByCategory(new Gson().toJson(food));
-		acknowledgment.acknowledge();
+		String res = new Gson().toJson(food);
+		return res;
 	}
 
 	@KafkaListener(topics = { "consult-order" }, topicPartitions = {
 			@TopicPartition(topic = "consult-order", partitions = { "0" }) })
-	public void consultConsultOrder(String restaurantName, Acknowledgment acknowledgment) {
+	@SendTo(value= {"topic"})
+	public String consultConsultOrder(String restaurantName) {
 		List<Order> orders = orderService.getAllRestaurantsOrder(restaurantName);
 		kafkaIO.sendConsultedRestaurantOrders(new Gson().toJson(orders));
-		acknowledgment.acknowledge();
+		String res = new Gson().toJson(orders);
+		return res;
 	}
-
 }
