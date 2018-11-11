@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.annotation.TopicPartition;
 import org.springframework.kafka.support.Acknowledgment;
+import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Component;
 
 import com.lama.mse.coursiers.accounts.model.Coursier;
@@ -22,30 +23,33 @@ public class CoursierKafkaListener {
 	public CoursierKafkaListener() {
 	}
 
-	@KafkaListener(topics = "create-coursier", topicPartitions = {
+	@KafkaListener(id="1",topics = "create-coursier", topicPartitions = {
 			@TopicPartition(topic = "create-coursier", partitions = { "0" }) })
-	public void createCoursier(String coursier, Acknowledgment acknowledgment) {
+	@SendTo(value= {"topic"})
+	public String createCoursier(String coursier) {
 		try {
 			coursierService.addCoursier(new Gson().fromJson(coursier, Coursier.class));
 		} catch (Exception e) {
 			// prevent crash in case user gives bad json
 		}
 		kafkaIO.sendCreationCoursierMessage(coursier);
-		acknowledgment.acknowledge();
+		return coursier;
 	}
 
-	@KafkaListener(topics = "consult-coursier", topicPartitions = {
+	@KafkaListener(id="2",topics = "consult-coursier", topicPartitions = {
 			@TopicPartition(topic = "consult-coursier", partitions = { "0" }) })
-	public void consultCoursier(String email, Acknowledgment acknowledgment) {
+	@SendTo(value= {"topic"})
+	public String consultCoursier(String email) {
 		Gson gson = new Gson();
 		Coursier coursierToConsult = coursierService.findByEmail(email);
 		String coursierJson = coursierToConsult != null ? gson.toJson(coursierToConsult) : null;
 		kafkaIO.sendConsultedCoursierMessage(coursierJson);
-		acknowledgment.acknowledge();
+		return coursierJson ;
 	}
 
-	@KafkaListener(topics = "edit-coursier-mail", topicPartitions = {
+	@KafkaListener(id="3",topics = "edit-coursier-mail", topicPartitions = {
 			@TopicPartition(topic = "edit-coursier-email", partitions = { "0" }) })
+	@SendTo(value= {"topic"})
 	public void modifyEmailCoursier(String email, Acknowledgment acknowledgment) {
 		String[] split = email.split(";");
 		String sentMessageContent = null;
@@ -61,8 +65,9 @@ public class CoursierKafkaListener {
 		acknowledgment.acknowledge();
 	}
 
-	@KafkaListener(topics = "edit-coursier-name", topicPartitions = {
+	@KafkaListener(id="4",topics = "edit-coursier-name", topicPartitions = {
 			@TopicPartition(topic = "edit-coursier-name", partitions = { "0" }) })
+	@SendTo(value= {"topic"})
 	public void modifyNameCoursier(String name, Acknowledgment acknowledgment) {
 		String[] split = name.split(";");
 		String sentMessageContent = null;
@@ -77,8 +82,9 @@ public class CoursierKafkaListener {
 		acknowledgment.acknowledge();
 	}
 
-	@KafkaListener(topics = "edit-coursier-phone", topicPartitions = {
+	@KafkaListener(id="5", topics = "edit-coursier-phone", topicPartitions = {
 			@TopicPartition(topic = "edit-coursier-phone", partitions = { "0" }) })
+	@SendTo(value= {"topic"})
 	public void modifyPhoneCoursier(String phone, Acknowledgment acknowledgment) {
 		String[] split = phone.split(";");
 		String sentMessageContent = null;
@@ -94,8 +100,9 @@ public class CoursierKafkaListener {
 
 	}
 
-	@KafkaListener(topics = "edit-coursier-location", topicPartitions = {
+	@KafkaListener(id="6",topics = "edit-coursier-location", topicPartitions = {
 			@TopicPartition(topic = "edit-coursier-location", partitions = { "0" }) })
+	@SendTo(value= {"topic"})
 	public void modifyLocatinCoursier(String location, Acknowledgment acknowledgment) {
 		String[] split = location.split(";");
 		String sentMessageContent = null;
@@ -108,6 +115,5 @@ public class CoursierKafkaListener {
 		}
 		kafkaIO.sendModifiedLocationMessage(sentMessageContent);
 		acknowledgment.acknowledge();
-
 	}
 }

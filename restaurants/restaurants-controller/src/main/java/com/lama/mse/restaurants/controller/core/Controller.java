@@ -70,7 +70,7 @@ public class Controller {
 
 	@RequestMapping(value = "FOOD", method = RequestMethod.POST)
 	public ResponseEntity editFoodEntryPoint(@RequestBody String foodJson) throws InterruptedException, ExecutionException {
-		RequestReplyFuture<String,String,String> future = kafkaIO.sendCreateFood(foodJson);
+		RequestReplyFuture<String, String, String> future = kafkaIO.sendCreateFood(foodJson);
 		String result = "Food could not been created.";
 
 		HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;

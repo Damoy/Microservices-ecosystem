@@ -10,17 +10,21 @@ import com.lama.mse.clients.accounts.repository.IClientRepository;
 
 @Service("ClientService")
 public class ClientService implements IClientService {
-	
+
 	@Autowired
 	private IClientRepository clientRepository;
-	
+
 	public ClientService() {}
-	
+
 	@Override
 	public Client findByMail(String mail) {
-		return clientRepository.findByMail(mail).get(0);
+		List<Client> clients = clientRepository.findByMail(mail);
+		if(!clients.isEmpty()) {
+			return clients.get(0);
+		}
+		return null;
 	}
-	
+
 	@Override
 	public void addClient(Client client) {
 		clientRepository.save(client);
@@ -43,11 +47,11 @@ public class ClientService implements IClientService {
 	@Override
 	public Client editClientAddress(String mail, String address) {
 		List<Client> clients = clientRepository.findByMail(mail);
-		
+
 		if(clients == null || clients.isEmpty()) {
 			return null;
 		}
-		
+
 		Client client = clients.get(0);
 		client.setAddress(address);
 		clientRepository.delete(client);
@@ -58,26 +62,26 @@ public class ClientService implements IClientService {
 	@Override
 	public Client editClientPhone(String mail, int phoneNumber) {
 		List<Client> clients = clientRepository.findByMail(mail);
-		
+
 		if(clients == null || clients.isEmpty()) {
 			return null;
 		}
-		
+
 		Client client = clients.get(0);
 		client.setNumber(phoneNumber);
 		clientRepository.delete(client);
 		clientRepository.insert(client);
 		return client;
 	}
-	
+
 	@Override
 	public Client editClientCreditCard(String mail, String creditCard) {
 		List<Client> clients = clientRepository.findByMail(mail);
-		
+
 		if(clients == null || clients.isEmpty()) {
 			return null;
 		}
-		
+
 		Client client = clients.get(0);
 		client.setCreditCard(creditCard);
 		clientRepository.delete(client);
