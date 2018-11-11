@@ -14,7 +14,6 @@ import org.springframework.kafka.core.ProducerFactory;
 import org.springframework.kafka.listener.KafkaMessageListenerContainer;
 import org.springframework.kafka.listener.config.ContainerProperties;
 import org.springframework.kafka.requestreply.ReplyingKafkaTemplate;
-import org.springframework.kafka.support.serializer.JsonSerializer;
 
 @Configuration
 public class KafkaProducerConfig {

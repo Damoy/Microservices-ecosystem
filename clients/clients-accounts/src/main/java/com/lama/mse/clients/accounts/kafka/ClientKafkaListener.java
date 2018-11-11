@@ -3,6 +3,7 @@ package com.lama.mse.clients.accounts.kafka;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.annotation.TopicPartition;
+import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Component;
 
 import com.google.gson.Gson;
@@ -22,27 +23,33 @@ public class ClientKafkaListener {
 	}
 	
 	// >> CREATE-CLIENT <<
-	@KafkaListener(topics = {"create-client"},
+	@KafkaListener(id="createClient",topics = {"create-client"},
 			topicPartitions = {@TopicPartition(topic = "create-client", partitions = {"0"})})
+	@SendTo(value= {"topic"})
 	public String createClientListener(String clientJson) {
 		Client client = new Gson().fromJson(clientJson, Client.class);
 		clientService.addClient(client);
+		kafkaIO.sendCreatedClientMessage(clientJson);
 		return "Client " + client.getMail() + " successfully created.\n";
 	}
 
 	// >> CONSULT-CLIENT <<
-	@KafkaListener(topics = {"consult-client"},
+	@KafkaListener(id="consultClient",topics = {"consult-client"},
 			topicPartitions = {@TopicPartition(topic = "consult-client", partitions = {"0"})})
+	@SendTo(value= {"topic"})
 	public String consultClientListener(String clientMail) {
 		Gson gson = new Gson();
 		Client clientToConsult = clientService.findByMail(clientMail);
-		return clientToConsult != null ? gson.toJson(clientToConsult) : "Client does not exist.\n";
+		String res = clientToConsult != null ? gson.toJson(clientToConsult) : "Client does not exist.\n";
+		kafkaIO.sendConsultedClientMessage(res);
+		return res;
 	}
 	
 	// >> EDIT-NAME-CLIENT  <<
-	@KafkaListener(topics = {"edit-client-name"},
+	@KafkaListener(id="editNameClient",topics = {"edit-client-name"},
 			topicPartitions = {@TopicPartition(topic = "edit-client-name", partitions = {"0"})})
-	public void editNameClientListener(String clientMailName) {
+	@SendTo(value= {"topic"})
+	public String editNameClientListener(String clientMailName) {
 		String[] split = clientMailName.split(";");
 		String sentMessageContent = null;
 			
@@ -54,12 +61,12 @@ public class ClientKafkaListener {
 		}
 		
 		kafkaIO.sendEditedNameClientMessage(sentMessageContent);
+		return sentMessageContent;
 	}
-	
 	// >> EDIT-ADDRESS-CLIENT  <<
-	@KafkaListener(topics = {"edit-client-address"},
+	@KafkaListener(id="createClient",topics = {"edit-client-address"},
 			topicPartitions = {@TopicPartition(topic = "edit-client-address", partitions = {"0"})})
-	public void editAddressClientListener(String clientMailAddress) {
+	public String editAddressClientListener(String clientMailAddress) {
 		String[] split = clientMailAddress.split(";");
 		String sentMessageContent = null;
 			
@@ -69,12 +76,17 @@ public class ClientKafkaListener {
 		}
 		
 		kafkaIO.sendEditedAddressClientMessage(sentMessageContent);
+		return sentMessageContent;
+		
 	}
 	
+	
+	//TODO RAJOUTER ID
 	// >> EDIT-CREDITCARD-CLIENT  <<
 	@KafkaListener(topics = {"edit-client-creditCard"},
 			topicPartitions = {@TopicPartition(topic = "edit-client-creditCard", partitions = {"0"})})
-	public void editCreditCardClientListener(String clientMailCreditCard) {
+	@SendTo(value= {"topic"})
+	public String editCreditCardClientListener(String clientMailCreditCard) {
 		String[] split = clientMailCreditCard.split(";");
 		String sentMessageContent = null;
 			
@@ -84,12 +96,14 @@ public class ClientKafkaListener {
 		}
 		
 		kafkaIO.sendEditedCreditCardClientMessage(sentMessageContent);
+		return sentMessageContent;
 	}
-	
+	//TODO RAJOUTER ID
 	// >> EDIT-PHONE-CLIENT  <<
 	@KafkaListener(topics = {"edit-client-phone"},
 			topicPartitions = {@TopicPartition(topic = "edit-client-phone", partitions = {"0"})})
-	public void editPhoneClientListener(String clientMailPhone) {
+	@SendTo(value= {"topic"})
+	public String editPhoneClientListener(String clientMailPhone) {
 		String[] split = clientMailPhone.split(";");
 		String sentMessageContent = null;
 			
@@ -110,6 +124,7 @@ public class ClientKafkaListener {
 		}
 		
 		kafkaIO.sendEditedPhoneClientMessage(sentMessageContent);
+		return sentMessageContent;
 	}
 	
 }

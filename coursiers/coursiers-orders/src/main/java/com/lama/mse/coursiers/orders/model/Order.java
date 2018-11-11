@@ -1,38 +1,43 @@
 package com.lama.mse.coursiers.orders.model;
 
-
 import java.util.List;
 
-// Is Delivery location the client address ?
 public class Order {
+	
+	public static int genID = 0;
 
-	private long id;
+	private String coursierMail;
+	private String id;
 	private String clientMail;
 	private String restaurantName;
-	private String deliveryLocation;
+	private String deliveryLocation; // address set at order creation
 	private List<String> foodNames;
-	private String Coursierid;
 	private boolean aroundMe;
 	
-	public Order(long id, String clientMail, String restaurantName,
+	public Order(String clientMail, String coursierMail, String restaurantName,
                  String deliveryLocation, List<String> foodNames) {
-		this.id = id;
 		this.clientMail = clientMail;
 		this.restaurantName = restaurantName;
 		this.deliveryLocation = deliveryLocation;
 		this.foodNames = foodNames;
+		if(coursierMail != null) {
+			this.id = coursierMail + "_" + genID++;
+		}
 	}
 
 	public Order(){
 		
 	}
 
-	public long getId() {
-		return id;
+	public String getCoursierMail() {
+		return coursierMail;
 	}
 
-	public void setId(long id) {
-		this.id = id;
+	public void setCoursierMail(String coursierMail) {
+		this.coursierMail = coursierMail;
+		if(id != null) {
+			this.id = coursierMail + "_" + genID++;
+		}
 	}
 
 	public String getClientMail() {
@@ -51,14 +56,6 @@ public class Order {
 		this.restaurantName = restaurantName;
 	}
 
-	public List<String> getFoodNames() {
-		return foodNames;
-	}
-
-	public void setFoodNames(List<String> foodNames) {
-		this.foodNames = foodNames;
-	}
-
 	public String getDeliveryLocation() {
 		return deliveryLocation;
 	}
@@ -67,19 +64,20 @@ public class Order {
 		this.deliveryLocation = deliveryLocation;
 	}
 
-	public String getCoursierid() {
-		return Coursierid;
+	public List<String> getFoodNames() {
+		return foodNames;
 	}
 
-	public void setCoursierid(String coursierid) {
-		Coursierid = coursierid;
+	public void setFoodNames(List<String> foodNames) {
+		this.foodNames = foodNames;
 	}
 
-	public boolean getAroundMe() {
+	public boolean isAroundMe() {
 		return aroundMe;
 	}
 
 	public void setAroundMe(boolean aroundMe) {
 		this.aroundMe = aroundMe;
 	}
+	
 }

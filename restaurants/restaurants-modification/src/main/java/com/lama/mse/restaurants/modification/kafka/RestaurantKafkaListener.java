@@ -52,15 +52,17 @@ public class RestaurantKafkaListener {
 
 	}
 
-	@KafkaListener(topics = "create-order", topicPartitions = { @TopicPartition(topic = "create-order", partitions = {"0"})})
+	@KafkaListener(id="test2",topics = "create-order", topicPartitions = { @TopicPartition(topic = "create-order", partitions = {"0"})})
+	@SendTo(value= {"topic"})
 	public String createOrder(String orderJson) {
 		orderService.store(new Gson().fromJson(orderJson, Order.class));
 		kafkaIO.sendOrderCreated(orderJson);
 		Logs.infoln("Listened create-order");
 		return "Order Created";
 	}
-
-	@KafkaListener(topics = "create-restaurant", topicPartitions = { @TopicPartition(topic = "create-restaurant", partitions = {"0"})})
+	
+	@KafkaListener(id="test2",topics="create-restaurant", topicPartitions = { @TopicPartition(topic = "create-restaurant", partitions = {"0"})})
+	@SendTo(value= {"topic"})
 	public String createRestaurant(String restaurantJson) {
 		restaurantService.store(new Gson().fromJson(restaurantJson, Restaurant.class));
 		kafkaIO.sendRestaurantCreated(restaurantJson);

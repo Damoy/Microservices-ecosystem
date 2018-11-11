@@ -1,7 +1,5 @@
 package com.lama.mse.coursiers.accounts.service;
 
-
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,7 +38,7 @@ public class CoursierService implements ICoursierService{
     @Override
     public void modifyEmail(String email) {
         Coursier coursier = repository.findByEmail( email ).get(0);
-        coursier.setEmail(email);
+        coursier.setMail(email);
         //kafkaIO.sendModifiedEmailMessage(coursier);
     }
 
