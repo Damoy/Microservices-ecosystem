@@ -97,42 +97,42 @@ services:
   #   - mongodb
   #   - kafka
 
-  # restaurants-controller283:
-  #   container_name: restaurants-controller283
-  #   restart: always
-  #   build: ./restaurants/restaurants-controller
-  #   ports:
-  #   - "8089:8080"
-  #   depends_on:
-  #   - kafka
-  #   links:
-  #   - kafka
+  restaurants-controller283:
+    container_name: restaurants-controller283
+    restart: always
+    build: ./restaurants/restaurants-controller
+    ports:
+    - "8089:8080"
+    depends_on:
+    - kafka
+    links:
+    - kafka
 
-  # restaurants-consultation283:
-  #   container_name: restaurants-consultation283
-  #   restart: always
-  #   build: ./restaurants/restaurants-consultation
-  #   ports:
-  #   - "8090:8080"
-  #   depends_on:
-  #   - mongodb
-  #   - kafka
-  #   links:
-  #   - mongodb
-  #   - kafka
+  restaurants-consultation283:
+    container_name: restaurants-consultation283
+    restart: always
+    build: ./restaurants/restaurants-consultation
+    ports:
+    - "8090:8080"
+    depends_on:
+    - mongodb
+    - kafka
+    links:
+    - mongodb
+    - kafka
 
-  # restaurants-modification283:
-  #   container_name: restaurants-modification283
-  #   restart: always
-  #   build: ./restaurants/restaurants-modification
-  #   ports:
-  #   - "8091:8080"
-  #   depends_on:
-  #   - mongodb
-  #   - kafka
-  #   links:
-  #   - mongodb
-  #   - kafka
+  restaurants-modification283:
+    container_name: restaurants-modification283
+    restart: always
+    build: ./restaurants/restaurants-modification
+    ports:
+    - "8091:8080"
+    depends_on:
+    - mongodb
+    - kafka
+    links:
+    - mongodb
+    - kafka
 
   mongodb:
     container_name: mongodb
