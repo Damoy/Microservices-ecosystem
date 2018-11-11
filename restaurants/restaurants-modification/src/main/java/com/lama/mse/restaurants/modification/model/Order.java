@@ -5,40 +5,51 @@ import java.util.List;
 public class Order {
 
 	private int id;
-	private int clientId;
-	private List<Integer> menus;
-	private List<Integer> foods;
-	private int restaurantId;
+	private String clientMail;
+	private String restaurantName;
+	private List<String> foods; // food names
+	
+	public Order() {
+		
+	}
 
-	//---------------------GETTERS----------------------------
+	public Order(int id, String clientMail, String restaurantName, List<String> foods) {
+		this.id = id;
+		this.clientMail = clientMail;
+		this.restaurantName = restaurantName;
+		this.foods = foods;
+	}
+
 	public int getId() {
 		return id;
 	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
-	public int getClientId() {
-		return clientId;
+
+	public String getClientMail() {
+		return clientMail;
 	}
-	public void setClientId(int clientId) {
-		this.clientId = clientId;
+
+	public void setClientMail(String clientMail) {
+		this.clientMail = clientMail;
 	}
-	public List<Integer> getMenus() {
-		return menus;
+
+	public String getRestaurantName() {
+		return restaurantName;
 	}
-	public void setMenus(List<Integer> menus) {
-		this.menus = menus;
+
+	public void setRestaurantName(String restaurantName) {
+		this.restaurantName = restaurantName;
 	}
-	public List<Integer> getFoods() {
+
+	public List<String> getFoods() {
 		return foods;
 	}
-	public void setFoods(List<Integer> foods) {
+
+	public void setFoods(List<String> foods) {
 		this.foods = foods;
 	}
-	public int getRestaurantId() {
-		return restaurantId;
-	}
-	public void setRestaurantId(int restaurantId) {
-		this.restaurantId = restaurantId;
-	}
+
 }

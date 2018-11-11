@@ -8,9 +8,7 @@ import org.springframework.stereotype.Service;
 import com.lama.mse.restaurants.consultation.model.Order;
 import com.lama.mse.restaurants.consultation.repository.IOrderRepository;
 
-
-
-@Service("OrderSerice")
+@Service("OrderService")
 public class OrderService implements IOrderService {
 
 	@Autowired

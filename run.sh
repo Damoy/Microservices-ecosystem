@@ -56,6 +56,38 @@ sleep $personasSleep;
 echo "";
 firstStorySleep=2;
 
+printf "Creating foods"; sleep 1; printf "."; sleep 1; printf "."; sleep 1; printf ".\n"; echo "";
+
+printf "1. Creating DarkDemonNems from Lucichan restaurant";sleep 1; printf "."; sleep 1; printf "."; sleep 1; printf ".\n"; echo "";
+darkDemonNemsLuchichan=$(curl -s -X POST -H "Accept: application/json" -H "Content-type: application/json" "localhost:8089/MS/CREATE/FOOD" -d '{"name": "DarkDemonNemsByLucichan","description": "Its so tasty that you will lose your soul","restaurantId": "Lucichan","price": "15.0","category":"ASIAN"}');
+echo $darkDemonNemsLuchichan;
+echo "";
+sleep $firstStorySleep;
+
+printf "2. Creating VegetarianPizza from Mario restaurant";sleep 1; printf "."; sleep 1; printf "."; sleep 1; printf ".\n"; echo "";
+vegetarianPizzaMarioPizza=$(curl -s -X POST -H "Accept: application/json" -H "Content-type: application/json" "localhost:8089/MS/CREATE/FOOD" -d '{"name": "VegetarianPizzaByMario","description": "Best pizza ever","restaurantId": "Mario","price": "13.0","category":"ITALIAN"}');
+echo $vegetarianPizzaMarioPizza;
+echo "";
+sleep $firstStorySleep;
+
+printf "3. Creating Kebab from KebabierUltime restaurant";sleep 1; printf "."; sleep 1; printf "."; sleep 1; printf ".\n"; echo "";
+kebabKebabierUltime=$(curl -s -X POST -H "Accept: application/json" -H "Content-type: application/json" "localhost:8089/MS/CREATE/FOOD" -d '{"name": "KebabByKebabierUltime","description": "Come taste our ultimate meat","restaurantId": "KebabierUltime","price": "10.0","category":"JUNK"}');
+echo $kebabKebabierUltime;
+echo "";
+sleep $firstStorySleep;
+
+printf "4. Creating Noodles from Lucichan restaurant";sleep 1; printf "."; sleep 1; printf "."; sleep 1; printf ".\n"; echo "";
+noodlesLucichan=$(curl -s -X POST -H "Accept: application/json" -H "Content-type: application/json" "localhost:8089/MS/CREATE/FOOD" -d '{"name": "NoodlesLucican","description": "OMG it tastes so good, is it really only noodles ?","restaurantId": "Lucichan","price": "14.0","category":"ASIAN"}');
+echo $noodlesLucichan;
+echo "";
+sleep $firstStorySleep;
+
+printf "5. Creating PestoPasta from Mario restaurant";sleep 1; printf "."; sleep 1; printf "."; sleep 1; printf ".\n"; echo "";
+pestoPastaMario=$(curl -s -X POST -H "Accept: application/json" -H "Content-type: application/json" "localhost:8089/MS/CREATE/FOOD" -d '{"name": "PestoPizzaMario","description": "Our pasta beat all rivalry","restaurantId": "Mario","price": "16.0","category":"ITALIAN"}');
+echo $pestoPastaMario;
+echo "";
+sleep $firstStorySleep;
+
 
 # Personas accounts
 
@@ -63,13 +95,11 @@ printf ">> Creating personas accounts"; sleep 1; printf "."; sleep 1; printf "."
 
 printf "Creating $student" sleep 1; printf "."; sleep 1; printf "."; sleep 1; printf ".\n"; echo "";
 studentAccount=$(curl -s -X POST -H "Accept: application/json" -H "Content-type: application/json" localhost:8082/MS/CREATE/CLIENT -d '{"mail":"gail@me.fr","phoneNumber":"0656768798","name":"Gail","address":"11 rue GreenKing","creditCard":"6545213409873456"}');
-echo "";
 echo $studentAccount;
 sleep $firstStorySleep;
 
 printf "Creating $dev" sleep 1; printf "."; sleep 1; printf "."; sleep 1; printf ".\n"; echo "";
 devAccount=$(curl -s -X POST -H "Accept: application/json" -H "Content-type: application/json" localhost:8082/MS/CREATE/CLIENT -d '{"mail":"erin@me.fr","phoneNumber":"0611223344","name":"Erin","address":"22 Boulevard Polytech","creditCard":"5345768912345432"}');
-echo "";
 echo $devAccount;
 sleep $firstStorySleep;
 
