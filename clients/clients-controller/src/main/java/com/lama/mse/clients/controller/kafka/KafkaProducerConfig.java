@@ -49,7 +49,7 @@ public class KafkaProducerConfig {
 				"create-order", "create-restaurant", "food-created", "order-created", "client-created",
 				"client-orders-consulted", "edit-client-phoneNumber", "edit-client-name", "edit-client-address",
 				"edit-client-creditCard", "client-phoneNumber-edited", "client-name-edited", "client-address-edited",
-				"client-creditCard-edited"});
+				"client-creditCard-edited", "order-consulted"});
 		return new KafkaMessageListenerContainer<>(cf, containerProperties);
 	}
 
