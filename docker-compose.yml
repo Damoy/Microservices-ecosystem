@@ -60,18 +60,18 @@ services:
   #   links: 
   #    - kafka
 
-  coursiers-accounts283:
-    container_name: coursiers-accounts283
-    restart: always
-    build: ./coursiers/coursiers-accounts
-    ports:
-    - "8086:8080"
-    depends_on:
-    - mongodb
-    - kafka
-    links:
-    - mongodb
-    - kafka
+  # coursiers-accounts283:
+  #   container_name: coursiers-accounts283
+  #   restart: always
+  #   build: ./coursiers/coursiers-accounts
+  #   ports:
+  #   - "8086:8080"
+  #   depends_on:
+  #   - mongodb
+  #   - kafka
+  #   links:
+  #   - mongodb
+  #   - kafka
 
   # coursiers-controller283:
   #   container_name: coursiers-controller283
