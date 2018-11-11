@@ -6,6 +6,8 @@ import org.springframework.kafka.annotation.TopicPartition;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Component;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.lama.mse.commons.moneyModification.core.MoneyModification;
 
 @Component
@@ -45,17 +47,21 @@ public class MoneyModificationListener {
 			topicPartitions = {@TopicPartition(topic = "perform-paiement", partitions = {"0"})})
 	@SendTo("topic")
 	public String performPaiementOperation(String banksInfo) {
-		String[] split = banksInfo.split(";");
-		String bankAccountToDebit = split[0];
-		String amountToDebit = split[1];
-		String bankAccountToCredit = split[2];
-		String amountToCredit = split[3];
+//		String[] split = banksInfo.split(";");
+//		String bankAccountToDebit = split[0];
+//		String amountToDebit = split[1];
+//		String bankAccountToCredit = split[2];
+//		String amountToCredit = split[3];
 		
-		
+		JsonObject object = new Gson().fromJson(banksInfo, JsonObject.class);
+		String restaurantName = object.get("restaurantName").getAsString();
+		String clientMail = object.get("clientMail").getAsString();
+		kafka.sendBankAccount(restaurantName);
+		return restaurantName + " has been credited and " + clientMail + " debited.\n";
 		
 		// mock
-		kafka.sendBankAccount(bankAccountToDebit);
-		return amountToDebit + " debit from " + bankAccountToDebit + ", " + amountToCredit + " credited to " + bankAccountToCredit + "\n";
+//		kafka.sendBankAccount(bankAccountToDebit);
+//		return amountToDebit + " debit from " + bankAccountToDebit + ", " + amountToCredit + " credited to " + bankAccountToCredit + "\n";
 	}
 
 }

@@ -64,7 +64,7 @@ public class Controller {
 	}
 	
 	// -------------------------------- CONSULT ----------------------------------
-	@RequestMapping(value = "/CONSULT/CLIENT/{clientMail]", method = RequestMethod.POST)
+	@RequestMapping(value = "/CONSULT/CLIENT/{clientMail}", method = RequestMethod.GET)
 	public ResponseEntity consultClientEntryPoint(@PathVariable String clientMail) {
 		Logs.infoln("Listened new event on /MS/CONSULT/CLIENT");
 		RequestReplyFuture<String,String,String>  future = kafkaIO.sendConsultClientRequest(clientMail);
