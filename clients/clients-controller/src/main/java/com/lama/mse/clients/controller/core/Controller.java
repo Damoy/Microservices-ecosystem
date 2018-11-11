@@ -38,7 +38,7 @@ public class Controller {
 		HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;
 		
 		try {
-			result = future.get(2000, TimeUnit.MILLISECONDS).value();
+			result = future.get(10000, TimeUnit.MILLISECONDS).value();
 			status = HttpStatus.OK;
 		} catch (InterruptedException | ExecutionException | TimeoutException e) {
 			e.printStackTrace();
@@ -54,12 +54,20 @@ public class Controller {
 		String result = "Client could not been created.";
 		HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;
 		
+		while(!future.isDone()) {System.out.println("no");}
 		try {
-			result = future.get(2000, TimeUnit.MILLISECONDS).value();
-			status = HttpStatus.OK;
-		} catch (InterruptedException | ExecutionException | TimeoutException e) {
+			result = future.get().value();
+		} catch (InterruptedException | ExecutionException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+//		try {
+//			result = future.get(10000, TimeUnit.MILLISECONDS).value();
+//			status = HttpStatus.OK;
+//		} catch (InterruptedException | ExecutionException | TimeoutException e) {
+//			e.printStackTrace();
+//		}
 		
 		return new ResponseEntity<>(result,status);
 	}
@@ -69,11 +77,11 @@ public class Controller {
 	public ResponseEntity consultClientEntryPoint(@PathVariable String clientMail) {
 		Logs.infoln("Listened new event on /MS/CONSULT/CLIENT");
 		ListenableFuture<ConsumerRecord<String, String>> future = kafkaIO.sendConsultClientRequest(clientMail);
-		String result = "Client could not be consulted.";
+		String result = "Client could not be consulted.\n";
 		HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;
 		
 		try {
-			result = future.get(2000, TimeUnit.MILLISECONDS).value();
+			result = future.get(10000, TimeUnit.MILLISECONDS).value();
 			status = HttpStatus.OK;
 		} catch (InterruptedException | ExecutionException | TimeoutException e) {
 			e.printStackTrace();
@@ -90,7 +98,7 @@ public class Controller {
 		HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;
 		
 		try {
-			result = future.get(2000, TimeUnit.MILLISECONDS).value();
+			result = future.get(10000, TimeUnit.MILLISECONDS).value();
 			status = HttpStatus.OK;
 		} catch (InterruptedException | ExecutionException | TimeoutException e) {
 			e.printStackTrace();
@@ -111,7 +119,7 @@ public class Controller {
 		ListenableFuture<ConsumerRecord<String, String>> future = kafkaIO.sendEditClientRequest(clientMail, clientAttribute, attributeValue);
 		
 		try {
-			result = future.get(2000, TimeUnit.MILLISECONDS).value();
+			result = future.get(10000, TimeUnit.MILLISECONDS).value();
 			status = HttpStatus.OK;
 		} catch (InterruptedException | ExecutionException | TimeoutException e) {
 			e.printStackTrace();
