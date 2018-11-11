@@ -7,7 +7,6 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.google.gson.Gson;
 import com.lama.mse.coursiers.orders.kafka.KafkaIO;
 import com.lama.mse.coursiers.orders.model.Order;
 import com.lama.mse.coursiers.orders.repository.IOrderRepository;
@@ -32,7 +31,7 @@ public class OrderService implements IOrderService {
 	@Override
 	public List<Order> getOrdersAroundMe() {
 		List<Order> orders = new ArrayList<>();
-		orders = orderRepository.findAll().stream().filter(order -> order.isAroundMe() == true)
+		orders = orderRepository.findAll().stream().filter(order -> order.isAroundMe())
 				.collect(Collectors.toList());
 		return orders;
 	}
@@ -47,38 +46,75 @@ public class OrderService implements IOrderService {
 		orderRepository.save(order);
 	}
 
+//	@Override
+//	public void deleteOrder(long id) {
+//		Order order = orderRepository.findById((int) id);
+//		orderRepository.delete(order);
+//		kafkaIO.sendDeletedOrderMessage(new Gson().toJson(order));
+//	}
+//
+//	@Override
+//	public void modifyClientMail(long id, String mail) {
+//		Order order = orderRepository.findById((int) id);
+//		order.setClientMail(mail);
+//		kafkaIO.sendDeletedOrderMessage(new Gson().toJson(order));
+//	}
+//
+//	@Override
+//	public void modifyRestaurantName(long id, String restaurantName) {
+//		Order order = orderRepository.findById((int) id);
+//		order.setRestaurantName(restaurantName);
+//		kafkaIO.sendDeletedOrderMessage(new Gson().toJson(order));
+//	}
+//
+//	@Override
+//	public void modifyDeliveryLocation(long id, String deliveryLocation) {
+//		Order order = orderRepository.findById((int) id);
+//		order.setDeliveryLocation(deliveryLocation);
+//		kafkaIO.sendDeletedOrderMessage(new Gson().toJson(order));
+//	}
+//
+//	@Override
+//	public void modifyFoodNames(long id, List<String> foodNames) {
+//		Order order = orderRepository.findById((int) id);
+//		order.setFoodNames(foodNames);
+//		kafkaIO.sendDeletedOrderMessage(new Gson().toJson(order));
+//	}
+
+	@Override
+	public List<Order> findById(String orderId) {
+		return orderRepository.findByOrderId(orderId);
+	}
+
 	@Override
 	public void deleteOrder(long id) {
-		Order order = orderRepository.findById((int) id);
-		orderRepository.delete(order);
-		kafkaIO.sendDeletedOrderMessage(new Gson().toJson(order));
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
 	public void modifyClientMail(long id, String mail) {
-		Order order = orderRepository.findById((int) id);
-		order.setClientMail(mail);
-		kafkaIO.sendDeletedOrderMessage(new Gson().toJson(order));
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
 	public void modifyRestaurantName(long id, String restaurantName) {
-		Order order = orderRepository.findById((int) id);
-		order.setRestaurantName(restaurantName);
-		kafkaIO.sendDeletedOrderMessage(new Gson().toJson(order));
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
 	public void modifyDeliveryLocation(long id, String deliveryLocation) {
-		Order order = orderRepository.findById((int) id);
-		order.setDeliveryLocation(deliveryLocation);
-		kafkaIO.sendDeletedOrderMessage(new Gson().toJson(order));
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
 	public void modifyFoodNames(long id, List<String> foodNames) {
-		Order order = orderRepository.findById((int) id);
-		order.setFoodNames(foodNames);
-		kafkaIO.sendDeletedOrderMessage(new Gson().toJson(order));
+		// TODO Auto-generated method stub
+		
 	}
+	
+	
 }

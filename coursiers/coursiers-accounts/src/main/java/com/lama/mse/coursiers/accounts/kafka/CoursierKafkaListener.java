@@ -23,31 +23,28 @@ public class CoursierKafkaListener {
 	public CoursierKafkaListener() {
 	}
 
-	@KafkaListener(id="1", topics="create-coursier", topicPartitions={
+	@KafkaListener(id="createCoursier", topics="create-coursier", topicPartitions={
 			@TopicPartition(topic="create-coursier", partitions = { "0" }) })
 	@SendTo(value= {"topic"})
-	public String createCoursier(String coursier) {
-		try {
-			coursierService.addCoursier(new Gson().fromJson(coursier, Coursier.class));
-		} catch (Exception e) {
-			// prevent crash in case user gives bad json
-		}
-		kafkaIO.sendCreationCoursierMessage(coursier);
-		return coursier;
+	public String createCoursier(String coursierjson) {
+		Coursier coursier = new Gson().fromJson(coursierjson, Coursier.class);
+		coursierService.addCoursier(coursier);
+		kafkaIO.sendCreationCoursierMessage(coursierjson);
+		return "Coursier " + coursier.getMail() + " created.\n";
 	}
 
-	@KafkaListener(id="2",topics = "consult-coursier", topicPartitions = {
+	@KafkaListener(id="consultCoursier",topics = "consult-coursier", topicPartitions = {
 			@TopicPartition(topic = "consult-coursier", partitions = { "0" }) })
 	@SendTo(value= {"topic"})
-	public String consultCoursier(String email) {
+	public String consultCoursier(String coursierMail) {
 		Gson gson = new Gson();
-		Coursier coursierToConsult = coursierService.findByMail(email);
+		Coursier coursierToConsult = coursierService.findByMail(coursierMail);
 		String coursierJson = coursierToConsult != null ? gson.toJson(coursierToConsult) : null;
 		kafkaIO.sendConsultedCoursierMessage(coursierJson);
-		return coursierJson ;
+		return coursierJson;
 	}
 
-	@KafkaListener(id="3",topics = "edit-coursier-mail", topicPartitions = {
+	@KafkaListener(id="editEmailCoursier",topics = "edit-coursier-mail", topicPartitions = {
 			@TopicPartition(topic = "edit-coursier-email", partitions = { "0" }) })
 	@SendTo(value= {"topic"})
 	public String modifyEmailCoursier(String email, Acknowledgment acknowledgment) {

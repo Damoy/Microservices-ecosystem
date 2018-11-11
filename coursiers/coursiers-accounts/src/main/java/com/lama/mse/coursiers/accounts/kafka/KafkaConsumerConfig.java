@@ -28,17 +28,22 @@ public class KafkaConsumerConfig {
 		props.put(ConsumerConfig.GROUP_ID_CONFIG, "test-consumer-group3");
 		return new DefaultKafkaConsumerFactory<>(props);
 	}
-	
+
 	@Bean
 	public ConcurrentKafkaListenerContainerFactory<String, String> kafkaListenerContainerFactory() {
 		ConcurrentKafkaListenerContainerFactory<String, String> factory = new ConcurrentKafkaListenerContainerFactory<>();
 		factory.setConsumerFactory(consumerFactory());
-		factory.setConcurrency(2);
+		factory.setReplyTemplate(kafkaTemplate());
 		factory.setMessageConverter(simpleMapperConverter());
 		return factory;
 	}
 
-	@Bean 
+	@Bean
+	public KafkaTemplate<String, String> kafkaTemplate() {
+		return new KafkaTemplate<>(new KafkaProducerConfig().producerFactory());
+	}
+
+	@Bean
 	public MessagingMessageConverter simpleMapperConverter() {
 		MessagingMessageConverter messagingMessageConverter = new MessagingMessageConverter();
 		messagingMessageConverter.setHeaderMapper(new SimpleKafkaHeaderMapper());

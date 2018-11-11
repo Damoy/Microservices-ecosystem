@@ -73,23 +73,47 @@ services:
     - mongodb
     - kafka
 
-  # coursiers-controller283:
-  #   container_name: coursiers-controller283
+  coursiers-controller283:
+    container_name: coursiers-controller283
+    restart: always
+    build: ./coursiers/coursiers-controller
+    ports:
+    - "8087:8080"
+    depends_on:
+    - kafka
+    links:
+    - kafka
+
+  coursiers-orders283:
+    container_name: coursiers-orders283
+    restart: always
+    build: ./coursiers/coursiers-orders
+    ports:
+    - "8088:8080"
+    depends_on:
+    - mongodb
+    - kafka
+    links:
+    - mongodb
+    - kafka
+
+  # restaurants-controller283:
+  #   container_name: restaurants-controller283
   #   restart: always
-  #   build: ./coursiers/coursiers-controller
+  #   build: ./restaurants/restaurants-controller
   #   ports:
-  #   - "8087:8080"
+  #   - "8089:8080"
   #   depends_on:
   #   - kafka
   #   links:
   #   - kafka
 
-  # coursiers-orders283:
-  #   container_name: coursiers-orders283
+  # restaurants-consultation283:
+  #   container_name: restaurants-consultation283
   #   restart: always
-  #   build: ./coursiers/coursiers-orders
+  #   build: ./restaurants/restaurants-consultation
   #   ports:
-  #   - "8088:8080"
+  #   - "8090:8080"
   #   depends_on:
   #   - mongodb
   #   - kafka
@@ -97,42 +121,18 @@ services:
   #   - mongodb
   #   - kafka
 
-  restaurants-controller283:
-    container_name: restaurants-controller283
-    restart: always
-    build: ./restaurants/restaurants-controller
-    ports:
-    - "8089:8080"
-    depends_on:
-    - kafka
-    links:
-    - kafka
-
-  restaurants-consultation283:
-    container_name: restaurants-consultation283
-    restart: always
-    build: ./restaurants/restaurants-consultation
-    ports:
-    - "8090:8080"
-    depends_on:
-    - mongodb
-    - kafka
-    links:
-    - mongodb
-    - kafka
-
-  restaurants-modification283:
-    container_name: restaurants-modification283
-    restart: always
-    build: ./restaurants/restaurants-modification
-    ports:
-    - "8091:8080"
-    depends_on:
-    - mongodb
-    - kafka
-    links:
-    - mongodb
-    - kafka
+  # restaurants-modification283:
+  #   container_name: restaurants-modification283
+  #   restart: always
+  #   build: ./restaurants/restaurants-modification
+  #   ports:
+  #   - "8091:8080"
+  #   depends_on:
+  #   - mongodb
+  #   - kafka
+  #   links:
+  #   - mongodb
+  #   - kafka
 
   mongodb:
     container_name: mongodb
@@ -155,7 +155,7 @@ services:
        KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
        KAFKA_LISTENERS: PLAINTEXT://:9092
        KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
-       KAFKA_CREATE_TOPICS: "consult-client:1:1,edit-client-name:1:1,edit-client-address:1:1,edit-client-creditCard:1:1,edit-client-phone:1:1,create-order:1:1,estimate-eta:1:1,estimate-distance:1:1,add-money:1:1,withdraw-money:1:1,create-coursier:1:1,consult-restaurant:1:1,consult-food:1:1,consult-category-food:1:1,consult-order:1:1,create-food:1:1,create-order:1:1,create-restaurant:1:1,food-created:1:1,order-created:1:1,client-created:1:1,client-orders-consulted:1:1,edit-client-phoneNumber:1:1,edit-client-name:1:1,edit-client-address:1:1,edit-client-creditCard:1:1,client-phoneNumber-edited:1:1,client-name-edited:1:1,client-address-edited:1:1,client-creditCard-edited:1:1,topic:1:1"
+       KAFKA_CREATE_TOPICS: "consult-client:1:1,edit-client-name:1:1,edit-client-address:1:1,edit-client-creditCard:1:1,edit-client-phone:1:1,create-order:1:1,estimate-eta:1:1,estimate-distance:1:1,add-money:1:1,withdraw-money:1:1,create-coursier:1:1,consult-restaurant:1:1,consult-food:1:1,consult-category-food:1:1,consult-order:1:1,create-food:1:1,create-order:1:1,create-restaurant:1:1,food-created:1:1,order-created:1:1,client-created:1:1,client-orders-consulted:1:1,edit-client-phoneNumber:1:1,edit-client-name:1:1,edit-client-address:1:1,edit-client-creditCard:1:1,client-phoneNumber-edited:1:1,client-name-edited:1:1,client-address-edited:1:1,client-creditCard-edited:1:1,topic:1:1,deliver-coursier-order:1:1,consult-coursier-orders-aroundme:1:1"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     depends_on: 
