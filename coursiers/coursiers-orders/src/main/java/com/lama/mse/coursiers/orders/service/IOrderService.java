@@ -25,4 +25,7 @@ public interface IOrderService {
 
 	public void modifyFoodNames(long id, List<String> foodNames);
 
+	public Order findById(int id);
+
+
 }

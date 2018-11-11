@@ -1,0 +1,1 @@
+curl -X POST -H "Accept: application/json" -H "Content-type: application/json" localhost:8082/MS/CREATE/COURSIER -d '{"mail":"asia@pl.com","name":"Bob Bu","phone":0678980998","location":"Sophia-Antipolis"}'

@@ -2,3 +2,10 @@
 
 # Java
 new String[]{"consult-client","edit-client-name","edit-client-address","edit-client-creditCard","edit-client-phone","create-order","estimate-eta","estimate-distance","add-money","withdraw-money","create-coursier","consult-restaurant","consult-food","consult-category-food","consult-order","create-food","create-order","create-restaurant","food-created","order-created","client-created","client-orders-consulted","edit-client-phoneNumber","edit-client-name","edit-client-address","edit-client-creditCard","client-phoneNumber-edited","client-name-edited","client-address-edited","client-creditCard-edited", "order-consulted"}
+
+
+##################COURSIER###############################
+"create-coursier:1:1,consult-coursier:1:1,edit-coursier-mail:1:1,edit-coursier-name:1:1,edit-coursier-phone:1:1,edit-coursier-location:1:1,delivered-order-coursier:1:1,consult-coursier-orders-aroundme:1:1,accident-coursier:1:1,consult-order-coursier:1:1"
+
+# Java
+new String[]{"create-coursier","consult-coursier","edit-coursier-mail","edit-coursier-name","edit-coursier-phone","edit-coursier-location","delivered-order-coursier","consult-coursier-orders-aroundme","accident-coursier","consult-order-coursier"}

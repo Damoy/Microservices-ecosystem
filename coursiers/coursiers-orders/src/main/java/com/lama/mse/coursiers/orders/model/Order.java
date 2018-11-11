@@ -13,6 +13,7 @@ public class Order {
 	private String deliveryLocation; // address set at order creation
 	private List<String> foodNames;
 	private boolean aroundMe;
+	private boolean delivered =false;
 	
 	public Order(String clientMail, String coursierMail, String restaurantName,
                  String deliveryLocation, List<String> foodNames) {
@@ -79,5 +80,12 @@ public class Order {
 	public void setAroundMe(boolean aroundMe) {
 		this.aroundMe = aroundMe;
 	}
-	
+
+	public boolean isDelivered() {
+		return delivered;
+	}
+
+	public void setDelivered(boolean delivered) {
+		this.delivered = delivered;
+	}
 }
