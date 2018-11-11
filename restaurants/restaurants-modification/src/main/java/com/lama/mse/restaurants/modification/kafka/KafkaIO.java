@@ -10,7 +10,7 @@ import org.springframework.util.concurrent.ListenableFuture;
 public class KafkaIO {
 
 	@Autowired
-	private KafkaTemplate<String, String> template;
+	private KafkaTemplate<String,String> template;
 	
 	public ListenableFuture<SendResult<String, String>> sendFoodCreated(String foodJson){
 		return template.send("food-created", foodJson);

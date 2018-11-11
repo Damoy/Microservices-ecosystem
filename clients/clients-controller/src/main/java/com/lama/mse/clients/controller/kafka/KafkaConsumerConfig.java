@@ -1,4 +1,7 @@
-package com.lama.mse.coursiers.orders.kafka;
+package com.lama.mse.clients.controller.kafka;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
@@ -10,9 +13,6 @@ import org.springframework.kafka.core.ConsumerFactory;
 import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
 import org.springframework.kafka.core.KafkaTemplate;
 
-import java.util.HashMap;
-import java.util.Map;
-
 @EnableKafka
 @Configuration
 public class KafkaConsumerConfig {
@@ -20,10 +20,10 @@ public class KafkaConsumerConfig {
 	@Bean
 	public ConsumerFactory<String, String> consumerFactory() {
 		Map<String, Object> props = new HashMap<>();
-		props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, 
-		          "kafka:9092");
+		props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "kafka:9092");
 		props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
 		props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
+		props.put(ConsumerConfig.GROUP_ID_CONFIG, "test-consumer-group");
 		return new DefaultKafkaConsumerFactory<>(props);
 	}
 
@@ -39,4 +39,5 @@ public class KafkaConsumerConfig {
 	public KafkaTemplate<String, String> kafkaTemplate() {
 		return new KafkaTemplate<>(new KafkaProducerConfig().producerFactory());
 	}
+
 }

@@ -9,12 +9,11 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 		"com.lama.mse.coursiers.accounts.kafka",
 		"com.lama.mse.coursiers.accounts.model",
 		"com.lama.mse.coursiers.accounts.repository",
-		"com.lama.mse.coursiers.accounts.service",
+		"com.lama.mse.coursiers.accounts.service"
 })
 @EnableMongoRepositories("com.lama.mse.coursiers.accounts.repository")
 public class Application {
 
-	// TODO MODULE
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class);
 	}

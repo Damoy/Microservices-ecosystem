@@ -4,17 +4,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
 
-import com.lama.mse.coursiers.accounts.model.Coursier;
-
-
 @Component
-public class KafkaIO  {
-	
+public class KafkaIO {
+
 	@Autowired
 	private KafkaTemplate<String, String> kafkaTemplate;
-	
-	public KafkaIO(){
-		
+
+	public KafkaIO() {
+
 	}
 
 	public void sendCreationCoursierMessage(String coursier) {
@@ -44,6 +41,5 @@ public class KafkaIO  {
 	public void sendModifiedLocationMessage(String coursier) {
 		kafkaTemplate.send("coursier-modified-location", coursier);
 	}
-
 
 }

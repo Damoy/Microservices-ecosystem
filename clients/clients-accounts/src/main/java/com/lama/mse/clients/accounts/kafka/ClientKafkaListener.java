@@ -1,6 +1,5 @@
 package com.lama.mse.clients.accounts.kafka;
 
-import org.apache.kafka.clients.producer.ProducerRecord;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.annotation.TopicPartition;
@@ -25,11 +24,11 @@ public class ClientKafkaListener {
 	// >> CREATE-CLIENT <<
 	@KafkaListener(topics = {"create-client"},
 			topicPartitions = {@TopicPartition(topic = "create-client", partitions = {"0"})})
-	public ProducerRecord<String, String> createClientListener(String clientJson) {
+	public String createClientListener(String clientJson) {
 		Client client = new Gson().fromJson(clientJson, Client.class);
 		clientService.addClient(client);
-		return new ProducerRecord<String, String>("create-client",
-				"Client " + client.getMail() + " successfully created.\n");
+		kafkaIO.sendCreatedClientMessage(clientJson);
+		return "Client " + client.getMail() + " successfully created.\n";
 	}
 
 	// >> CONSULT-CLIENT <<
@@ -38,7 +37,9 @@ public class ClientKafkaListener {
 	public String consultClientListener(String clientMail) {
 		Gson gson = new Gson();
 		Client clientToConsult = clientService.findByMail(clientMail);
-		return clientToConsult != null ? gson.toJson(clientToConsult) : "Client does not exist.\n";
+		String res = clientToConsult != null ? gson.toJson(clientToConsult) : "Client does not exist.\n";
+		kafkaIO.sendConsultedClientMessage(res);
+		return res;
 	}
 	
 	// >> EDIT-NAME-CLIENT  <<

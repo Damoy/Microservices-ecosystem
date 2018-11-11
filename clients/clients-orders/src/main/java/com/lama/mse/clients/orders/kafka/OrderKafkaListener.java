@@ -34,8 +34,10 @@ public class OrderKafkaListener {
 			topicPartitions = {@TopicPartition(topic = "consult-client-orders", partitions = {"0"})})
 	public String consultClientOrdersListener(String clientMail) {
 		List<Order> clientOrders = orderService.getByClientMail(clientMail);
-		return clientOrders == null || clientOrders.isEmpty() ? ("No order could be found for "
+		String result = clientOrders == null || clientOrders.isEmpty() ? ("No order could be found for "
 				+ clientMail + ".\n") : new Gson().toJson(clientOrders);
+		kafkaIO.sendConsultedClientOrders(result);
+		return result;
 	}
 
 }
