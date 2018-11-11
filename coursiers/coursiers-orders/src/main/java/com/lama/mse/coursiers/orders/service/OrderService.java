@@ -57,34 +57,34 @@ public class OrderService implements IOrderService {
 	public void deleteOrder(long id) {
 		Order order = orderRepository.findById((int) id);
 		orderRepository.delete(order);
-		kafkaIO.sendDeletedOrderMessage(new Gson().toJson(order));
+		//kafkaIO.sendDeletedOrderMessage(new Gson().toJson(order));
 	}
 
 	@Override
 	public void modifyClientMail(long id, String mail) {
 		Order order = orderRepository.findById((int) id);
 		order.setClientMail(mail);
-		kafkaIO.sendDeletedOrderMessage(new Gson().toJson(order));
+		//kafkaIO.sendDeletedOrderMessage(new Gson().toJson(order));
 	}
 
 	@Override
 	public void modifyRestaurantName(long id, String restaurantName) {
 		Order order = orderRepository.findById((int) id);
 		order.setRestaurantName(restaurantName);
-		kafkaIO.sendDeletedOrderMessage(new Gson().toJson(order));
+		//kafkaIO.sendDeletedOrderMessage(new Gson().toJson(order));
 	}
 
 	@Override
 	public void modifyDeliveryLocation(long id, String deliveryLocation) {
 		Order order = orderRepository.findById((int) id);
 		order.setDeliveryLocation(deliveryLocation);
-		kafkaIO.sendDeletedOrderMessage(new Gson().toJson(order));
+		//kafkaIO.sendDeletedOrderMessage(new Gson().toJson(order));
 	}
 
 	@Override
 	public void modifyFoodNames(long id, List<String> foodNames) {
 		Order order = orderRepository.findById((int) id);
 		order.setFoodNames(foodNames);
-		kafkaIO.sendDeletedOrderMessage(new Gson().toJson(order));
+		//kafkaIO.sendDeletedOrderMessage(new Gson().toJson(order));
 	}
 }

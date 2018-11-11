@@ -28,6 +28,27 @@ public class Controller {
 	private KafkaIO kafkaIO;
 	
 	public Controller() {}
+
+
+
+	//consult orders that belong to coursier
+	@RequestMapping(value = "{coursierMail}/ORDERS", method = RequestMethod.GET)
+	public ResponseEntity consultOrderCoursier(@PathVariable String coursierMail) {
+		//Logs.infoln("Listener new event on  coursierMail}/ORDER/{orderId}");
+		RequestReplyFuture<String, String, String> future = kafkaIO.sendConsultOrderCoursierRequest(coursierMail);
+		String result = "Coursier's orders could not be consulted.";
+		HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;
+
+		try {
+			result = future.get(10000, TimeUnit.MILLISECONDS).value();
+			status = HttpStatus.OK;
+		} catch (InterruptedException | ExecutionException | TimeoutException e) {
+			e.printStackTrace();
+		}
+
+		return new ResponseEntity<>(result,status);
+	}
+
 	
 	@RequestMapping(value = "/CREATE/COURSIER", method = RequestMethod.POST)
 	public ResponseEntity createOrderEntryPoint(@RequestBody String coursierJson) {

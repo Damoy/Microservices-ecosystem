@@ -20,6 +20,23 @@ public class KafkaIO {
 	public KafkaIO() {
 	}
 
+
+	//consult coursier orders
+
+	public RequestReplyFuture<String, String, String> sendConsultOrderCoursierRequest(String coursierMail) {
+
+		ProducerRecord<String, String> record = new ProducerRecord<String, String>("consult-coursier-orders", coursierMail);
+
+		record.headers().add(new RecordHeader(KafkaHeaders.REPLY_TOPIC, "topic".getBytes()));
+
+		RequestReplyFuture<String, String, String> future = kafka.sendAndReceive(record);
+
+		return  future;
+	}
+
+
+
+	//create coursier
 	public RequestReplyFuture<String, String, String>  sendCreateCoursierRequest(String orderJson) {
 
 		ProducerRecord<String, String> record = new ProducerRecord<String, String>("create-coursier", orderJson);
@@ -31,6 +48,8 @@ public class KafkaIO {
 		return  future;
 	}
 
+
+	//edit one of the coursier attributs
 	public RequestReplyFuture<String, String, String> sendEditCoursierRequest(String mail, String coursierAttribute, String attributeValue) {
 
 		String verb = "edit-coursier";
@@ -50,6 +69,8 @@ public class KafkaIO {
 		return future;
 	}
 
+
+	//food delivered status
 	public RequestReplyFuture<String, String, String> sendEditOrderStatusCoursierRequest(long orderId){
 		
 		ProducerRecord<String, String> record = new ProducerRecord<String, String>("create-coursier",((Long) orderId).toString());
@@ -61,6 +82,7 @@ public class KafkaIO {
 		return future;
 	}
 
+	//notify accident coursier
 	public RequestReplyFuture<String, String, String> sendAccidentCoursierRequest(String cause){
 		
 		ProducerRecord<String, String> record = new ProducerRecord<String, String>("accident-coursier",cause);
@@ -71,6 +93,7 @@ public class KafkaIO {
 		return future;
 	}
 
+	//display orders around me
 	public RequestReplyFuture<String, String, String> sendOrdersAroundMetCoursierRequest(String cause){
 		
 		ProducerRecord<String, String> record = new ProducerRecord<String, String>("consult-coursier-orders-aroundme",cause);
