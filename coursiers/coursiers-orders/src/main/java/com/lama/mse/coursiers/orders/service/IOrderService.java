@@ -5,6 +5,8 @@ import java.util.List;
 import com.lama.mse.coursiers.orders.model.Order;
 
 public interface IOrderService {
+	
+	public List<Order> findById(String orderId);
 
 	public List<Order> getOrdersAroundMe();
 

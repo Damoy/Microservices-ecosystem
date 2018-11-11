@@ -6,16 +6,14 @@ public class Client {
 	private String mail;
 	private String name;
 	private String address;
-	private String creditCard;
 
 	public Client() {}
 
-	public Client(String mail, String name, String address, String creditCard, int phoneNumber) {
+	public Client(String mail, String name, String address, int phoneNumber) {
 		this.mail = mail;
 		this.phoneNumber = phoneNumber;
 		this.name = name;
 		this.address = address;
-		this.creditCard = creditCard;
 	}
 	
 	public int getPhoneNumber() {
@@ -24,14 +22,6 @@ public class Client {
 
 	public void setPhoneNumber(int phoneNumber) {
 		this.phoneNumber = phoneNumber;
-	}
-
-	public String getCreditCard() {
-		return creditCard;
-	}
-
-	public void setCreditCard(String creditCard) {
-		this.creditCard = creditCard;
 	}
 
 	public String getMail() {

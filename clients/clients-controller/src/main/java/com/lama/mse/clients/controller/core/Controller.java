@@ -53,24 +53,13 @@ public class Controller {
 		String result = "Client could not been created.";
 		HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;
 		
-		while(future.isDone()) {}
-		
 		try {
-			result = future.get().value();
-		} catch (InterruptedException | ExecutionException e) {
-			Logs.infoln("WTF");
-			// TODO Auto-generated catch block
+			result = future.get(10000, TimeUnit.MILLISECONDS).value();
+			status = HttpStatus.OK;
+		} catch (InterruptedException | ExecutionException | TimeoutException e) {
 			e.printStackTrace();
 		}
 		status = HttpStatus.OK;
-		
-//		try {
-//			result = future.get(10000, TimeUnit.MILLISECONDS).value();
-//			status = HttpStatus.OK;
-//		} catch (InterruptedException | ExecutionException | TimeoutException e) {
-//			e.printStackTrace();
-//		}
-		
 		return new ResponseEntity<>(result,status);
 	}
 	
@@ -129,5 +118,21 @@ public class Controller {
 		
 		return new ResponseEntity<>(result,status);
 	}
+	
+//	@RequestMapping(value = "/PAY/{clientMail}/{orderId}", method = RequestMethod.POST)
+//	public ResponseEntity clientPayOrder(@PathVariable String clientMail, @PathVariable String orderId) {
+//		Logs.infoln("Listened new event on MS/PAY/{orderId}" + orderId);
+//		RequestReplyFuture<String,String,String> future = kafkaIO.sendConsultOrder();
+//		String jsonOrders
+//		
+//		try {
+//			result = future.get(10000, TimeUnit.MILLISECONDS).value();
+//			status = HttpStatus.OK;
+//		} catch (InterruptedException | ExecutionException | TimeoutException e) {
+//			e.printStackTrace();
+//		}
+//		
+//		return new ResponseEntity<>(result,status);
+//	}
 	
 }

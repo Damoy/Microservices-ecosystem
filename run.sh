@@ -110,16 +110,16 @@ echo "CURL TO EDIT";
 sleep $firstStorySleep;
 
 printf "Creating $coursier" sleep 1; printf "."; sleep 1; printf "."; sleep 1; printf ".\n"; echo "";
-# $coursierAccount=$(curl -s -X POST -H "Accept: application/json" -H "Content-type: application/json" localhost:8082/MS/CREATE/CLIENT -d '{"mail":"jamie@me.fr","phoneNumber":"0634325465","name":"Jamie","address":"Rond-point des Dolines","creditCard":"0789345612348765"}');
+coursierAccount=$(curl -X POST -H "Accept: application/json" -H "Content-type: application/json" localhost:8087/MS/CREATE/COURSIER -d '{"mail":"jamie@me.com","name":"Jamie","phone":"0655113311","location":"Polytech,Sophia"}');
 echo "CURL TO EDIT";
-# echo $coursierAccount;
+echo $coursierAccount;
 sleep $firstStorySleep;
 
 printf ">> Starting first story";
 sleep 1; printf "."; sleep 1; printf "."; sleep 1; printf ".\n"; echo "";
 echo "1. As $student or $dev I can order my lunch from a restaurant so that the food is delivered to my place.";
 sleep 1; printf "."; sleep 1; printf "."; sleep 1; printf ".\n"; echo "";
-echo "CURL TODO"; sleep $firstStorySleep;
+sleep $firstStorySleep;
 
 printf "2. As $student, I can browse the food catalogue by categories so that I can immediately identify my favorite junk food.";
 sleep 1; printf "."; sleep 1; printf "."; sleep 1; printf ".\n"; echo "";
@@ -127,7 +127,9 @@ echo "CURL TODO"; sleep $firstStorySleep;
 
 printf "3. As $dev, I want to know before ordering the estimated time of delivery of the meal so that I can schedule my work around it, and be ready when it arrives.";
 sleep 1; printf "."; sleep 1; printf "."; sleep 1; printf ".\n"; echo "";
-echo "CURL TODO"; sleep $firstStorySleep;
+devOrder=$(curl -X POST -H "Accept: application/json" -H "Content-type: application/json" localhost:8082/MS/CREATE/ORDER -d '{"clientMail":"erin@me.com","content":["KebabByKebabierUltime"]}');
+echo $devOrder;
+sleep $firstStorySleep;
 
 printf "4. As Erin, I can pay directly by credit card on the platform, so that I only have to retrieve my food when delivered.";
 sleep 1; printf "."; sleep 1; printf "."; sleep 1; printf ".\n"; echo "";

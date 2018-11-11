@@ -90,28 +90,6 @@ public class ClientKafkaListener {
 	}
 	
 	//TODO RAJOUTER ID
-	// >> EDIT-CREDITCARD-CLIENT  <<
-	@KafkaListener(id="editClientCreditCard", topics = {"edit-client-creditCard"},
-			topicPartitions = {@TopicPartition(topic = "edit-client-creditCard", partitions = {"0"})})
-	@SendTo(value= {"topic"})
-	public String editCreditCardClientListener(String clientMailCreditCard) {
-		String[] split = clientMailCreditCard.split(";");
-		String sentMessageContent = null;
-			
-		if(split.length == 2) {
-			Client client = clientService.editClientCreditCard(split[0], split[1]);
-			if(client != null) {
-				sentMessageContent = new Gson().toJson(client);
-			} else {
-				sentMessageContent = "Client " + split[0] + " does not exist.\n";
-			}
-		}
-		
-		kafkaIO.sendEditedCreditCardClientMessage(sentMessageContent);
-		return sentMessageContent;
-	}
-	
-	//TODO RAJOUTER ID
 	// >> EDIT-PHONE-CLIENT  <<
 	@KafkaListener(id="editClientPhone", topics = {"edit-client-phone"},
 			topicPartitions = {@TopicPartition(topic = "edit-client-phone", partitions = {"0"})})
