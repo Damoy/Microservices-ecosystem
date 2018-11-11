@@ -38,7 +38,7 @@ public class Controller {
 		HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;
 		
 		try {
-			result = future.get(2000, TimeUnit.MILLISECONDS).getProducerRecord().value();
+			result = future.get(6000, TimeUnit.MILLISECONDS).getProducerRecord().value();
 			status = HttpStatus.OK;
 		} catch (InterruptedException | ExecutionException | TimeoutException e) {
 			e.printStackTrace();
@@ -55,7 +55,7 @@ public class Controller {
 		HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;
 		
 		try {
-			result = future.get(2000, TimeUnit.MILLISECONDS).getProducerRecord().value();
+			result = future.get(6000, TimeUnit.MILLISECONDS).getProducerRecord().value();
 			status = HttpStatus.OK;
 		} catch (InterruptedException | ExecutionException | TimeoutException e) {
 			e.printStackTrace();
@@ -73,7 +73,7 @@ public class Controller {
 		HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;
 		
 		try {
-			result = future.get(2000, TimeUnit.MILLISECONDS).getProducerRecord().value();
+			result = future.get(6000, TimeUnit.MILLISECONDS).getProducerRecord().value();
 			status = HttpStatus.OK;
 		} catch (InterruptedException | ExecutionException | TimeoutException e) {
 			e.printStackTrace();
@@ -90,7 +90,7 @@ public class Controller {
 		HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;
 		
 		try {
-			result = future.get(2000, TimeUnit.MILLISECONDS).getProducerRecord().value();
+			result = future.get(6000, TimeUnit.MILLISECONDS).getProducerRecord().value();
 			status = HttpStatus.OK;
 		} catch (InterruptedException | ExecutionException | TimeoutException e) {
 			e.printStackTrace();
@@ -111,7 +111,7 @@ public class Controller {
 		ListenableFuture<SendResult<String, String>> future = kafkaIO.sendEditClientRequest(clientMail, clientAttribute, attributeValue);
 		
 		try {
-			result = future.get(2000, TimeUnit.MILLISECONDS).getProducerRecord().value();
+			result = future.get(6000, TimeUnit.MILLISECONDS).getProducerRecord().value();
 			status = HttpStatus.OK;
 		} catch (InterruptedException | ExecutionException | TimeoutException e) {
 			e.printStackTrace();

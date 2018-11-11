@@ -1,5 +1,6 @@
 package com.lama.mse.clients.accounts.kafka;
 
+import org.apache.kafka.clients.producer.ProducerRecord;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.annotation.TopicPartition;
@@ -24,10 +25,11 @@ public class ClientKafkaListener {
 	// >> CREATE-CLIENT <<
 	@KafkaListener(topics = {"create-client"},
 			topicPartitions = {@TopicPartition(topic = "create-client", partitions = {"0"})})
-	public String createClientListener(String clientJson) {
+	public ProducerRecord<String, String> createClientListener(String clientJson) {
 		Client client = new Gson().fromJson(clientJson, Client.class);
 		clientService.addClient(client);
-		return "Client " + client.getMail() + " successfully created.\n";
+		return new ProducerRecord<String, String>("create-client",
+				"Client " + client.getMail() + " successfully created.\n");
 	}
 
 	// >> CONSULT-CLIENT <<
