@@ -7,21 +7,39 @@ public class Order {
 	private static int idGenerator = 0;
 
 	private String clientMail;
-	private String id;
+	private String orderId;
+	private String deliveryLocation;
 	private List<String> content;
 	
 	public Order(){
-		id = null;
+		orderId = null;
 	}
 	
-	public Order(String clientMail, List<String> content) {
+	public Order(String clientMail, String deliveryLocation, List<String> content) {
 		this.clientMail = clientMail;
+		this.deliveryLocation = deliveryLocation;
 		this.content = content;
 		if(clientMail != null) {
-			id = clientMail + "_" + idGenerator++;
+			orderId = clientMail + "_" + idGenerator++;
 		} else {
-			id = null;
+			orderId = null;
 		}
+	}
+
+	public String getOrderId() {
+		return orderId;
+	}
+
+	public void setOrderId(String orderId) {
+		this.orderId = orderId;
+	}
+
+	public String getDeliveryLocation() {
+		return deliveryLocation;
+	}
+
+	public void setDeliveryLocation(String deliveryLocation) {
+		this.deliveryLocation = deliveryLocation;
 	}
 
 	public String getClientMail() {
@@ -30,8 +48,8 @@ public class Order {
 
 	public void setClientMail(String clientMail) {
 		this.clientMail = clientMail;
-		if(clientMail != null && id == null) {
-			id = clientMail + "_" + idGenerator++;
+		if(clientMail != null && orderId == null) {
+			orderId = clientMail + "_" + idGenerator++;
 		}
 	}
 
@@ -43,7 +61,4 @@ public class Order {
 		this.content = content;
 	}
 	
-	public String getId() {
-		return id;
-	}
 }

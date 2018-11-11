@@ -10,6 +10,5 @@ public interface IClientService {
 	public Client editClientName(String mail, String name);
 	public Client editClientAddress(String mail, String Adress);
 	public Client editClientPhone(String mail, int phoneNumber);
-	public Client editClientCreditCard(String mail, String creditCard);
 
 }

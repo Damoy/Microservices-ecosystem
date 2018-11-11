@@ -74,18 +74,4 @@ public class ClientService implements IClientService {
 		return client;
 	}
 
-	@Override
-	public Client editClientCreditCard(String mail, String creditCard) {
-		List<Client> clients = clientRepository.findByMail(mail);
-
-		if(clients == null || clients.isEmpty()) {
-			return null;
-		}
-
-		Client client = clients.get(0);
-		client.setCreditCard(creditCard);
-		clientRepository.delete(client);
-		clientRepository.insert(client);
-		return client;
-	}
 }
