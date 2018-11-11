@@ -1,4 +1,4 @@
-package com.lama.mse.restaurants.controller.kafka;
+package com.lama.mse.coursiers.controller.kafka;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -45,4 +45,6 @@ public class KafkaConsumerConfig {
         return messagingMessageConverter;
     }
 	
+
+
 }

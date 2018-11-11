@@ -29,6 +29,7 @@ public class OrderKafkaListener {
 	public String createClientOrderListener(String orderJson) {
 		orderService.storeNewOrder(new Gson().fromJson(orderJson, Order.class));
 		kafkaIO.sendCreatedOrderMessage(orderJson);
+		System.out.println("Order stored to memory.");
 		return orderJson;
 	}
 	

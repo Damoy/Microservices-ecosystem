@@ -1,10 +1,10 @@
 package com.lama.mse.restaurants.consultation.model;
 
-public enum Category {
+public enum FoodCategory {
 
 	ALL("all"), JUNK("junk"), ASIAN("asian"), ITALIAN("italian");
 	
-	private Category(String title) {
+	private FoodCategory(String title) {
 		this.title = title;
 	}
 	
@@ -14,7 +14,7 @@ public enum Category {
 		return title;
 	}
 	
-	public static Category parseCategory(String category){
+	public static FoodCategory parseCategory(String category){
 		if(category.contains(ALL.getTitle())){
 			return ALL;
 		} else if(category.contains(JUNK.getTitle())){

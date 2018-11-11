@@ -68,30 +68,24 @@ public class Controller {
 	//		return new ResponseEntity("", HttpStatus.OK);
 	//	}
 
-	@RequestMapping(value = "FOOD", method = RequestMethod.POST)
+	@RequestMapping(value = "/CREATE/FOOD", method = RequestMethod.POST)
 	public ResponseEntity editFoodEntryPoint(@RequestBody String foodJson) throws InterruptedException, ExecutionException {
-		RequestReplyFuture<String,String,String> future = kafkaIO.sendCreateFood(foodJson);
+		RequestReplyFuture<String, String, String> future = kafkaIO.sendCreateFood(foodJson);
 		String result = "Food could not been created.";
-
 		HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;
-
-		//		try {
-		//		SendResult<String, String> sendResult = future.getSendFuture().get();
-		//print all headers
-		//		sendResult.getProducerRecord().headers().forEach(header -> System.out.println(header.key() + ":" + header.value().toString()));
-
 		ConsumerRecord<String, String> consumerRecord = null;
+		
 		try {
-			System.out.println("là");
 			while(!future.isDone()) {
-				consumerRecord = future.get(10000,TimeUnit.MILLISECONDS);}
-				result = consumerRecord.value();
+				consumerRecord = future.get(10000,TimeUnit.MILLISECONDS);
+			}
+			
+			result = consumerRecord.value();
+			status = HttpStatus.OK;
 		} catch (InterruptedException | ExecutionException | TimeoutException e) {
-			System.out.println("là2");
 			e.printStackTrace();
 		}
-		status = HttpStatus.OK;
-		System.out.println("là3");
+		
 		return new ResponseEntity<>(result,status);
 	}
 

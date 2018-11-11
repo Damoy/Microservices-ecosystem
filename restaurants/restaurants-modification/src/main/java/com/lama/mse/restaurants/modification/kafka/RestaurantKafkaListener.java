@@ -1,17 +1,9 @@
 package com.lama.mse.restaurants.modification.kafka;
 
-import org.apache.kafka.clients.consumer.ConsumerRecord;
-import org.apache.kafka.clients.consumer.ConsumerRecords;
-import org.apache.kafka.common.record.TimestampType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.annotation.TopicPartition;
-import org.springframework.kafka.support.Acknowledgment;
-import org.springframework.kafka.support.KafkaHeaders;
-import org.springframework.messaging.Message;
-import org.springframework.messaging.handler.annotation.Header;
 import org.springframework.messaging.handler.annotation.SendTo;
-import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.stereotype.Component;
 
 import com.google.gson.Gson;
@@ -40,34 +32,33 @@ public class RestaurantKafkaListener {
 
 	public RestaurantKafkaListener() {}
 	//String json
-	@KafkaListener(id="test",topics = "create-food",topicPartitions = { @TopicPartition(topic="create-food", partitions = {"0"})})
+	@KafkaListener(id="createFood",topics = "create-food",topicPartitions = { @TopicPartition(topic="create-food", partitions = {"0"})})
 	@SendTo(value= {"topic"})
-	public String createFood(String json,
-			@Header(KafkaHeaders.CORRELATION_ID) byte[] correlation) {
-		foodService.store(new Gson().fromJson(json, Food.class));
-		System.out.println(correlation);
-		
+	public String createFood(String foodjson) {
+		Food food = new Gson().fromJson(foodjson, Food.class);
+		foodService.store(food);
 		Logs.infoln("Listened create-food");
-		return 	"FOOD Created";
-
+		return "Food " + food.getName() + " created.";
 	}
 
-	@KafkaListener(id="test2",topics = "create-order", topicPartitions = { @TopicPartition(topic = "create-order", partitions = {"0"})})
+	@KafkaListener(id="createOrder",topics = "create-order", topicPartitions = { @TopicPartition(topic = "create-order", partitions = {"0"})})
 	@SendTo(value= {"topic"})
 	public String createOrder(String orderJson) {
-		orderService.store(new Gson().fromJson(orderJson, Order.class));
+		Order order = new Gson().fromJson(orderJson, Order.class);
+		orderService.store(order);
 		kafkaIO.sendOrderCreated(orderJson);
 		Logs.infoln("Listened create-order");
-		return "Order Created";
+		return "Order of " + order.getClientMail() + " created.";
 	}
 	
-	@KafkaListener(id="test2",topics="create-restaurant", topicPartitions = { @TopicPartition(topic = "create-restaurant", partitions = {"0"})})
+	@KafkaListener(id="createRestaurant",topics="create-restaurant", topicPartitions = { @TopicPartition(topic = "create-restaurant", partitions = {"0"})})
 	@SendTo(value= {"topic"})
 	public String createRestaurant(String restaurantJson) {
-		restaurantService.store(new Gson().fromJson(restaurantJson, Restaurant.class));
+		Restaurant restaurant = new Gson().fromJson(restaurantJson, Restaurant.class);
+		restaurantService.store(restaurant);
 		kafkaIO.sendRestaurantCreated(restaurantJson);
 		Logs.infoln("Listened create-restaurant");
-		return "restaurant Created";
+		return "Restaurant " + restaurant.getName() + " created.";
 	}
 
 }

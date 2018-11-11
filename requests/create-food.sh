@@ -1,0 +1,1 @@
+curl -X POST -H "Accept: application/json" -H "Content-type: application/json" "localhost:8089/MS/CREATE/FOOD" -d '{"name": "DarkDemonNemsLucichan","description": "Its so tasty that you will lose your soul","restaurantId": "Lucichan","price": "15.0","category":"ASIAN"}'
