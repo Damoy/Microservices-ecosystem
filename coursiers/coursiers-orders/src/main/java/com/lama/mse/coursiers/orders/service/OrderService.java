@@ -1,8 +1,6 @@
 package com.lama.mse.coursiers.orders.service;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,13 +26,13 @@ public class OrderService implements IOrderService {
 		return orderRepository.findByCoursierMail(coursierMail);
 	}
 
-	@Override
-	public List<Order> getOrdersAroundMe() {
-		List<Order> orders = new ArrayList<>();
-		orders = orderRepository.findAll().stream().filter(order -> order.isAroundMe())
-				.collect(Collectors.toList());
-		return orders;
-	}
+//	@Override
+//	public List<Order> getOrdersAroundMe() {
+//		List<Order> orders = new ArrayList<>();
+//		orders = orderRepository.findAll().stream().filter(order -> order.isAroundMe())
+//				.collect(Collectors.toList());
+//		return orders;
+//	}
 
 	@Override
 	public List<Order> findAll() {
@@ -115,6 +113,12 @@ public class OrderService implements IOrderService {
 		// TODO Auto-generated method stub
 		
 	}
-	
+
+	@Override
+	public List<Order> getOrdersAroundMe() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 }
