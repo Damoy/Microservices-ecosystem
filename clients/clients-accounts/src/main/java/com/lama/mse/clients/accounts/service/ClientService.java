@@ -15,7 +15,7 @@ public class ClientService implements IClientService {
 	private IClientRepository clientRepository;
 
 	public ClientService() {}
-
+	
 	@Override
 	public Client findByMail(String mail) {
 		List<Client> clients = clientRepository.findByMail(mail);
