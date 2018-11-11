@@ -43,5 +43,14 @@ public class OrderKafkaListener {
 		kafkaIO.sendConsultedClientOrders(result);
 		return result;
 	}
-
+	
+	// consult-client-order
+	@KafkaListener(id="ClientOrderConsultor",topics = {"consult-client-order"},
+			topicPartitions = {@TopicPartition(topic = "consult-client-order", partitions = {"0"})})
+	@SendTo("topic")
+	public String consultClientOrderListener(String orderId) {
+		Order order = orderService.getByOrderId(orderId);
+		if(order != null) return new Gson().toJson(order);
+		return "No order of id " + orderId + " has been found.\n";
+	}
 }

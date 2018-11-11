@@ -19,4 +19,5 @@ public class KafkaIO {
 	public void sendConsultedClientOrders(String ordersJson) {
 		kafkaTemplate.send("order-consulted", ordersJson);
 	}
+	
 }

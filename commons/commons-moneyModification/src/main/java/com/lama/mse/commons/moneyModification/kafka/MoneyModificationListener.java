@@ -40,5 +40,22 @@ public class MoneyModificationListener {
 		kafka.sendBankAccount(bankAccount);
 		return "Withdrawaled " + amountS + " from " +  bankAccount + " account.\n";
 	}
+	
+	@KafkaListener(topics = "perform-paiement",
+			topicPartitions = {@TopicPartition(topic = "perform-paiement", partitions = {"0"})})
+	@SendTo("topic")
+	public String performPaiementOperation(String banksInfo) {
+		String[] split = banksInfo.split(";");
+		String bankAccountToDebit = split[0];
+		String amountToDebit = split[1];
+		String bankAccountToCredit = split[2];
+		String amountToCredit = split[3];
+		
+		
+		
+		// mock
+		kafka.sendBankAccount(bankAccountToDebit);
+		return amountToDebit + " debit from " + bankAccountToDebit + ", " + amountToCredit + " credited to " + bankAccountToCredit + "\n";
+	}
 
 }

@@ -119,20 +119,23 @@ public class Controller {
 		return new ResponseEntity<>(result,status);
 	}
 	
-//	@RequestMapping(value = "/PAY/{clientMail}/{orderId}", method = RequestMethod.POST)
-//	public ResponseEntity clientPayOrder(@PathVariable String clientMail, @PathVariable String orderId) {
-//		Logs.infoln("Listened new event on MS/PAY/{orderId}" + orderId);
-//		RequestReplyFuture<String,String,String> future = kafkaIO.sendConsultOrder();
-//		String jsonOrders
-//		
-//		try {
-//			result = future.get(10000, TimeUnit.MILLISECONDS).value();
-//			status = HttpStatus.OK;
-//		} catch (InterruptedException | ExecutionException | TimeoutException e) {
-//			e.printStackTrace();
-//		}
-//		
-//		return new ResponseEntity<>(result,status);
-//	}
+	@RequestMapping(value = "/PAY/{clientMail}/{orderId}", method = RequestMethod.POST)
+	public ResponseEntity clientPayOrder(@PathVariable String clientMail, @PathVariable String orderId) {
+		Logs.infoln("Listened new event on MS/PAY/{orderId}" + orderId);
+		RequestReplyFuture<String,String,String> future = kafkaIO.sendConsultOrder(orderId);
+		String order = null;
+		String result = "Could not perform paiement operation.\n";
+		HttpStatus status = HttpStatus.SERVICE_UNAVAILABLE;
+		
+		try {
+			order = future.get(10000, TimeUnit.MILLISECONDS).value();
+			result = kafkaIO.sendPaiementRequest(order).get(10000, TimeUnit.MILLISECONDS).value();
+			if(result != null) status = HttpStatus.OK;
+		} catch (InterruptedException | ExecutionException | TimeoutException e) {
+			e.printStackTrace();
+		}
+		
+		return new ResponseEntity<>(result,status);
+	}
 	
 }

@@ -9,5 +9,6 @@ import com.lama.mse.clients.orders.model.Order;
 public interface IOrderRepository extends MongoRepository<Order, Integer>{
 
 	public List<Order> findByClientMail(String clientMail);
+	public List<Order> findByOrderId(String orderId);
 	
 }

@@ -8,5 +8,6 @@ public interface IOrderService {
 
 	public List<Order> getByClientMail(String mail);
 	public void storeNewOrder(Order order);
+	public Order getByOrderId(String orderId);
 	
 }

@@ -28,4 +28,13 @@ public class OrderService implements IOrderService {
 		orderRepository.save(order);
 	}
 
+	@Override
+	public Order getByOrderId(String orderId) {
+		List<Order> orders = orderRepository.findByOrderId(orderId);
+		if(orders == null || orders.isEmpty()) {
+			return null;
+		}
+		return orders.get(0);
+	}
+
 }

@@ -26,6 +26,23 @@ public class KafkaIO {
 		return future;
 	}
 	
+	public RequestReplyFuture<String,String,String>  sendConsultOrder(String orderId) {
+		ProducerRecord<String, String> record = new ProducerRecord<String, String>("consult-client-order", orderId);
+		record.headers().add(new RecordHeader(KafkaHeaders.REPLY_TOPIC, "topic".getBytes()));
+		RequestReplyFuture<String,String,String> future = template.sendAndReceive(record);
+		Logs.infoln("Sent consult-order by id.");
+		return future;
+	}
+	
+	// sendPaiementRequest
+	public RequestReplyFuture<String,String,String> sendPaiementRequest(String orderId) {
+		ProducerRecord<String, String> record = new ProducerRecord<String, String>("perform-paiement", orderId);
+		record.headers().add(new RecordHeader(KafkaHeaders.REPLY_TOPIC, "topic".getBytes()));
+		RequestReplyFuture<String,String,String> future = template.sendAndReceive(record);
+		Logs.infoln("Sent perform-paiement request.");
+		return future;
+	}
+	
 	public RequestReplyFuture<String,String,String>  sendCreateClientRequest(String clientJson) {
 		ProducerRecord<String, String> record = new ProducerRecord<String, String>("create-client", clientJson);
 		record.headers().add(new RecordHeader(KafkaHeaders.REPLY_TOPIC, "topic".getBytes()));
