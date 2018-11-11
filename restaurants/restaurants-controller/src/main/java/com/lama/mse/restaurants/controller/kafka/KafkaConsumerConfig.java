@@ -14,6 +14,9 @@ import org.springframework.kafka.core.ConsumerFactory;
 import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.listener.ConcurrentMessageListenerContainer;
+import org.springframework.kafka.support.SimpleKafkaHeaderMapper;
+import org.springframework.kafka.support.converter.MessagingMessageConverter;
+import org.springframework.kafka.support.serializer.JsonDeserializer;
 
 @EnableKafka
 @Configuration
@@ -39,8 +42,19 @@ public class KafkaConsumerConfig {
 	public ConcurrentKafkaListenerContainerFactory<String, String> kafkaListenerContainerFactory() {
 		ConcurrentKafkaListenerContainerFactory<String, String> factory = new ConcurrentKafkaListenerContainerFactory<>();
 		factory.setConsumerFactory(consumerFactory());
+		factory.setConcurrency(2);
+		factory.setMessageConverter(simpleMapperConverter());
 		return factory;
 	}
+	
+	@Bean // not required if Jackson is on the classpath
+    public MessagingMessageConverter simpleMapperConverter() {
+        MessagingMessageConverter messagingMessageConverter = new MessagingMessageConverter();
+        messagingMessageConverter.setHeaderMapper(new SimpleKafkaHeaderMapper());
+        return messagingMessageConverter;
+    }
+	
+
 
 //	
 //	@Bean

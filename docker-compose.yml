@@ -159,7 +159,7 @@ services:
        KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
        KAFKA_LISTENERS: PLAINTEXT://:9092
        KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
-       KAFKA_CREATE_TOPICS: "consult-client:1:1,edit-client-name:1:1,edit-client-address:1:1,edit-client-creditCard:1:1,edit-client-phone:1:1,create-order:1:1,estimate-eta:1:1,estimate-distance:1:1,add-money:1:1,withdraw-money:1:1,create-coursier:1:1,consult-restaurant:1:1,consult-food:1:1,consult-category-food:1:1,consult-order:1:1,create-food:1:1,create-order:1:1,create-restaurant:1:1,food-created:1:1"
+       KAFKA_CREATE_TOPICS: "consult-client:1:1,edit-client-name:1:1,edit-client-address:1:1,edit-client-creditCard:1:1,edit-client-phone:1:1,create-order:1:1,estimate-eta:1:1,estimate-distance:1:1,add-money:1:1,withdraw-money:1:1,create-coursier:1:1,consult-restaurant:1:1,consult-food:1:1,consult-category-food:1:1,consult-order:1:1,create-food:1:1,create-order:1:1,create-restaurant:1:1,food-created:1:1,topic:1:1"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     depends_on: 

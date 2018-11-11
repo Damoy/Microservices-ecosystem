@@ -14,6 +14,7 @@ import org.springframework.kafka.core.ProducerFactory;
 import org.springframework.kafka.listener.KafkaMessageListenerContainer;
 import org.springframework.kafka.listener.config.ContainerProperties;
 import org.springframework.kafka.requestreply.ReplyingKafkaTemplate;
+import org.springframework.kafka.support.serializer.JsonSerializer;
 
 @Configuration
 public class KafkaProducerConfig {
@@ -46,9 +47,9 @@ public class KafkaProducerConfig {
     // Listener Container to be set up in ReplyingKafkaTemplate
     @Bean
     public KafkaMessageListenerContainer<String, String> replyContainer(ConsumerFactory<String, String> cf) {
-      ContainerProperties containerProperties = new ContainerProperties(new String[]{ "consult-client","edit-client-name","edit-client-address","edit-client-creditCard","edit-client-phone","create-order","estimate-eta","estimate-distance","add-money","withdraw-money","create-coursier","consult-restaurant","consult-food","consult-category-food",
-    		  "consult-order","create-food","create-order","create-restaurant","create-food", "food-created" });
+      ContainerProperties containerProperties = new ContainerProperties("topic");
       return new KafkaMessageListenerContainer<>(cf, containerProperties);
     }
+    
 
 }
