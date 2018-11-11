@@ -30,8 +30,13 @@ public class FoodService implements IFoodService {
 		List<Food> foods = foodRepository.findByCategory(foodCategory);
 		if(foods == null || foods.isEmpty())
 			return null;
-		
 		return foods.get(0);
 	}
+	
+	@Override
+	public List<Food> getAll() {
+		return foodRepository.findAll();
+	}
+
 
 }

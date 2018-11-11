@@ -32,16 +32,26 @@ public class Controller {
 
 	public Controller() {
 	}
+ 
+	@RequestMapping(value = "FOOD/{category}", method = RequestMethod.GET)
+	public ResponseEntity consultFoodByCategoryEntryPoint(@PathVariable("category") String category) {	
+		ListenableFuture<ConsumerRecord<String, String>> future = kafkaIO.sendConsultFoodByCategory(category);
+		String result = "Food could not be found.";
+		HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;
+		ConsumerRecord<String, String> consumerRecord = null;
 
-	//	@RequestMapping(value = "FOOD/{category}", method = RequestMethod.GET)
-	//	public ResponseEntity consultFoodByCategoryEntryPoint(@PathVariable("category") String category) {
-	//		System.out.println("consult-category !");
-	//
-	//		ListenableFuture<SendResult<String, String>> future = kafkaIO.sendConsultFoodByCategory(category);
-	//		// TODO future.addCallback(arg0);
-	//
-	//		return new ResponseEntity("", HttpStatus.OK);
-	//	}
+		try {
+			while(!future.isDone()) {
+				consumerRecord = future.get(15,TimeUnit.SECONDS);
+			}
+			result = consumerRecord.value();
+			status = HttpStatus.OK;
+		} catch (InterruptedException | ExecutionException | TimeoutException e) {
+			e.printStackTrace();
+		}
+
+		return new ResponseEntity(result, status);
+	}
 	//
 	//	@RequestMapping(value = "FOODS/{restaurant}", method = RequestMethod.GET)
 	//	public ResponseEntity consultFoodEntryPoint(@PathVariable("restaurant") String restaurantName) {
@@ -74,18 +84,18 @@ public class Controller {
 		String result = "Food could not been created.";
 		HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;
 		ConsumerRecord<String, String> consumerRecord = null;
-		
+
 		try {
 			while(!future.isDone()) {
 				consumerRecord = future.get(10000,TimeUnit.MILLISECONDS);
 			}
-			
+
 			result = consumerRecord.value();
 			status = HttpStatus.OK;
 		} catch (InterruptedException | ExecutionException | TimeoutException e) {
 			e.printStackTrace();
 		}
-		
+
 		return new ResponseEntity<>(result,status);
 	}
 

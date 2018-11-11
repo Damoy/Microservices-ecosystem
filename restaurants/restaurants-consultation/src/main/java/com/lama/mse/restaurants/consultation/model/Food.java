@@ -1,14 +1,15 @@
 package com.lama.mse.restaurants.consultation.model;
 
+
 public class Food {
 
 	private String name;
 	private String description;
-	private String category;
-	private long restaurantId;
+	private String restaurantId;
 	private float price;
+	private FoodCategory category;
 	
-	public Food(String name, String description, String category, long restaurantId, float price) {
+	public Food(String name, String description, FoodCategory category, String restaurantId, float price) {
 		this.name = name;
 		this.description = description;
 		this.category = category;
@@ -17,7 +18,6 @@ public class Food {
 	}
 
 	public Food(){
-		
 	}
 
 	public String getName() {
@@ -36,19 +36,19 @@ public class Food {
 		this.description = description;
 	}
 
-	public String getCategory() {
+	public FoodCategory getCategory() {
 		return category;
 	}
 
-	public void setCategory(String category) {
+	public void setCategory(FoodCategory category) {
 		this.category = category;
 	}
 
-	public long getRestaurantId() {
+	public String getRestaurantId() {
 		return restaurantId;
 	}
 
-	public void setRestaurantId(long restaurantId) {
+	public void setRestaurantId(String restaurantId) {
 		this.restaurantId = restaurantId;
 	}
 

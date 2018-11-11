@@ -31,7 +31,7 @@ public class RestaurantKafkaListener {
 	private KafkaIO kafkaIO;
 
 	public RestaurantKafkaListener() {}
-	//String json
+	
 	@KafkaListener(id="createFood",topics = "create-food",topicPartitions = { @TopicPartition(topic="create-food", partitions = {"0"})})
 	@SendTo(value= {"topic"})
 	public String createFood(String foodjson) {
