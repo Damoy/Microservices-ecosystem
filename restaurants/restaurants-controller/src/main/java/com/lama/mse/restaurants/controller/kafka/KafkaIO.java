@@ -26,6 +26,15 @@ public class KafkaIO {
 		// post in kafka topic
 		return kafkaTemplate.sendAndReceive(record);
 	}
+	
+	public RequestReplyFuture<String, String, String> sendCreateRestaurant(String restaurantjSON) {
+		ProducerRecord<String, String> record = new ProducerRecord<String, String>("create-restautant",
+				restaurantjSON);
+		// set reply topic in header
+		record.headers().add(new RecordHeader(KafkaHeaders.REPLY_TOPIC, "topic".getBytes()));
+		// post in kafka topic
+		return kafkaTemplate.sendAndReceive(record);
+	}
 
 	public RequestReplyFuture<String, String, String> sendConsultOrder(String restaurantName) {
 		ProducerRecord<String, String> record = new ProducerRecord<String, String>("consult-order", restaurantName);

@@ -5,13 +5,10 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
 import org.apache.kafka.clients.consumer.ConsumerRecord;
-import org.apache.kafka.clients.producer.RecordMetadata;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.kafka.config.KafkaListenerContainerFactory;
 import org.springframework.kafka.requestreply.RequestReplyFuture;
-import org.springframework.kafka.support.SendResult;
 import org.springframework.util.concurrent.ListenableFuture;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.lama.mse.restaurants.controller.kafka.KafkaConsumerConfig;
 import com.lama.mse.restaurants.controller.kafka.KafkaIO;
 
 @RestController
@@ -82,6 +78,27 @@ public class Controller {
 	public ResponseEntity editFoodEntryPoint(@RequestBody String foodJson) throws InterruptedException, ExecutionException {
 		RequestReplyFuture<String, String, String> future = kafkaIO.sendCreateFood(foodJson);
 		String result = "Food could not been created.";
+		HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;
+		ConsumerRecord<String, String> consumerRecord = null;
+
+		try {
+			while(!future.isDone()) {
+				consumerRecord = future.get(10000,TimeUnit.MILLISECONDS);
+			}
+
+			result = consumerRecord.value();
+			status = HttpStatus.OK;
+		} catch (InterruptedException | ExecutionException | TimeoutException e) {
+			e.printStackTrace();
+		}
+
+		return new ResponseEntity<>(result,status);
+	}
+	
+	@RequestMapping(value = "/CREATE/RESTAURANT", method = RequestMethod.POST)
+	public ResponseEntity createRestaurantEntryPoint(@RequestBody String restaurantjson) throws InterruptedException, ExecutionException {
+		RequestReplyFuture<String, String, String> future = kafkaIO.sendCreateRestaurant(restaurantjson);
+		String result = "Restaurant could not been created.";
 		HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;
 		ConsumerRecord<String, String> consumerRecord = null;
 

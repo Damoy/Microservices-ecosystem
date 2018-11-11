@@ -88,6 +88,28 @@ echo $pestoPastaMario;
 echo "";
 sleep $firstStorySleep;
 
+# Restaurants
+
+# printf "Creating restaurants"; sleep 1; printf "."; sleep 1; printf "."; sleep 1; printf ".\n"; echo "";
+
+# printf "1. Creating Lucichan restaurant";sleep 1; printf "."; sleep 1; printf "."; sleep 1; printf ".\n"; echo "";
+# luciResto=$(curl -s -X POST -H "Accept: application/json" -H "Content-type: application/json" '{"name":"Lucichan","address":"Lucichan","hashedPassWord":"egdogj305od","fax":"0602000404","phoneNumber":"0602000404"}');
+# echo $luciResto;
+# echo "";
+# sleep $firstStorySleep;
+
+# printf "2. Creating Mario restaurant";sleep 1; printf "."; sleep 1; printf "."; sleep 1; printf ".\n"; echo "";
+# marioRestau=$(curl -s -X POST -H "Accept: application/json" -H "Content-type: application/json" "localhost:8089/MS/CREATE/RESTAURANT" -d '{"name":"Mario","address":"mama","hashedPassWord":"egdogj305od","fax":"0602000404","phoneNumber":"0602000404"}');
+# echo $marioRestau;
+# echo "";
+# sleep $firstStorySleep;
+
+# printf "3. Creating KebabierUltime restaurant";sleep 1; printf "."; sleep 1; printf "."; sleep 1; printf ".\n"; echo "";
+# kebabResto=$(curl -s -X POST -H "Accept: application/json" -H "Content-type: application/json" "localhost:8089/MS/CREATE/RESTAURANT" -d '{{"name":"Mario","address":"keke","hashedPassWord":"egdogj305od","fax":"0602000404","phoneNumber":"0602000404"}');
+# echo $kebabResto;
+# echo "";
+# sleep $firstStorySleep;
+
 
 # Personas accounts
 
@@ -123,7 +145,9 @@ sleep $firstStorySleep;
 
 printf "2. As $student, I can browse the food catalogue by categories so that I can immediately identify my favorite junk food.";
 sleep 1; printf "."; sleep 1; printf "."; sleep 1; printf ".\n"; echo "";
-echo "CURL TODO"; sleep $firstStorySleep;
+foodWanted=$(curl -s -X GET -H "Accept: application/json" -H "Content-type: application/json" localhost:8089/MS/CONSULT/FOODS/JUNK);
+echo $foodWanted;
+sleep $firstStorySleep;
 
 printf "3. As $dev, I want to know before ordering the estimated time of delivery of the meal so that I can schedule my work around it, and be ready when it arrives.";
 sleep 1; printf "."; sleep 1; printf "."; sleep 1; printf ".\n"; echo "";
@@ -139,6 +163,8 @@ sleep $firstStorySleep;
 
 printf "5. As Jordan, I want to access to the order list, so that I can prepare the meal efficiently.";
 sleep 1; printf "."; sleep 1; printf "."; sleep 1; printf ".\n"; echo "";
+# restaurantOrders=$(curl -s -X GET localhost:8089/MS/FOOD/Mario)
+# echo $restaurantOrders;
 echo "CURL TODO"; sleep $firstStorySleep;
 
 printf "6. As Jamie, I want to know the orders that will have to be delivered around me, so that I can choose one and go to the restaurant to begin the course.";
