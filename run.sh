@@ -1,9 +1,33 @@
 #!/bin/sh
 
-# Gail, a student who lives in Sophia and often order (junk) food from food trucks;
-# Erin, a software developer working in a major company;
-# Jordan, restaurant chef;
-# Jamie, a coursier;
+# >> Stories
+# Week 41: Initial Story set
+
+#     As Gail or Erin, I can order my lunch from a restaurant so that the food is delivered to my place;
+#     As Gail, I can browse the food catalogue by categories so that I can immediately identify my favorite junk food;
+#     As Erin, I want to know before ordering the estimated time of delivery of the meal so that I can schedule my work around it, and be ready when it arrives.
+#     As Erin, I can pay directly by credit card on the platform, so that I only have to retrieve my food when delivered;
+#     As Jordan, I want to access to the order list, so that I can prepare the meal efficiently.
+#     As Jamie, I want to know the orders that will have to be delivered around me, so that I can choose one and go to the restaurant to begin the course.
+#     As Jamie, I want to notify that the order has been delivered, so that my account can be credited and the restaurant can be informed.
+
+# Week 43: First evolution
+
+# New personna: Terry, restaurant owner.
+
+#     As Jordan, I want the customers to be able to review the meals so that I can improve them according to their feedback;
+#     As a customer (Gail, Erin), I want to track the geolocation of the coursier in real time, so that I can anticipate when I will eat.
+#     As Terry, I want to get some statistics (speed, cost) about global delivery time and delivery per coursier.
+
+# Week 44: Second evolution
+
+#     As Terry, I can emit a promotional code so that I can attract more customer to my restaurant.
+#     As Jamie, I want to inform quickly that I can't terminate the course (accident, sick), so that the order can be replaced.
+
+# Week 45: Last evolution
+
+#     As Terry, I can emit a promotional code based on my menu contents (e.g., 10% discout for an entry-main course-dessert order), so that I can sell more expensive orders.
+#     As Gail or Erin, I can follow the position of Jamie in real time, so that the food ETA can be updated automatically.
 
 # Personas
 student=Gail;
@@ -12,6 +36,7 @@ chief=Jordan;
 coursier=Jamie;
 personasSleep=2;
 
+# Introduction
 printf ">> Starting Uberoo micro-services eco-system scenarios"; sleep 1; printf "."; sleep 1; printf "."; sleep 1; printf ".\n"; echo "";
 
 echo "Scenarios will include the following personas:";
@@ -30,6 +55,35 @@ sleep $personasSleep;
 
 echo "";
 firstStorySleep=2;
+
+
+# Personas accounts
+
+printf ">> Creating personas accounts"; sleep 1; printf "."; sleep 1; printf "."; sleep 1; printf ".\n"; echo "";
+
+printf "Creating $student" sleep 1; printf "."; sleep 1; printf "."; sleep 1; printf ".\n"; echo "";
+studentAccount=$(curl -s -X POST -H "Accept: application/json" -H "Content-type: application/json" localhost:8082/MS/CREATE/CLIENT -d '{"mail":"gail@me.fr","phoneNumber":"0656768798","name":"Gail","address":"11 rue GreenKing","creditCard":"6545213409873456"}');
+echo "";
+echo $studentAccount;
+sleep $firstStorySleep;
+
+printf "Creating $dev" sleep 1; printf "."; sleep 1; printf "."; sleep 1; printf ".\n"; echo "";
+devAccount=$(curl -s -X POST -H "Accept: application/json" -H "Content-type: application/json" localhost:8082/MS/CREATE/CLIENT -d '{"mail":"erin@me.fr","phoneNumber":"0611223344","name":"Erin","address":"22 Boulevard Polytech","creditCard":"5345768912345432"}');
+echo "";
+echo $devAccount;
+sleep $firstStorySleep;
+
+printf "Creating $chief" sleep 1; printf "."; sleep 1; printf "."; sleep 1; printf ".\n"; echo "";
+# $chiefAccount=$(curl -s -X POST -H "Accept: application/json" -H "Content-type: application/json" localhost:8082/MS/CREATE/CLIENT -d '{"mail":"jordan@me.fr","phoneNumber":"0754657678","name":"Jordan","address":"Mont de Biot","creditCard":"0987123476549876"}');
+echo "CURL TO EDIT";
+# echo $chiefAccount;
+sleep $firstStorySleep;
+
+printf "Creating $coursier" sleep 1; printf "."; sleep 1; printf "."; sleep 1; printf ".\n"; echo "";
+# $coursierAccount=$(curl -s -X POST -H "Accept: application/json" -H "Content-type: application/json" localhost:8082/MS/CREATE/CLIENT -d '{"mail":"jamie@me.fr","phoneNumber":"0634325465","name":"Jamie","address":"Rond-point des Dolines","creditCard":"0789345612348765"}');
+echo "CURL TO EDIT";
+# echo $coursierAccount;
+sleep $firstStorySleep;
 
 printf ">> Starting first story";
 sleep 1; printf "."; sleep 1; printf "."; sleep 1; printf ".\n"; echo "";
